@@ -10,8 +10,9 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-        $form = $this->createForm(new TimetableType()//, array(
-                //'action' => $this->generateUrl('projectsubmission'), )
+        $form = $this->createForm(new TimetableType(), array(
+                'attr'=>array(
+                    'class' =>'form-horizontal', ))
                 );
         return $this->render('BuskoJourneyBundle:Home:Home.html.twig', array('form' => $form->createView()));
     }
