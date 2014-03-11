@@ -122,8 +122,10 @@ class RegistrationController extends ContainerAware
         $userManager->updateUser($user);
 
         if (null === $response = $event->getResponse()) {
+            
             $url = $this->container->get('router')->generate('fos_user_registration_confirmed');
             $response = new RedirectResponse($url);
+            
         }
 
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRMED, new FilterUserResponseEvent($user, $request, $response));
