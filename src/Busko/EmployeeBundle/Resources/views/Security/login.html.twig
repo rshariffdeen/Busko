@@ -1,8 +1,10 @@
 {% extends "BuskoStyleBundle:Home:basic.html.twig" %}
 {% block login %}
 {% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block content %}
+
 
 	<div class="container-fluid">
 		<div class="row-fluid">
@@ -16,7 +18,7 @@
 			<div class="row-fluid">
 				<div class="well span3 center login-box">
                                        
-					{% trans_default_domain 'FOSUserBundle' %}
+					
 
                                         {% block fos_user_content %}
                                         {% if error %}
