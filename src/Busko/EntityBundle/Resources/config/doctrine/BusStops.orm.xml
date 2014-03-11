@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Busko\EntityBundle\Entity\BusStops" table="bus_stops">
+    <unique-constraints>
+      <unique-constraint name="stop_id" columns="stop_id"/>
+    </unique-constraints>
+    <id name="stopId" type="string" column="stop_id" length="10">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="city" type="string" column="city" length="20" nullable="false"/>
+    <many-to-many field="route" target-entity="Routes" mapped-by="stop"/>
+  </entity>
+</doctrine-mapping>
