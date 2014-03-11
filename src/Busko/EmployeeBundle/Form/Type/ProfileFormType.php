@@ -31,17 +31,8 @@ class ProfileFormType extends BaseType
         $builder->add('street_no');
         $builder->add('street');
         $builder->add('city');
-        $builder->add('roles', 'collection', array(
-        'type'   => 'choice',
-        'options'  => array(
-            'choices'  => array(
-                'admin' => 'Admin',
-                'Driver'     => 'Driver',
-                'assistant'    => 'Assistant',
-                'operator'    => 'Operator',
-            ),
-        ),
-));
+       
+       
     }
      public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
