@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BuskoJourneyBundle:Home:home.html.twig');
+        return $this->render('BuskoJourneyBundle:Home:Home.html.twig');
     }
 }
