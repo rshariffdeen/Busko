@@ -18,6 +18,8 @@ security:
                 csrf_provider: form.csrf_provider
                 
                 login_path: /login
+                target_path_parameter: busko_homepage
+                default_target_path: busko_homepage12
                 
             logout:       true
             anonymous:    true

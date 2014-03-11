@@ -5,6 +5,9 @@ namespace Busko\EmployeeBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -17,10 +20,11 @@ class RegistrationFormType extends BaseType
 
         // add your custom field
         $builder->add('first_name');
+        
         $builder->add(
             'branchId',
             'entity',array(
-                'label' => 'select driver',
+                'label' => 'select branch',
                 'class' => 'BuskoEntityBundle:Branches',
                 'property' => 'branchId',
                 'query_builder' => function(EntityRepository $er) {
