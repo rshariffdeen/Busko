@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Assistants list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Machinenumber</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr><p>{{entity.id }}</p>
+                <td><a href="{{ path('assistants_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('assistants_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('assistants_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('assistants_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
