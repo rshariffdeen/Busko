@@ -1,0 +1,8 @@
+busko_site_adminpage:
+    pattern:  /home
+    defaults: { _controller: BuskoSiteBundle:Main:index }
+    
+busko_homepage:
+    pattern:  /main
+    defaults: { _controller: BuskoSiteBundle:Main:index }
+    

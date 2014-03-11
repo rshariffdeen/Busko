@@ -78,8 +78,23 @@
                                 </td>
                                 <td width="22%">
                                 {% block login %}
-       
-				<div class="btn-group pull-right" >
+                                    
+                                    <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            
+                <div class="btn-group pull-right" >
+					<a class="btn dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-user"></i><span class="hidden-phone"> {{app.user.username}}</span>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="{{path('fos_user_security_logout')}}">Logout</a></li>
+                                                <li><a href="{{path('fos_user_profile_show')}}">Profile Details</a></li>
+                                                <li><a href="{{path('fos_user_change_password')}}">Change Password</a></li>
+					</ul>
+				</div>
+            {% else %}
+                                            <div class="btn-group pull-right" >
 					<a class="btn dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-user"></i><span class="hidden-phone"> Employee</span>
 						<span class="caret"></span>
@@ -88,6 +103,10 @@
 						<li><a href="{{path('fos_user_security_login')}}">Login</a></li>
 					</ul>
 				</div>
+            {% endif %}
+        </div>
+       
+				
                                  {% endblock %}
 				<!-- user dropdown ends -->
                                 </td>
