@@ -1,0 +1,3 @@
+busko_style_homepage:
+    pattern:  /basic
+    defaults: { _controller: BuskoStyleBundle:Style:basic }

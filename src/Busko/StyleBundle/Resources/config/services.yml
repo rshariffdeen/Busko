@@ -1,0 +1,7 @@
+parameters:
+#    busko_style.example.class: Busko\StyleBundle\Example
+
+services:
+#    busko_style.example:
+#        class: %busko_style.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

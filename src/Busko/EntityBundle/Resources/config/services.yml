@@ -1,0 +1,7 @@
+parameters:
+#    busko_entity.example.class: Busko\EntityBundle\Example
+
+services:
+#    busko_entity.example:
+#        class: %busko_entity.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

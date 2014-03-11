@@ -1,0 +1,28 @@
+busko_message:
+    resource: "@BuskoMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+busko_style:
+    resource: "@BuskoStyleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+busko_journey:
+    resource: "@BuskoJourneyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+busko_entity:
+    resource: "@BuskoEntityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+busko_employee:
+    resource: "@BuskoEmployeeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+busko_bus:
+    resource: "@BuskoBusBundle/Resources/config/routing.yml"
+    prefix:   /
+
+busko_branch:
+    resource: "@BuskoBranchBundle/Resources/config/routing.yml"
+    prefix:   /
+
