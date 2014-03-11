@@ -19,9 +19,12 @@ security:
                 
                 login_path: /login
                 target_path_parameter: busko_homepage
-                default_target_path: busko_homepage12
+                default_target_path: busko_homepage
                 
-            logout:       true
+            logout:       
+                path: /logout
+                target: /login
+            
             anonymous:    true
 
     access_control:

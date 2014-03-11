@@ -1,3 +1,7 @@
+busko_site:
+    resource: "@BuskoSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
 busko_message:
     resource: "@BuskoMessageBundle/Resources/config/routing.yml"
     prefix:   /

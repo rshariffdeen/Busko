@@ -284,7 +284,21 @@ function docReady(){
 		e.preventDefault();
 		$('#myModal').modal('show');
 	});
-
+        
+        $('.btn-account').click(function(e){
+		e.preventDefault();
+		$('#account').modal('show');
+	});
+        
+        $('.btn-profile').click(function(e){
+		e.preventDefault();
+		$('#profile').modal('show');
+	});
+        
+        $('.btn-other').click(function(e){
+		e.preventDefault();
+		$('#myModal').modal('show');
+	});
 
 
 		
