@@ -14,6 +14,9 @@ namespace FOS\UserBundle\Controller;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class SecurityController extends ContainerAware
 {
@@ -23,6 +26,11 @@ class SecurityController extends ContainerAware
         $session = $request->getSession();
 
         // get the error if any (works with forward and redirect -- see below)
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!(!is_object($user) || !$user instanceof UserInterface)) {
+           return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user));
+      
+        }
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } elseif (null !== $session && $session->has(SecurityContext::AUTHENTICATION_ERROR)) {

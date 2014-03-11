@@ -1,3 +1,11 @@
-account_edit:
-    pattern:  /accountedit
-    defaults: { _controller: BuskoEmployeeBundle:EditProfile:edit }
+busko_homepage:
+    pattern:  /home
+    defaults: { _controller: BuskoJourneyBundle:Home:index }
+ 
+BuskoEntityBundle_assistants:
+       resource: "@BuskoEmployeeBundle/Resources/config/routing/assistants.yml"
+       prefix:   /assistants
+       
+BuskoEntityBundle_drivers:
+        resource: "@BuskoEmployeeBundle/Resources/config/routing/drivers.yml"
+        prefix:   /drivers

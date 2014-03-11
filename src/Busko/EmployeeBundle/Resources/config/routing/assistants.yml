@@ -1,0 +1,30 @@
+assistants:
+    pattern:  /
+    defaults: { _controller: "BuskoEmployeeBundle:Assistants:index" }
+
+assistants_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoEmployeeBundle:Assistants:show" }
+
+assistants_new:
+    pattern:  /new
+    defaults: { _controller: "BuskoEmployeeBundle:Assistants:new" }
+
+assistants_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoEmployeeBundle:Assistants:create" }
+    requirements: { _method: post }
+
+assistants_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BuskoEmployeeBundle:Assistants:edit" }
+
+assistants_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoEmployeeBundle:Assistants:update" }
+    requirements: { _method: post|put }
+
+assistants_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoEmployeeBundle:Assistants:delete" }
+    requirements: { _method: post|delete }
