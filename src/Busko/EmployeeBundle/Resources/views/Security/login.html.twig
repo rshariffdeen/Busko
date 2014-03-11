@@ -6,45 +6,60 @@
 {% block content %}
 
 
-	<div class="container-fluid">
-		<div class="row-fluid">
-		
-			<div class="row-fluid">
-				<div class="span3 center login-header">
-					<h2><img alt="Bus Ko Logo" src="{{asset('bundles/buskostyle/img/logo.png')}}" width="200" height="190"/></h2>
-				</div><!--/span-->
-			</div><!--/row-->
-                        <br><br><br><br> <br><br><br>
-			<div class="row-fluid">
-				<div class="well span3 center login-box">
-                                       
-					
+<div class="container-fluid">
+    <div class="row-fluid">
 
-                                        {% block fos_user_content %}
-                                        {% if error %}
-                                            <div>{{ error|trans }}</div>
-                                        {% endif %}
+        <div class="row-fluid">
+            <div class="span3 center login-header">
+                <h2><img alt="Bus Ko Logo" src="{{asset('bundles/buskostyle/img/logo.png')}}" width="200" height="190"/></h2>
+            </div><!--/span-->
+        </div><!--/row-->
+        <br><br><br><br> <br><br><br>
+        <div class="row-fluid">
+            <div class="well span3 center login-box">
 
-                                        <form action="{{ path("fos_user_security_check") }}" method="post">
-                                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+               {% block fos_user_content %}
+               {% if error %}
+                <div class="alert alert-info">
+		{{ error|trans }}
+                </div>
 
-                                            <label for="username">{{ 'security.login.username'|trans }}</label>
-                                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                {% endif %}
 
-                                            <label for="password">{{ 'security.login.password'|trans }}</label>
-                                            <input type="password" id="password" name="_password" required="required" />
+                <form action="{{ path("fos_user_security_check") }}" class="form-horizontal" method="post">
+                    <fieldset>
+                        
+                        <div class="input-prepend" title="Username" data-rel="tooltip">
+								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" id="username" name="_username"  required="required" type="text" value="admin" />
+							</div>
+							<div class="clearfix"></div>
 
-                                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+							<div class="input-prepend" title="Password" data-rel="tooltip">
+								<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" id="password" name="_password" required="required" type="password"/>
+							</div>
+							<div class="clearfix"></div>
 
-                                            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-                                        </form>
+							<div class="input-prepend">
+							<label class="remember" for="remember">  <input type="checkbox" id="remember_me" name="_remember_me" value="on" />Remember me</label>
+							</div>
+							<div class="clearfix"></div>
+
+							<p class="center span5">
+							      <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="{{ 'security.login.submit'|trans }}" />
+             
+							</p>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+               
+
+                 </fieldset>
+                </form>
                                         {% endblock fos_user_content %}
-				</div><!--/span-->
-			</div><!--/row-->
-				</div><!--/fluid-row-->
-		
-	</div><!--/.fluid-container-->
+            </div><!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
 
 
 {% endblock%}
