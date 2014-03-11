@@ -16,33 +16,28 @@
 			<div class="row-fluid">
 				<div class="well span3 center login-box">
                                        
-						<!-- Error Messages
-                                                <div class="alert alert-info">
-                                                   </div>
-                                                -->
-					
-					<form class="form-horizontal" action="index.html" method="post">
-						<fieldset>
-							<div class="input-prepend" title="Username" data-rel="tooltip">
-								<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text" value="" placeholder="type your employee ID" />
-							</div>
-							<div class="clearfix"></div>
+					{% trans_default_domain 'FOSUserBundle' %}
 
-							<div class="input-prepend" title="Password" data-rel="tooltip">
-								<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" name="password" id="password" type="password" value="" placeholder="type your password" />
-							</div>
-							<div class="clearfix"></div>
+                                        {% block fos_user_content %}
+                                        {% if error %}
+                                            <div>{{ error|trans }}</div>
+                                        {% endif %}
 
-							<div class="input-prepend">
-							<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
-							</div>
-			
+                                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-							<p class="center span5">
-							<button type="submit" class="btn btn-primary">Login</button>
-							</p>
-						</fieldset>
-					</form>
+                                            <label for="username">{{ 'security.login.username'|trans }}</label>
+                                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+                                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                                            <input type="password" id="password" name="_password" required="required" />
+
+                                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                                            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                                        </form>
+                                        {% endblock fos_user_content %}
 				</div><!--/span-->
 			</div><!--/row-->
 				</div><!--/fluid-row-->
