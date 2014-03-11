@@ -11,29 +11,19 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="username" type="string" column="username" length="20" nullable="false"/>
-    <field name="usernameCanonical" type="string" column="username_canonical" length="50" nullable="false"/>
-    <field name="password" type="string" column="password" length="100" nullable="false"/>
+    
     <field name="firstName" type="string" column="first_name" length="20" nullable="true"/>
     <field name="lastName" type="string" column="last_name" length="20" nullable="true"/>
     <field name="streetNo" type="string" column="street_no" length="5" nullable="true"/>
     <field name="street" type="string" column="street" length="20" nullable="true"/>
     <field name="city" type="string" column="city" length="20" nullable="true"/>
-    <field name="salt" type="string" column="salt" length="32" nullable="false"/>
-    <field name="isActive" type="boolean" column="is_active" nullable="false"/>
-    <field name="emailCanonical" type="string" column="email_canonical" length="50" nullable="false"/>
-    <field name="email" type="string" column="email" length="50" nullable="false"/>
-    <field name="enabled" type="boolean" column="enabled" nullable="false"/>
-    <field name="lastLogin" type="datetime" column="last_login" nullable="true"/>
-    <field name="locked" type="boolean" column="locked" nullable="false"/>
-    <field name="expiresAt" type="datetime" column="expires_at" nullable="true"/>
-    <field name="expired" type="boolean" column="expired" nullable="false"/>
-    <field name="confirmationToken" type="string" column="confirmation_token" length="50" nullable="true"/>
-    <field name="passwordRequestedAt" type="datetime" column="password_requested_at" nullable="true"/>
-    <field name="roles" type="text" column="roles" nullable="false"/>
-    <field name="credentialsExpireAt" type="datetime" column="credentials_expire_at" nullable="true"/>
-    <field name="credentialsExpired" type="boolean" column="credentials_expired" nullable="false"/>
-    <many-to-one field="branch" target-entity="Branches">
+    
+    
+    
+    
+    
+    
+    <many-to-one field="branchId" target-entity="Branches">
       <join-columns>
         <join-column name="branch_id" referenced-column-name="branch_id"/>
       </join-columns>

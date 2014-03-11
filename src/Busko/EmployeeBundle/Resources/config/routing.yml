@@ -1,3 +1,1 @@
-busko_employee_homepage:
-    pattern:  /login
-    defaults: { _controller: BuskoEmployeeBundle:Login:index }
+
