@@ -80,12 +80,12 @@
                                 {% block login %}
        
 				<div class="btn-group pull-right" >
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					<a class="btn dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-user"></i><span class="hidden-phone"> Employee</span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Login</a></li>
+						<li><a href="{{path('fos_user_security_login')}}">Login</a></li>
 					</ul>
 				</div>
                                  {% endblock %}

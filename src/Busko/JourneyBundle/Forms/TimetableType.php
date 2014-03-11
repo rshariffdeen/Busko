@@ -18,47 +18,67 @@ class TimetableType extends AbstractType
            
      
         $builder->add('StartBusStop', 'entity', array(
-            'label' =>'From',
+            'label' =>'Source',
             'class' => 'BuskoEntityBundle:BusStops',
+            
             'property' => 'city',
+            'label_attr' => array('class' => 'control-label'),
+            'attr' => array(
+            'class' =>'controls',
+                'data-rel'=>'chosen'
+                )
             ));
         
         $builder->add('StopBusStop', 'entity', array(
-            'label' =>'From',
+            'label' =>'Destination',
+            'label_attr' => array('class' => 'control-label'),
+            'attr' => array(
+            'class' =>'controls',
+                'data-rel'=>'chosen'
+                )
+            ,
             'class' => 'BuskoEntityBundle:BusStops',
             'property' => 'city',
             ));
        
         $builder 
-            ->add('date','date',array(
-            'label' =>'date',
-            'widget'=>'choice',
+            ->add('date','text',array(
+           
+            'label_attr' => array('class' => 'control-label'),
+                 'label' =>'Date',
                 'attr'=>array(
-                    'placeholder'=>'date'
-                    
+                    'placeholder'=>'date',
+                    'class' => 'input-xlarge datepicker',
                     )
             ));
         $builder 
             ->add('from','time',array(
             'label' =>'From',
             'widget'=>'choice',
+                'with_minutes'=>'false',
+                'label_attr' => array('class' => 'control-label'),
+            
                 'attr'=>array(
-                    'placeholder'=>'from'
+                    'placeholder'=>'Starting Time',
+                       
+                 
                     )
             ));
         $builder 
             ->add('to','time',array(
             'label' =>'to',
             'widget'=>'choice',
+                'label_attr' => array('class' => 'control-label'),
                 'attr'=>array(
-                    'placeholder'=>'to'
+                    'placeholder'=>'Until'
                     )
             ));
         $builder 
          ->add('submit','submit', array(
-                'label' => 'go!!!',
+                'label' => 'Search',
                 'attr' => array(
-                    'class' => 'button'
+                    'class' => 'btn btn-primary'
+                    
                 )
                 
             ));
