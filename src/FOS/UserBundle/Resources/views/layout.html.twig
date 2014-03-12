@@ -8,9 +8,15 @@
 
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
-                <div class="flash-{{ type }}">
-                    {{ message }}
-                </div>
+        
+        
+        <script type="text/javascript">
+                            window.onload=function(){
+                                  noty(jQuery.parseJSON('{"text":"{{message}}","layout":"center","type":"information"}'));
+                                
+                           }
+                            </script>
+                
             {% endfor %}
         {% endfor %}
 

@@ -5,121 +5,123 @@
 {% block content %}
 
 
-	<div class="container-fluid">
-		<div class="row-fluid">
-		
-			<div class="span2 main-menu-span">
-				<div class="well nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li class="nav-header hidden-tablet">Main</li>
-						<li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
-						<li><a class="ajax-link" href="ui.html"><i class="icon-user"></i><span class="hidden-tablet"> Employees</span></a></li>
-						<li><a class="ajax-link" href="form.html"><i class="icon-leaf"></i><span class="hidden-tablet"> Branches</span></a></li>
-						<li><a class="ajax-link" href="chart.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Buses</span></a></li>
-						<li><a class="ajax-link" href="typography.html"><i class="icon-th"></i><span class="hidden-tablet"> Routes</span></a></li>
-						
-					</ul>
-				</div><!--/.well -->
-			</div><!--/span-->
-                        <div id="content" class="span10 ">
-			<!-- content starts -->
-			
-                        <div class="row-fluid">
-                            <div class="box span12">
-                                
-					<div class="box-header well">
-                                            
-						<h2><i class="icon-user"></i> Edit Profile Details</h2>
-						
-					</div>
-					<div class="box-content span12 ">
+<div class="container-fluid">
+    <div class="row-fluid">
+
+
+        <noscript>
+        <div class="alert alert-block span10">
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+        </div>
+        </noscript>
+        <div id="content" class="span10 ">
+            <!-- content starts -->
+
+            <div class="row-fluid">
+                <div class="box span12">
+
+                    <div class="box-header well">
+
+                        <h2><i class="icon-user"></i> Edit Profile Details</h2>
+
+                    </div>
+                    <div class="box-content span12 ">
 						 {% trans_default_domain 'FOSUserBundle' %}
 
-                                        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal center">
-                                            
-                                             <div class="control-group ">
-                      {{form_label(form.username, 'Username',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
-                        {{form_widget(form.username)}}
-                       </div></div>
+                        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal center">
 
-  <div class="control-group">
+                            <div class="control-group warning ">
+                      {{form_label(form.username, 'Username',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.username)}}
+                                         <span class="help-inline">{{ form_errors(form.username) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
                       {{form_label(form.email, 'Email Address',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
+                                <div class="controls">
                         {{form_widget(form.email)}}
-                       </div></div>
-                                            
-                                            <div class="control-group">
+                                     <span class="help-inline">{{ form_errors(form.email) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
                       {{form_label(form.first_name, 'First Name',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
+                                <div class="controls">
                         {{form_widget(form.first_name)}}
-                       </div></div>
-                                            
-                                            
-                                                <div class="control-group">
+                                     <span class="help-inline">{{ form_errors(form.first_name) }}</span>
+                                </div></div>
+
+
+                            <div class="control-group warning">
                       {{form_label(form.last_name, 'Last Name',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
+                                <div class="controls">
                         {{form_widget(form.last_name)}}
-                       </div></div>
-                                            
-                                            
-                                                <div class="control-group">
+                                     <span class="help-inline">{{ form_errors(form.last_name) }}</span>
+                                </div></div>
+
+
+                            <div class="control-group warning">
                       {{form_label(form.street_no, 'Street Number',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
+                                <div class="controls">
                         {{form_widget(form.street_no)}}
-                       </div></div>
-                                            
-                                            
-                                                <div class="control-group">
+                                     <span class="help-inline">{{ form_errors(form.street_no) }}</span>
+                                </div></div>
+
+
+                            <div class="control-group warning">
                       {{form_label(form.street, 'Street',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
+                                <div class="controls">
                         {{form_widget(form.street)}}
-                       </div></div>
-                                            
-                                                    <div class="control-group">
+                                     <span class="help-inline">{{ form_errors(form.street) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
                       {{form_label(form.city, 'City',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
+                                <div class="controls">
                         {{form_widget(form.city)}}
-                       </div></div>
-                                            
-                                                    <div class="control-group">
+                                     <span class="help-inline">{{ form_errors(form.city) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
                       {{form_label(form.branchId, 'Branch',{ 'label_attr': {'class': 'control-label'} })}}
-                         <div class="controls">
+                                <div class="controls">
                         {{form_widget(form.branchId,{'attr':{'data-rel':'chosen'}})}}
-                       </div></div>
+                         <span class="help-inline">{{ form_errors(form.branchId) }}</span>
+                                </div></div>
 
 
                             {{ form_widget(form) }}
-                                            
-                                            
-                                           
-                                                <input class ='btn btn-primary span8'type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-                                            
-                                        </form>
-                                        
-					
 
-                                        
-					</div>
-				</div>
-				
-			
-                          
-				
-			</div><!--/row-->
-			
-			
-			
-					
-			
-					<!-- content ends -->
-			</div><!--/#content.span10-->
-			
-				</div><!--/fluid-row-->
-		
-	</div><!--/.fluid-container-->
-    
-        
+
+
+                            <input class ='btn btn-primary span8'type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div><!--/row-->
+
+
+
+
+
+            <!-- content ends -->
+        </div><!--/#content.span10-->
+
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+
 
 
 
