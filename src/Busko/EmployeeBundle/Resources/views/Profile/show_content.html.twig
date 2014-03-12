@@ -1,6 +1,5 @@
 {% extends "BuskoStyleBundle:Home:basic.html.twig" %}
-{% block login %}
-{% endblock %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block content %}
@@ -9,32 +8,142 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		
-			<div class="row-fluid">
-				<div class="span3 center login-header">
-					<h2><img alt="Bus Ko Logo" src="{{asset('bundles/buskostyle/img/logo.png')}}" width="200" height="190"/></h2>
-				</div><!--/span-->
-			</div><!--/row-->
-                        <br><br><br><br> <br><br><br>
-			<div class="row-fluid">
-				<div class="well span3 center login-box">
+			<div class="span2 main-menu-span">
+				<div class="well nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li class="nav-header hidden-tablet">Main</li>
+						<li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
+						<li><a class="ajax-link" href="ui.html"><i class="icon-user"></i><span class="hidden-tablet"> Employees</span></a></li>
+						<li><a class="ajax-link" href="form.html"><i class="icon-leaf"></i><span class="hidden-tablet"> Branches</span></a></li>
+						<li><a class="ajax-link" href="chart.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Buses</span></a></li>
+						<li><a class="ajax-link" href="typography.html"><i class="icon-th"></i><span class="hidden-tablet"> Routes</span></a></li>
+						
+					</ul>
+				</div><!--/.well -->
+			</div><!--/span-->
+                        <div id="content" class="span10">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            <div class="box-icon">
+							<a href="#" class="btn btn-account btn-round"><i class="icon-edit"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+						</div>
+						<h2><i class="icon-user"></i> Profile Details</h2>
+						
+					</div>
+					<div class="box-content span12">
+						
                                        
 					
 
                                         {% trans_default_domain 'FOSUserBundle' %}
-
+                                            <form  class="form-horizontal span12">
                                             <div class="fos_user_user_show">
-                                                <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-                                                <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-                                                <p>First Name: {{ user.firstName }}</p>
-                                                <p>Last Name: {{ user.lastName }}</p>
-                                                <p>city: {{ user.city }}</p>
-                                                <p>First Name: {{ user.streetNo }}</p>
+                                                
+                                                <div class="control-group">
+								<label class="control-label" for="disabledInput">{{ 'profile.show.username'|trans }}</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.username }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">{{ 'profile.show.email'|trans }}</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.email }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">First Name</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.firstName }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">Last Name</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.lastName }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">Street Number</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.streetNo }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                <div class="control-group">
+								<label class="control-label" for="disabledInput">Street</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.street }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">City</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.city }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                          
+                                                  
+                                                
+                                                
+                                               
+                                               
+                             
+                                                
+                                               
                                             </div>
-				</div><!--/span-->
+                                            </form>
+				
+					</div>
+				</div>
+				
+			
+                          
+				
 			</div><!--/row-->
+			
+			
+			
+					
+			
+					<!-- content ends -->
+			</div><!--/#content.span10-->
+			
 				</div><!--/fluid-row-->
 		
 	</div><!--/.fluid-container-->
+        <div class="modal hide fade" id="account">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Security</h3>
+			</div>
+			<div class="modal-body">
+                            <form action=""><p align="center">please type your password to continue &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input class="input-large" id="password" name="_password" required="required" type="password"/>
+						
+                            </p>
+                          
+                            </form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+                                <a href="{{path('fos_user_profile_edit')}}" class="btn btn-primary">Continue</a>
+				
+			</div>
+		</div>
+        
+
 
 
 {% endblock%}

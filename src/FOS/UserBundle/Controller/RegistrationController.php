@@ -63,6 +63,16 @@ class RegistrationController extends ContainerAware
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {
+                    $roles=$user->getRoles();
+            
+            
+            if($roles[0]==='DRIVER'){
+                $url = $this->container->get('router')->generate('drivers_new');
+                    $response = new RedirectResponse($url);
+            
+                    return $response;
+            
+            }
                     $url = $this->container->get('router')->generate('fos_user_registration_confirmed');
                     $response = new RedirectResponse($url);
                 }

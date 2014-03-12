@@ -1,6 +1,5 @@
 {% extends "BuskoStyleBundle:Home:basic.html.twig" %}
-{% block login %}
-{% endblock %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block content %}
@@ -9,31 +8,121 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		
-			<div class="row-fluid">
-				<div class="span3 center login-header">
-					<h2><img alt="Bus Ko Logo" src="{{asset('bundles/buskostyle/img/logo.png')}}" width="200" height="190"/></h2>
-				</div><!--/span-->
-			</div><!--/row-->
-                        <br><br><br><br> <br><br><br>
-			<div class="row-fluid">
-				<div class="well span3 center login-box">
-                                       
+			<div class="span2 main-menu-span">
+				<div class="well nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li class="nav-header hidden-tablet">Main</li>
+						<li><a class="ajax-link" href="index.html"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
+						<li><a class="ajax-link" href="ui.html"><i class="icon-user"></i><span class="hidden-tablet"> Employees</span></a></li>
+						<li><a class="ajax-link" href="form.html"><i class="icon-leaf"></i><span class="hidden-tablet"> Branches</span></a></li>
+						<li><a class="ajax-link" href="chart.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Buses</span></a></li>
+						<li><a class="ajax-link" href="typography.html"><i class="icon-th"></i><span class="hidden-tablet"> Routes</span></a></li>
+						
+					</ul>
+				</div><!--/.well -->
+			</div><!--/span-->
+                        <div id="content" class="span10 ">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            
+						<h2><i class="icon-user"></i> Edit Profile Details</h2>
+						
+					</div>
+					<div class="box-content span12 ">
+						 {% trans_default_domain 'FOSUserBundle' %}
+
+                                        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal center">
+                                            
+                                             <div class="control-group ">
+                      {{form_label(form.username, 'Username',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.username)}}
+                       </div></div>
+
+  <div class="control-group">
+                      {{form_label(form.email, 'Email Address',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.email)}}
+                       </div></div>
+                                            
+                                            <div class="control-group">
+                      {{form_label(form.first_name, 'First Name',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.first_name)}}
+                       </div></div>
+                                            
+                                            
+                                                <div class="control-group">
+                      {{form_label(form.last_name, 'Last Name',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.last_name)}}
+                       </div></div>
+                                            
+                                            
+                                                <div class="control-group">
+                      {{form_label(form.street_no, 'Street Number',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.street_no)}}
+                       </div></div>
+                                            
+                                            
+                                                <div class="control-group">
+                      {{form_label(form.street, 'Street',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.street)}}
+                       </div></div>
+                                            
+                                                    <div class="control-group">
+                      {{form_label(form.city, 'City',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.city)}}
+                       </div></div>
+                                            
+                                                    <div class="control-group">
+                      {{form_label(form.branchId, 'Branch',{ 'label_attr': {'class': 'control-label'} })}}
+                         <div class="controls">
+                        {{form_widget(form.branchId,{'attr':{'data-rel':'chosen'}})}}
+                       </div></div>
+
+
+                            {{ form_widget(form) }}
+                                            
+                                            
+                                           
+                                                <input class ='btn btn-primary span8'type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+                                            
+                                        </form>
+                                        
 					
 
-                                       {% trans_default_domain 'FOSUserBundle' %}
-
-                                        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-                                            {{ form_widget(form) }}
-                                            <div>
-                                                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-                                            </div>
-                                        </form>
-
-				</div><!--/span-->
+                                        
+					</div>
+				</div>
+				
+			
+                          
+				
 			</div><!--/row-->
+			
+			
+			
+					
+			
+					<!-- content ends -->
+			</div><!--/#content.span10-->
+			
 				</div><!--/fluid-row-->
 		
 	</div><!--/.fluid-container-->
+    
+        
+
 
 
 {% endblock%}
+
+
