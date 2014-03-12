@@ -55,6 +55,8 @@
 </head>
 
 <body>
+    
+    
 		<!-- topbar starts -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -118,6 +120,30 @@
 		</div>
 	</div>
 	<!-- topbar ends -->
+        
+        <!-- left menu starts -->
+        
+                            {% block menu %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        
+			<div class="span2 main-menu-span">
+				<div class="well nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li class="nav-header hidden-tablet">Main</li>
+                                                
+						<li><a class="ajax-link" href="{{path('site_home')}}"><i class="icon-home"></i><span class="hidden-tablet"> Home</span></a></li>
+						<li><a class="ajax-link" href="{{path('site_emp')}}"><i class="icon-user"></i><span class="hidden-tablet"> Employees</span></a></li>
+						<li><a class="ajax-link" href="{{path('site_branch')}}"><i class="icon-leaf"></i><span class="hidden-tablet"> Branches</span></a></li>
+						<li><a class="ajax-link" href="{{path('site_route')}}"><i class="icon-th"></i><span class="hidden-tablet"> Routes</span></a></li>
+						{% if true %}
+                                                <li><a class="ajax-link" href="{{path('site_bus')}}"><i class="icon-align-justify"></i><span class="hidden-tablet"> Buses</span></a></li>
+						
+                                                {% endif %}
+					</ul>
+				</div><!--/.well -->
+			</div><!--/span-->
+                        {% endif %}
+                        {% endblock %}
         {% block content %}
         {% endblock %}
         <hr>

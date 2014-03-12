@@ -6,3 +6,26 @@ busko_homepage:
     pattern:  /main
     defaults: { _controller: BuskoSiteBundle:Main:index }
     
+site_home:
+    pattern:  /home
+    defaults: { _controller: BuskoSiteBundle:Main:home }
+
+site_route:
+    pattern:  /routes
+    defaults: { _controller: BuskoSiteBundle:Main:route }
+
+site_emp:
+    pattern:  /employees
+    defaults: { _controller: BuskoSiteBundle:Main:emp }
+    
+    
+site_bus:
+    pattern:  /buses
+    defaults: { _controller: BuskoSiteBundle:Main:bus }
+    
+site_branch:
+    pattern:  /branches
+    defaults: { _controller: BuskoSiteBundle:Main:branch }
+    
+    
+    

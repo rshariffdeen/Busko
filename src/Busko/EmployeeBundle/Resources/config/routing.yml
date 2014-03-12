@@ -1,7 +1,3 @@
-busko_homepage:
-    pattern:  /home
-    defaults: { _controller: BuskoJourneyBundle:Home:index }
- 
 BuskoEntityBundle_assistants:
        resource: "@BuskoEmployeeBundle/Resources/config/routing/assistants.yml"
        prefix:   /assistants
