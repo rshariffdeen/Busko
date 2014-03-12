@@ -11,6 +11,7 @@ class HomeController extends Controller
     public function indexAction()
     {
         $form = $this->createForm(new TimetableType(), array(
+                'action' => $this->generateUrl('busko_journey_Timetablehomepage'),
                 'attr'=>array(
                     'class' =>'form-horizontal', ))
                 );
