@@ -94,9 +94,11 @@ class DriversController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
+        $userManager = $this->container->get('fos_user.user_manager');
 
-        $entity = $em->getRepository('BuskoEntityBundle:Employees')->findOneBy(array('username' => $id));
-
+        $user = $userManager->findUserByUsername($id);
+        $id = $user->getId();
+        $entity = $em->getRepository('BuskoEntityBundle:Drivers')->find($id);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Drivers entity.');
         }
@@ -115,7 +117,10 @@ class DriversController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
+        $userManager = $this->container->get('fos_user.user_manager');
 
+        $user = $userManager->findUserByUsername($id);
+        $id = $user->getId();
         $entity = $em->getRepository('BuskoEntityBundle:Drivers')->find($id);
 
         if (!$entity) {
@@ -157,8 +162,11 @@ class DriversController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
+        $userManager = $this->container->get('fos_user.user_manager');
 
-        $entity = $em->getRepository('BuskoEntityBundle:Drivers')->find($id);
+        $user = $userManager->findUserByUsername($id);
+        $id2 = $user->getId();
+        $entity = $em->getRepository('BuskoEntityBundle:Drivers')->find($id2);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Drivers entity.');

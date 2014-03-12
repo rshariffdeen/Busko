@@ -1,5 +1,5 @@
 parameters:
-#    busko_employee.example.class: Busko\EmployeeBundle\Example
+#    ground_zero_registration.example.class: GroundZero\EmployeeBundle\Example
 
 services:
     groundZero_user.registration.form.type:
