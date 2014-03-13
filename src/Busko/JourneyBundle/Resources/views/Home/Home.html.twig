@@ -73,19 +73,19 @@
                           <div class="control-group">
                       {{form_label(form.date)}}
                          <div class="controls">
-                        {{form_widget(form.date)}}
+                        {{form_widget(form.date,{'value':"now"|date("m/d/Y")})}}
                        </div></div>
                         
                           <div class="control-group">
                       {{form_label(form.from)}}
                          <div class="controls">
-                        {{form_widget(form.from)}}
+                        {{form_widget(form.from)}} :00 H
                        </div></div>
                         
                           <div class="control-group">
-                      {{form_label(form.to)}}
+                      {{form_label(form.to)}} 
                          <div class="controls">
-                        {{form_widget(form.to)}}
+                        {{form_widget(form.to)}} :00 H
                        </div></div>
                         
                           <div class="control-group">
