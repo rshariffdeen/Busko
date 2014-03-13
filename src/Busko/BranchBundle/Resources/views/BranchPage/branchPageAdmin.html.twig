@@ -1,0 +1,14 @@
+{% extends 'BuskoBranchBundle:BranchPage:branchPage.html.twig' %}
+
+
+{% block body %}
+<h2>Branches of Busko situated Islandwide</h2><br><br>
+ {% for b in branch %}  
+        <h3 class="none"><strong>{{b.getBranchId()}}</strong></h3>
+    {% endfor %}
+<form action="createBranch?id={{id}}" method="post" >
+<p align="center">
+            <button type="submit">Create Branch</button>
+ </p>
+</form>
+{% endblock %}
