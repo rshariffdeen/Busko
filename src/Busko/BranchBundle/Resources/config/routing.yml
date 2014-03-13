@@ -17,3 +17,7 @@ submit_branch:
 confirm_branch:
     pattern: /confirmBranch
     defaults: { _controller: BuskoBranchBundle:BranchConfirmation:confirmBranch }
+
+view_branch:
+    pattern: /viewBranch
+    defaults: { _controller: BuskoBranchBundle:BranchView:viewBranch }
