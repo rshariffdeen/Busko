@@ -3,5 +3,5 @@ busko_journey_homepage:
     defaults: { _controller: BuskoJourneyBundle:Home:index }
     
 busko_journey_Timetablehomepage:
-    pattern:  /timetableHome
-    defaults: { _controller: BuskoJourneyBundle:TimetableHome:Timetable }
+    pattern:  /index
+    defaults: { _controller: BuskoJourneyBundle:TimetableIndex:Timetable }

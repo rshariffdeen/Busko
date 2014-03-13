@@ -10,9 +10,9 @@ namespace Busko\JourneyBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Busko\JourneyBundle\Form\ProjectType;
+use Busko\JourneyBundle\Form\TimetableType;
 
-class TimetableHomeController extends Controller {
+class TimetableIndexController extends Controller {
 
     public function TimetableAction(Request $request) {
         
@@ -24,7 +24,7 @@ class TimetableHomeController extends Controller {
         
         if ($form->isValid()) {
         
-        $TimetableRequest = $form->getData();
+            $TimetableRequest = $form->getData();
         $Projectmanager=$Project->getProjectmanager();
         $projectmanagerid=$Projectmanager->getId();
         $Projectmanagername=$Projectmanager->getfirstname();
@@ -41,10 +41,10 @@ class TimetableHomeController extends Controller {
         //return $this->redirect($this->generateUrl('projectconfirmation',array('id'=>$id,'pmid'=>$projectmanagerid,'pm'=>$Projectmanagername,'project'=>$Projectname)));
         }
 
-    return $this->render(
+    /*return $this->render(
         'VolunteerManagementSystemProjectBundle:Error:error.html.twig',
        array('form' => $form->createView(),'id'=>$id)
-    );
+    );*/
        
     }
 

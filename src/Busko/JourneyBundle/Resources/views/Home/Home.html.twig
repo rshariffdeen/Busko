@@ -72,7 +72,7 @@
                           <div class="control-group">
                       {{form_label(form.date)}}
                          <div class="controls">
-                        {{form_widget(form.date)}}{{ "now"|date("m/d/Y") }}
+                        {{form_widget(form.date,{'value':"now"|date("m/d/Y")})}}
                        </div></div>
                         
                           <div class="control-group">
