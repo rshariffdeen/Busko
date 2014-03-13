@@ -114,6 +114,7 @@ function docReady(){
 		var options = $.parseJSON($(this).attr('data-noty-options'));
 		noty(options);
 	});
+        
 
 
 	//uniform - styler for checkbox, radio and file input
