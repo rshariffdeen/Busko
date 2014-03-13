@@ -6,7 +6,7 @@ site_main:
    
 busko_homepage:
     pattern:  /home
-    defaults: { _controller: BuskoSiteBundle:Main:home }
+    defaults: { _controller: BuskoSiteBundle:Main:index }
 
 site_route:
     pattern:  /routes
