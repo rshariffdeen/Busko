@@ -10,6 +10,12 @@ class MainController extends Controller {
         if ($this->getUser() == null) {
             return $this->forward('FOSUserBundle:Security:login');
         }
+      
+        
+        
+        
+
+
 
         return $this->render('BuskoSiteBundle:Admin:home.html.twig');
     }
