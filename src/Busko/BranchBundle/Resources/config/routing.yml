@@ -21,3 +21,7 @@ confirm_branch:
 view_branch:
     pattern: /viewBranch
     defaults: { _controller: BuskoBranchBundle:BranchView:viewBranch }
+
+delete_branch:
+    pattern: /deleteBranch
+    defaults: { _controller: BuskoBranchBundle:BranchDeletion:deleteBranch }

@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BuskoBusBundle:BusPage:busPage{% endblock %}
+
+{% block body %}
+
+<h2>Buses belonging to Busko</h2><br><br>
+ {% for b in bus %}  
+
+<h2 class="none"><a href="viewBus?id={{id}}&bid={{b.getLicNum()}}"><div class="notify" ><strong>{{b.getLicNum()}}</strong></div></a></h2>
+        
+    {% endfor %}
+{% endblock %}

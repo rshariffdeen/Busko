@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BuskoBusBundle:BusView:viewBus{% endblock %}
+
+{% block body %}
+<div class="notify">
+    
+<h2 class="price">{{bus.getLicNum()}}</h2>
+
+    <br><br>
+
+<p align="left">
+<strong>Capacity</strong>
+<br>{{bus.getCapacity()}}<br><br>
+<strong>Model</strong>
+<br>{{bus.getModel()}}<br><br>
+<strong>Conditions</strong>
+<br>{{bus.getConditions()}}<br><br>
+<strong>Branch</strong>
+<br>{{bus.getBranch().getBranchId}}<br><br>
+<strong>Route</strong>
+<br>{{bus.getRoute().getRouteId}}<br><br>
+</div>
+
+{% endblock %}

@@ -1,3 +1,11 @@
 busko_bus_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: BuskoBusBundle:Default:index }
+
+bus_page:
+    pattern: /busPage
+    defaults: { _controller: BuskoBusBundle:BusPage:busPage }
+
+view_bus:
+    pattern: /viewBus
+    defaults: { _controller: BuskoBusBundle:BusView:viewBus }

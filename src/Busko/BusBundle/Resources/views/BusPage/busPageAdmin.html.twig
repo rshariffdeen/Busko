@@ -1,0 +1,15 @@
+{% extends 'BuskoBranchBundle:BranchPage:branchPage.html.twig' %}
+
+
+{% block body %}
+<h2>Buses belonging to Busko</h2><br><br>
+ {% for b in bus %}  
+        <h2 class="none"><a href="viewBus?id={{id}}&bid={{b.getLicNum()}}"><div class="notify" ><strong>{{b.getLicNum()}}</strong></div></a></h2>
+        
+    {% endfor %}
+<form action="createBus?id={{id}}" method="post" >
+<p align="center">
+            <button type="submit">Add Bus</button>
+ </p>
+</form>
+ {% endblock %}       
