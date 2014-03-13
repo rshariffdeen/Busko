@@ -8,14 +8,22 @@
 namespace Busko\JourneyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
-use Busko\JourneyBundle\Form\TimetableType;
+use Busko\JourneyBundle\Forms\TimetableType;
 
 class TimetableIndexController extends Controller {
 
     public function TimetableAction(Request $request) {
+        echo 'desds';
+        //echo $request;
+        $form = $this->createForm(new TimetableType());
+        $form->handleRequest($request);
         
+        $TimetableRequest = $form->getData();
+         echo $request->get('Busko[StartBusStop]');
+         //echo $TimetableRequest->getstartBusStop();
+        
+        /*
         $em = $this->getDoctrine()->getEntityManager();
         $form = $this->createForm(new TimetableType());
 
@@ -24,7 +32,7 @@ class TimetableIndexController extends Controller {
         
         if ($form->isValid()) {
         
-            $TimetableRequest = $form->getData();
+           
         $Projectmanager=$Project->getProjectmanager();
         $projectmanagerid=$Projectmanager->getId();
         $Projectmanagername=$Projectmanager->getfirstname();
@@ -40,7 +48,7 @@ class TimetableIndexController extends Controller {
 
         //return $this->redirect($this->generateUrl('projectconfirmation',array('id'=>$id,'pmid'=>$projectmanagerid,'pm'=>$Projectmanagername,'project'=>$Projectname)));
         }
-
+        */
     /*return $this->render(
         'VolunteerManagementSystemProjectBundle:Error:error.html.twig',
        array('form' => $form->createView(),'id'=>$id)
