@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Drives
 {
     /**
-     * @var \DateTime
-     */
+     * @var string
+         */
     private $date;
 
     /**
@@ -30,11 +30,8 @@ class Drives
     private $driv;
 
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return Drives
+   /**
+     * @var string
      */
     public function setDate($date)
     {
@@ -44,9 +41,7 @@ class Drives
     }
 
     /**
-     * Get date
-     *
-     * @return \DateTime 
+     * @var string
      */
     public function getDate()
     {
@@ -120,5 +115,8 @@ class Drives
     public function getDriv()
     {
         return $this->driv;
+    }
+    public function  getDrives(){
+        return $this;
     }
 }

@@ -1,3 +1,15 @@
 busko_journey_homepage:
     pattern:  /home
     defaults: { _controller: BuskoJourneyBundle:Home:index }
+    
+busko_journey_HRAss:
+   pattern: /HRAss
+   defaults: { _controller: BuskoJourneyBundle:HRAssignment:select }
+   
+create_drives_entry:
+   pattern: /drives
+   defaults: { _controller: BuskoJourneyBundle:Drives:set }
+
+show_date:
+  pattern: /showdate
+  defaults: { _controller: BuskoJourneyBundle:HRAssignment:selectDate }
