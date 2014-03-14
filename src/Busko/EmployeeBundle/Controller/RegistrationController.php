@@ -78,6 +78,12 @@ class RegistrationController extends ContainerAware
             
                     return $response;
             }
+            if($roles[0]==='OPERATOR'){
+                $url = $this->container->get('router')->generate('operators');
+                    $response = new RedirectResponse($url);
+            
+                    return $response;
+            }
                     $url = $this->container->get('router')->generate('fos_user_registration_confirmed');
                     $response = new RedirectResponse($url);
                 }

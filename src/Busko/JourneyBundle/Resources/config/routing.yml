@@ -1,3 +1,6 @@
 busko_journey_homepage:
     pattern:  /index
     defaults: { _controller: BuskoJourneyBundle:Home:index }
+busko_journey_homepageee:
+    pattern:  /inter
+    defaults: { _controller: BuskoJourneyBundle:Inter:index }
