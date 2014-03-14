@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Operators list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Operator name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('operators_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('operators_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('fos_user_registration_register') }}">
+                Create a new Operator
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
