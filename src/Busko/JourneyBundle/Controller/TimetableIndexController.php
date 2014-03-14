@@ -14,13 +14,24 @@ use Busko\JourneyBundle\Forms\TimetableType;
 class TimetableIndexController extends Controller {
 
     public function TimetableAction(Request $request) {
-        echo 'desds';
-        //echo $request;
-        $form = $this->createForm(new TimetableType());
-        $form->handleRequest($request);
         
-        $TimetableRequest = $form->getData();
-         echo $request->get('Busko[StartBusStop]');
+        
+        
+        echo $StartBusStop= $_POST['Busko']['StartBusStop'];
+        echo $StopBusStop= $_POST['Busko']['StopBusStop'];
+        echo $date= $_POST['Busko']['date'];
+        echo $from= $_POST['Busko']['from']['hour'];
+        echo $to=$_POST['Busko']['to']['hour'];
+        
+        
+        
+        
+        //$form = $this->createForm(new TimetableType());
+        //$form->handleRequest($request);
+        //echo $form["StopBusStop"]->getData();
+        //$TimetableRequest = $form->getData();
+        //echo $request->get('Busko[StartBusStop]');
+       
          //echo $TimetableRequest->getstartBusStop();
         
         /*
