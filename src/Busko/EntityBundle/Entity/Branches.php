@@ -136,4 +136,9 @@ class Branches
     {
         return $this->branchId;
     }
+     public function setBranchId($branchID)
+    {
+        $this->branchId=$branchID;
+        return $this;
+    }
 }

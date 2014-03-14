@@ -1,14 +1,12 @@
-busko_site_adminpage:
-    pattern:  /home
-    defaults: { _controller: BuskoSiteBundle:Main:index }
-    
-busko_homepage:
+
+
+site_main:
     pattern:  /main
     defaults: { _controller: BuskoSiteBundle:Main:index }
-    
-site_home:
+   
+busko_homepage:
     pattern:  /home
-    defaults: { _controller: BuskoSiteBundle:Main:home }
+    defaults: { _controller: BuskoSiteBundle:Main:index }
 
 site_route:
     pattern:  /routes

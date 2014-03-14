@@ -46,35 +46,32 @@ class TimetableType extends AbstractType
            
             'label_attr' => array('class' => 'control-label'),
                  'label' =>'Date',
+                  
                 'attr'=>array(
                     'placeholder'=>'date',
                     'class' => 'input-xlarge datepicker',
+                    'data'  => \Date('today'),
                     )
             ));
         $builder 
             ->add('from','time',array(
+            //'choices'   => array(0 => 00, 1 => 01, 2 => 02, 3 => 03, 4 => 04, 5 => 05, 6 => 06, 7 => 07, 8 => 08, 9 => 09, 10 => 10, 11 => 11, 12 => 12, 13 => 13, 14 => 14, 15 => 15, 16 => 16, 17 => 17, 18 => 18, 19 => 19, 20 => 20, 21 => 21, 22 => 22, 23 => 23),    
             'label' =>'From',
             'widget'=>'choice',
-                'with_minutes'=>'false',
+                'with_minutes'=>false,
                 'label_attr' => array('class' => 'control-label'),
             
-                'attr'=>array(
-                    'placeholder'=>'Starting Time',
-                       
-                 
-                    )
+                'attr'=>array()
             ));
         $builder 
             ->add('to','time',array(
-            'label' =>'to',
+            'label' =>'To',
             'widget'=>'choice',
+            'with_minutes'=>false,
                 'label_attr' => array('class' => 'control-label'),
-                'attr'=>array(
-                    'placeholder'=>'Until'
-                    )
             ));
         $builder 
-         ->add('submit','submit', array(
+            ->add('submit','submit', array(
                 'label' => 'Search',
                 'attr' => array(
                     'class' => 'btn btn-primary'
