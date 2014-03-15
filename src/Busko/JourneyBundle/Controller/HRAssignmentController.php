@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Busko\JourneyBundle\Entity\Date1;
 use Busko\JourneyBundle\Form\Date1Type;
 use Symfony\Component\HttpFoundation\Response;
+use Busko\EntityBundle\Form\DrivesUpdateType;
+use Busko\EntityBundle\Entity\DrivesUpdate;
 
 class HRAssignmentController extends Controller
 {
@@ -33,6 +35,13 @@ class HRAssignmentController extends Controller
             return $this->render('BuskoJourneyBundle:HRAssignment:HRAss.html.twig',array('form' => $form->createView()));
         }
         return new Response("error");
+    }
+    
+    public function updateAction(){
+        $form = $this->createForm(new DrivesUpdateType(), new DrivesUpdate(),array(
+            'action' => $this->generateUrl('update_drives_entry'),
+        ));
+        return $this->render('BuskoJourneyBundle:Home:datedisplay.html.twig',array('form' => $form->createView()));
     }
 }
 
