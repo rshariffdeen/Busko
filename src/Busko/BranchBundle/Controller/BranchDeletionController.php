@@ -3,6 +3,11 @@
 namespace Busko\BranchBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Busko\EntityBundle\Entity\Branches;
+use Busko\BranchBundle\Form\BranchDeletionType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class BranchDeletionController extends Controller
 {
@@ -13,14 +18,50 @@ class BranchDeletionController extends Controller
         $employees = $em->getRepository('BuskoEntityBundle:Employees');
         $employee = $employees->findOneBy(array('id' => $id));
         if($employee){
-            $Branch = new Branches();
-            $form = $this->createForm(new BranchesType(), $Branch, array(
-                'action' => $this->generateUrl('submit_branch', array('id' => $id)),
-            ));
+            $defaultData = array('message' => 'Select Branch to delete');
             
-        return $this->render('BuskoBranchBundle:BranchCreation:createBranch.html.twig', array('form' => $form->createView(), 'id' => $id));
-        
-    }
+            $form = $this->createFormBuilder($defaultData)
+             ->add('branch', 'entity', array(
+            'label' =>'Branch',
+            'class' => 'BuskoEntityBundle:Branches',
+            'property' => 'branchId',
+            ))
+            ->add('submit','submit', array(
+                'label' => 'Delete Branch',
+                'attr' => array(
+                    'class' => 'button'
+                )
+            ))
+           
+            ->getForm();
+            
+            $form->handleRequest($request);
 
-}
+            if ($form->isValid()) {
+                $message;
+                $data = $form->getData();
+                $branch=$data['branch'];
+                $branchName= $branch->getBranchId();
+                try{
+                $em->remove($branch);
+                $em->flush();
+                $message='Branch '.$branchName.'has been deleted Successfully ';
+                }
+                catch(\Exception $e){
+                    $message= 'Make sure that the branch you are trying to delete has no employees or buses associated with it!!';
+                }
+                
+                return $this->render('BuskoBranchBundle:BranchDeletion:deleteBranchMessage.html.twig', array('message' => $message, 'id' => $id));
+        
+            }
+            return $this->render('BuskoBranchBundle:BranchDeletion:deleteBranch.html.twig', array(
+            'form' =>$form->createView(),
+            ));
+
+       
+        }
+        return $this->render('BuskoBranchBundle:BranchPage:branchPageAdmin.html.twig');
+        }    
+        
+
 }

@@ -9,3 +9,15 @@ bus_page:
 view_bus:
     pattern: /viewBus
     defaults: { _controller: BuskoBusBundle:BusView:viewBus }
+
+create_bus:
+    pattern: /createBus
+    defaults: { _controller: BuskoBusBundle:BusCreation:createBus }
+
+submit_bus:
+    pattern: /submitBus
+    defaults: { _controller: BuskoBusBundle:BusSubmission:submitBus }
+
+confirm_bus:
+    pattern: /confirmBus
+    defaults: { _controller: BuskoBusBundle:BusConfirmation:confirmBus }
