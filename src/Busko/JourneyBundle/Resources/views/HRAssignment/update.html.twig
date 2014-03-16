@@ -1,19 +1,16 @@
-Driver ID - {{driv}} 
-<form action="/DatabaseProject/web/app_dev.php/drivesdriverupdate">
-    <div>
+Driver ID - {{driv}}
+
+<a href="{{path('update_drives_driver',{'date':date,'lic':lic})}}">
         <button type="submit" id="HR_Assignment_submit" name="HR_Assignment[submit]">
             Update
         </button>
-        </div>
-        <input type="hidden" id="HR_Assignment__token" action = name="HR_Assignment[_token]" value="Thj5-m04xz924hiRTa7qUZAuiPy3FSt5my4t0TZ1E-Y" />
-    </div>
-</form>
+</a>
+
+
 Assistant ID - {{ass}} 
-<form>
-    <div>
+
+<a href="{{path('update_drives_assistant',{'date':date,'lic':lic})}}">
         <button type="submit" id="HR_Assignment_submit" name="HR_Assignment[submit]">
             Update
-        </button></div>
-        <input type="hidden" id="HR_Assignment__token" name="HR_Assignment[_token]" value="Thj5-m04xz924hiRTa7qUZAuiPy3FSt5my4t0TZ1E-Y" />
-    </div>
-</form>
+        </button>
+</a>

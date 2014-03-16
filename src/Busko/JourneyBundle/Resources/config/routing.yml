@@ -9,14 +9,14 @@ busko_journey_HRAss:
 create_drives_entry:
    pattern: /drives
    defaults: { _controller: BuskoJourneyBundle:Drives:set }
-   
-busko_journey_HRUp:
-   pattern: /HRUp
-   defaults: { _controller: BuskoJourneyBundle:HRAssignment:update }
-
+    
 show_date:
   pattern: /showdate
   defaults: { _controller: BuskoJourneyBundle:HRAssignment:selectDate }
+  
+busko_journey_HRUp:
+   pattern: /HRUp
+   defaults: { _controller: BuskoJourneyBundle:HRAssignment:update }
   
 update_drives_entry:
    pattern: /drivesupdate
@@ -29,3 +29,11 @@ update_drives_driver:
 reset_drives_driver:
    pattern: /drivesdriverreset
    defaults: { _controller: BuskoJourneyBundle:Drives:resetDriver }
+   
+update_drives_assistant:
+   pattern: /drivesassistantupdate
+   defaults: { _controller: BuskoJourneyBundle:Drives:updateAssistant }
+   
+reset_drives_assistant:
+   pattern: /drivesassistantreset
+   defaults: { _controller: BuskoJourneyBundle:Drives:resetAssistant }
