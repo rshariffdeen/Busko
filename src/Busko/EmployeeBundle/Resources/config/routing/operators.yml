@@ -6,6 +6,10 @@ operators_show:
     pattern:  /{id}/show
     defaults: { _controller: "BuskoEmployeeBundle:Operator:show" }
 
+operators_edit:
+    pattern:  /edit
+    defaults: { _controller: "BuskoEmployeeBundle:Operator:edit"}
+
 
 operators_create:
     pattern:  /create
@@ -15,11 +19,11 @@ operators_create:
 
 
 operators_update:
-    pattern:  /{id}/update
+    pattern:  /update
     defaults: { _controller: "BuskoEmployeeBundle:Operator:update" }
     requirements: { _method: post|put }
 
-operators_delete:
-    pattern:  /{id}/delete
+operator_delete:
+    pattern:  /delete
     defaults: { _controller: "BuskoEmployeeBundle:Operator:delete" }
     requirements: { _method: post|delete }
