@@ -94,45 +94,24 @@ class AssistantsController extends Controller {
 
         $user = $userManager->findUserByUsername($id);
         $id = $user->getId();
-        $entity = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
-
-        if (!$entity) {
+        $details = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
+        $profile = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+        if (!$details) {
             throw $this->createNotFoundException('Unable to find Assistants entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
+       
         return $this->render('BuskoEmployeeBundle:Assistants:show.html.twig', array(
-                    'entity' => $entity,
-                    'delete_form' => $deleteForm->createView(),));
+                    'assistant' => $details,
+                    'profile'   => $profile,
+                    ));
     }
 
     /**
      * Displays a form to edit an existing Assistants entity.
      *
      */
-    public function editAction($id) {
-        $em = $this->getDoctrine()->getManager();
-
-        $userManager = $this->container->get('fos_user.user_manager');
-
-        $user = $userManager->findUserByUsername($id);
-        $id = $user->getId();
-        $entity = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Assistants entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('BuskoEmployeeBundle:Assistants:edit.html.twig', array(
-                    'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
-        ));
-    }
+   
 
     /**
      * Creates a form to edit a Assistants entity.
@@ -141,71 +120,40 @@ class AssistantsController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(Assistants $entity) {
-        $form = $this->createForm(new AssistantsType(), $entity, array(
-            'action' => $this->generateUrl('assistants_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
+ 
 
     /**
      * Edits an existing Assistants entity.
      *
      */
-    public function updateAction(Request $request, $id) {
-        $em = $this->getDoctrine()->getManager();
-       
-        $entity = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Assistants entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('assistants_edit', array('id' => $id)));
-        }
-
-        return $this->render('BuskoEmployeeBundle:Assistants:edit.html.twig', array(
-                    'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
-        ));
-    }
+   
 
     /**
      * Deletes a Assistants entity.
      *
      */
-    public function deleteAction(Request $request, $id) {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+    public function deleteAction(Request $request) {
+        $id = $request->get('id');
 
-        if ($form->isValid()) {
+        if ($id) {
             $em = $this->getDoctrine()->getManager();
-            $userManager = $this->container->get('fos_user.user_manager');
-            $user = $userManager->findUserByUsername($id);
-            $id = $user->getId();
-            $entity = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Assistants entity.');
+            $assistant = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
+            $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+            
+            if ($employee) {
+                $em->remove($employee);
+                $em->remove($assistant);
+                $em->flush();
+                return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Assistant")));
             }
 
-            $em->remove($entity);
-            $em->flush();
+            if (!$employee) {
+                return $this->redirect($this->generateUrl('site_emp', array('type'=>'E','message' => "Assistant Not Found")));
+            }
         }
 
-        return $this->redirect($this->generateUrl('assistants'));
-    }
+        return $this->redirect($this->generateUrl('site_emp', array('message' => "Oops! something went wrong",'type'=>'E')));
+     }
 
     /**
      * Creates a form to delete a Assistants entity by id.
@@ -214,13 +162,6 @@ class AssistantsController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id) {
-        return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('assistants_delete', array('id' => $id)))
-                        ->setMethod('DELETE')
-                        ->add('submit', 'submit', array('label' => 'Delete'))
-                        ->getForm()
-        ;
-    }
+   
 
 }

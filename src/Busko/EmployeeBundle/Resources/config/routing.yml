@@ -9,3 +9,7 @@ BuskoEntityBundle_drivers:
 BuskoEntityBundle_operators:
         resource: "@BuskoEmployeeBundle/Resources/config/routing/operators.yml"
         prefix:   /operators
+        
+BuskoEntityBundle_admins:
+        resource: "@BuskoEmployeeBundle/Resources/config/routing/administrators.yml"
+        prefix:   /admins

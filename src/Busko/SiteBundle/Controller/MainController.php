@@ -3,7 +3,7 @@
 namespace Busko\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Symfony\Component\HttpFoundation\Request;
 class MainController extends Controller {
 
     public function indexAction() {
@@ -27,28 +27,13 @@ class MainController extends Controller {
         return $this->render('BuskoSiteBundle:Admin:routes.html.twig');
     }
 
-    public function empAction() {
+    public function empAction(Request $request) {
         if ($this->getUser() == null) {
             return $this->forward('FOSUserBundle:Security:login');
         } else {
-            $em = $this->getDoctrine()->getManager();
-            $employees = $em->getRepository('BuskoEntityBundle:Employees')->findAll();
-
-            $drivers = $em->createQuery(
-                                    'SELECT * FROM BuskoEntityBundle:Employees JOIN BuskoEntityBundle:Drivers'       
-                            );
-
-            try {
-                return $drivers->getSingleResult();
-            } catch (\Doctrine\ORM\NoResultException $e) {
-                return null;
-            }
-
-            $admins = $em->getRepository('BuskoEntityBundle:Administrators')->findAll();
-            $operators = $em->getRepository('BuskoEntityBundle:Operators')->findAll();
-            $assistants = $em->getRepository('BuskoEntityBundle:Assistants')->findAll();
-            return $this->render('BuskoSiteBundle:Admin:employees.html.twig', array('employees' => $employees, 'drivers' => $drivers, 'assistants' => $assistants, 'admins' => $admins, 'operators' => $operators));
-        }
+            return $this->forward('BuskoSiteBundle:Admin:employee',array('request'=>$request));
+            
+           }
     }
 
     public function branchAction() {

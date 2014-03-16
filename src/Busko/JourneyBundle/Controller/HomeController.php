@@ -3,13 +3,15 @@
 namespace Busko\JourneyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Busko\JourneyBundle\Forms\TimetableType;
 
 
 class HomeController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        echo $request->get('OK');
         $form = $this->createForm(new TimetableType(), null,array(
                 'action' => $this->generateUrl('busko_journey_Timetablehomepage'),
                 'attr'=>array(

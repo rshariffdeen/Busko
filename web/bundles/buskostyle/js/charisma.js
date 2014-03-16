@@ -114,6 +114,7 @@ function docReady(){
 		var options = $.parseJSON($(this).attr('data-noty-options'));
 		noty(options);
 	});
+        
 
 
 	//uniform - styler for checkbox, radio and file input
@@ -287,6 +288,9 @@ function docReady(){
         
         $('.btn-account').click(function(e){
 		e.preventDefault();
+                // alert(jQuery(this).attr('url'));
+                 $('#continue-form').attr('action',jQuery(this).attr('url'));
+                 $('#del-id').attr('value',jQuery(this).attr('id'));
 		$('#account').modal('show');
 	});
         
