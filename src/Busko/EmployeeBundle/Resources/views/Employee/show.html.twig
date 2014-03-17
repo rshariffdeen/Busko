@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Operators</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Driverlicencenumber</th>
+                <td>{{ entity.username}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('operators') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        
+            
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

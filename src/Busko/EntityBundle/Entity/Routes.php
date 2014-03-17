@@ -125,4 +125,8 @@ class Routes
     {
         return $this->stop;
     }
+    
+    public function __toString(){
+        return $this->routeId;
+    }
 }
