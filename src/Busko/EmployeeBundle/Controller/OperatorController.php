@@ -121,6 +121,7 @@ class OperatorController extends Controller
 
         return $this->render('BuskoEmployeeBundle:Operators:show.html.twig', array(
             'profile'      => $profile,
+            
               ));
     }
 
