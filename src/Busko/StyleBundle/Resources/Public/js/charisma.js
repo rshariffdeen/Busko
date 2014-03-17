@@ -114,6 +114,7 @@ function docReady(){
 		var options = $.parseJSON($(this).attr('data-noty-options'));
 		noty(options);
 	});
+        
 
 
 	//uniform - styler for checkbox, radio and file input
@@ -284,7 +285,21 @@ function docReady(){
 		e.preventDefault();
 		$('#myModal').modal('show');
 	});
-
+        
+        $('.btn-account').click(function(e){
+		e.preventDefault();
+		$('#account').modal('show');
+	});
+        
+        $('.btn-profile').click(function(e){
+		e.preventDefault();
+		$('#profile').modal('show');
+	});
+        
+        $('.btn-other').click(function(e){
+		e.preventDefault();
+		$('#myModal').modal('show');
+	});
 
 
 		

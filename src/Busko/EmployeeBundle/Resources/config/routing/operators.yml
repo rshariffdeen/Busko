@@ -1,0 +1,25 @@
+operators:
+    pattern:  /
+    defaults: { _controller: "BuskoEmployeeBundle:Operator:index" }
+
+operators_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoEmployeeBundle:Operator:show" }
+
+
+operators_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoEmployeeBundle:Operator:create" }
+    requirements: { _method: post }
+
+
+
+operators_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoEmployeeBundle:Operator:update" }
+    requirements: { _method: post|put }
+
+operators_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoEmployeeBundle:Operator:delete" }
+    requirements: { _method: post|delete }

@@ -1,3 +1,11 @@
-busko_employee_homepage:
-    pattern:  /login
-    defaults: { _controller: BuskoEmployeeBundle:Login:index }
+BuskoEntityBundle_assistants:
+       resource: "@BuskoEmployeeBundle/Resources/config/routing/assistants.yml"
+       prefix:   /assistants
+       
+BuskoEntityBundle_drivers:
+        resource: "@BuskoEmployeeBundle/Resources/config/routing/drivers.yml"
+        prefix:   /drivers
+
+BuskoEntityBundle_operators:
+        resource: "@BuskoEmployeeBundle/Resources/config/routing/operators.yml"
+        prefix:   /operators

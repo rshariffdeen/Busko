@@ -1,0 +1,36 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+		
+			<div class="row-fluid">
+				<div class="span3 center login-header">
+					<h2><img alt="Bus Ko Logo" src="{{asset('bundles/buskostyle/img/logo.png')}}" width="200" height="190"/></h2>
+				</div><!--/span-->
+			</div><!--/row-->
+                        <br><br><br><br> <br><br><br>
+			<div class="row-fluid">
+				<div class="well span3 center login-box">
+                                       
+					
+                                    {% trans_default_domain 'FOSUserBundle' %}
+
+                                    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                                        {{ form_widget(form) }}
+                                        <div>
+                                            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                                        </div>
+                                    </form>
+				</div><!--/span-->
+			</div><!--/row-->
+				</div><!--/fluid-row-->
+		
+	</div><!--/.fluid-container-->
+
+
+{% endblock%}
