@@ -19,8 +19,28 @@ class BusesType extends AbstractType
             ->add('capacity')
             ->add('model')
             ->add('conditions')
-            ->add('branch')
-            ->add('route')
+            ->add('branch','entity',array(
+                'label' =>'Source',
+            'class' => 'BuskoEntityBundle:Branches',            
+            'property' => 'branchId',
+            'label_attr' => array('class' => 'control-label'),
+            'attr' => array(
+            'class' =>'controls',
+                'data-rel'=>'chosen'
+                )
+                
+            ))
+            ->add('route','entity',array(
+                'label' =>'Source',
+            'class' => 'BuskoEntityBundle:Routes',            
+            'property' => 'routeId',
+            'label_attr' => array('class' => 'control-label'),
+            'attr' => array(
+            'class' =>'controls',
+                'data-rel'=>'chosen'
+                )
+                
+            ))
             
         ;
     }

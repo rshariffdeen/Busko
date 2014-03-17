@@ -49,7 +49,7 @@
       
                 <a href="{{ path('site_emp') }}"><button class="btn btn-large btn-primary"><i class="icon-chevron-left icon-white"></i>back to employees</button></a>
   
-     <button class="btn btn-large btn-danger btn-account" url="{{ path('admin_delete') }}" id="{{profile.id}}">delete</button>
+         <button class="btn btn-large btn-danger btn-account" url="{{ path('operator_delete') }}" id="{{profile.id}}">delete</button>
     
 						
 					</div>
@@ -149,6 +149,7 @@
                         </div>
                         </div>
     </div>
+    
      <div class="modal hide fade" id="account">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
@@ -171,4 +172,5 @@
 			</div>
 		</div>
         
+    
 {% endblock %}
