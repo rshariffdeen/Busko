@@ -21,7 +21,7 @@ use Busko\EntityBundle\Form\OperatorsType;
  * Operators controller.
  *
  */
-class OperatorController extends Controller
+class AdminController extends Controller
 {
 
     /**
@@ -108,8 +108,6 @@ class OperatorController extends Controller
      */
     public function showAction($id)
     {
-        
-        
         $em = $this->getDoctrine()->getManager();
         
         $profile = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
@@ -117,11 +115,10 @@ class OperatorController extends Controller
             throw $this->createNotFoundException('Unable to find Operators entity.');
         }
 
-     
-
-        return $this->render('BuskoEmployeeBundle:Operators:show.html.twig', array(
+      
+        return $this->render('BuskoEmployeeBundle:Administrators:show.html.twig', array(
             'profile'      => $profile,
-              ));
+            ));
     }
 
     /**
@@ -138,29 +135,19 @@ class OperatorController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Operators $entity)
-    {
-        $form = $this->createForm(new OperatorsType(), $entity, array(
-            'action' => $this->generateUrl('operators_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
+    
     /**
      * Edits an existing Operators entity.
      *
      */
-  
+    
     /**
      * Deletes a Operators entity.
      *
      */
     public function deleteAction(Request $request)
     {
-          $id = $request->get('id');
+         $id = $request->get('id');
 
         if ($id) {
             $em = $this->getDoctrine()->getManager();
@@ -168,18 +155,18 @@ class OperatorController extends Controller
             
             if ($employee) {
                 $em->remove($employee);
+                
                 $em->flush();
-                return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Operator")));
+                return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Administrator")));
             }
 
             if (!$employee) {
-                return $this->redirect($this->generateUrl('site_emp', array('type'=>'E','message' => "Operator Not Found")));
+                return $this->redirect($this->generateUrl('site_emp', array('type'=>'E','message' => "Administrator Not Found")));
             }
         }
 
         return $this->redirect($this->generateUrl('site_emp', array('message' => "Oops! something went wrong",'type'=>'E')));
-    
-    }
+     }
 
     /**
      * Creates a form to delete a Operators entity by id.
@@ -188,5 +175,5 @@ class OperatorController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    
+   
 }
