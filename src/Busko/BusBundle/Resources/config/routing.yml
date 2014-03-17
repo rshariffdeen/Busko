@@ -1,3 +1,7 @@
 busko_bus_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: BuskoBusBundle:Default:index }
+    
+Busko_BusBundle_buses:
+        resource: "@BuskoBusBundle/Resources/config/routing/buses.yml"
+        prefix:   /buseskk
