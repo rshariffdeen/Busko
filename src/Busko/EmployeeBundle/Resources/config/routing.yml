@@ -5,3 +5,7 @@ BuskoEntityBundle_assistants:
 BuskoEntityBundle_drivers:
         resource: "@BuskoEmployeeBundle/Resources/config/routing/drivers.yml"
         prefix:   /drivers
+
+BuskoEntityBundle_operators:
+        resource: "@BuskoEmployeeBundle/Resources/config/routing/operators.yml"
+        prefix:   /operators
