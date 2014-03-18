@@ -17,3 +17,8 @@ submit_branch:
 confirm_branch:
     pattern: /confirmBranch
     defaults: { _controller: BuskoBranchBundle:BranchConfirmation:confirmBranch }
+    
+BuskoBranchBundle_busstops:
+        resource: "@BuskoBranchBundle/Resources/config/routing/busstops.yml"
+        prefix:   /busstops
+
