@@ -5,6 +5,9 @@ busstops:
 busstops_show:
     pattern:  /{id}/show
     defaults: { _controller: "BuskoBranchBundle:BusStops:show" }
+busstops_search:
+    pattern:  /search
+    defaults: { _controller: "BuskoBranchBundle:BusStops:search" }
 
 busstops_new:
     pattern:  /new
