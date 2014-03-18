@@ -16,15 +16,15 @@ assistants_create:
     requirements: { _method: post }
 
 assistants_edit:
-    pattern:  /{id}/edit
+    pattern:  /edit
     defaults: { _controller: "BuskoEmployeeBundle:Assistants:edit" }
 
 assistants_update:
-    pattern:  /{id}/update
+    pattern:  /update
     defaults: { _controller: "BuskoEmployeeBundle:Assistants:update" }
     requirements: { _method: post|put }
 
-assistants_delete:
-    pattern:  /{id}/delete
+assistant_delete:
+    pattern:  /delete
     defaults: { _controller: "BuskoEmployeeBundle:Assistants:delete" }
     requirements: { _method: post|delete }

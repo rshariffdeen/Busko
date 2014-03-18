@@ -141,4 +141,8 @@ class Branches
         $this->branchId=$branchID;
         return $this;
     }
+    
+    public function __toString(){
+        return $this->branchId;
+    }
 }

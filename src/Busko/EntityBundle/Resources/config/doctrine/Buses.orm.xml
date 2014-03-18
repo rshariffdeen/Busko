@@ -6,12 +6,11 @@
       <index name="branch_id" columns="branch_id"/>
     </indexes>
     <unique-constraints>
-      <unique-constraint name="lic_num" columns="lic_num"/>
+      <unique-constraint name="id" columns="lic_num"/>
     </unique-constraints>
-    <id name="licNum" type="string" column="lic_num" length="10">
-      <generator strategy="IDENTITY"/>
+    <id name="licNum" type="string" column="lic_num" length="10" nullable="false">   
     </id>
-    <field name="capacity" type="boolean" column="capacity" nullable="false"/>
+    <field name="capacity" type="integer" column="capacity" nullable="false"/>
     <field name="model" type="string" column="model" length="10" nullable="false"/>
     <field name="conditions" type="text" column="conditions" nullable="false"/>
     <many-to-one field="branch" target-entity="Branches">

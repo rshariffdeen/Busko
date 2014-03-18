@@ -38,8 +38,8 @@
     <table class="record_properties">
         <tbody>
             <tr>
-                <th>License: </th>
-                <td> &nbsp;{{ driver.driverLicenceNumber }}</td>
+                <th>Employee Number: </th>
+                <td> &nbsp;{{ profile.username }}</td>
             </tr>
         </tbody>
     </table>
@@ -49,7 +49,8 @@
       
                 <a href="{{ path('site_emp') }}"><button class="btn btn-large btn-success">back to employees</button></a>
   
-         <button class="btn btn-large btn-danger btn-account" url="{{ path('driver_delete') }}" id="{{profile.id}}">delete</button>
+     <button class="btn btn-large btn-danger btn-account" url="{{ path('admin_delete') }}" id="{{profile.id}}">delete</button>
+    
 						
 					</div>
                                             <div class="clearfix"></div>
@@ -143,60 +144,12 @@
                           
 				
 			</div><!--/row-->
-                        <div class="row-fluid">
-                            <div class="box span12">
-                                
-					<div class="box-header well">
-                                            <div class="box-icon">
-							<a href="#" class="btn btn-largemize btn-round"><i class="icon-chevron-up"></i></a>
-						</div>
-						<h2><i class="icon-user"></i> Driving Details</h2>
-						
-					</div>
-					<div class="box-content span12">
-						
-                                       
-					
-
-                                        {% trans_default_domain 'FOSUserBundle' %}
-                                            <form  class="form-horizontal span12">
-                                            <div class="fos_user_user_show">
-                                                
-                                                <div class="control-group">
-								<label class="control-label" for="disabledInput">License Number</label>
-								<div class="controls">
-								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ driver.driverLicenceNumber }}" disabled="">
-								</div>
-							  </div>
-                                                
-                                                
-							  </div>
-                                                
-                                                          
-                                                  
-                                                
-                                                
-                                               
-                                               
-                             
-                                                
-                                               
-                                            </div>
-                                            </form>
-				
-					</div>
-				</div>
-				
-			
-                          
-				
-			</div><!--/row-->
+                        
                         
                         </div>
                         </div>
     </div>
-
- <div class="modal hide fade" id="account">
+     <div class="modal hide fade" id="account">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>Confirm</h3>
@@ -218,5 +171,4 @@
 			</div>
 		</div>
         
-    
 {% endblock %}

@@ -55,6 +55,25 @@
     </head>
 
     <body>
+        {% if type is defined %}
+        {% if type == 'E' %}
+        <script type="text/javascript">
+                            window.onload=function(){
+                                  noty(jQuery.parseJSON('{"text":"{{message}}","layout":"top","type":"error"}'));
+                                
+                           }
+                            </script>
+        {% endif %}
+        
+        {% if type == 'S' %}
+                            <script type="text/javascript">
+                            window.onload=function(){
+                                  noty(jQuery.parseJSON('{"text":"{{message}}","layout":"top","type":"success"}'));
+                                
+                           }
+                            </script>
+        {% endif %}
+                            {% endif %}
 
 
         <!-- topbar starts -->

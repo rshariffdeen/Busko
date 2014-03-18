@@ -1,0 +1,30 @@
+buses:
+    pattern:  /
+    defaults: { _controller: "BuskoBusBundle:Buses:index" }
+
+buses_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoBusBundle:Buses:show" }
+
+buses_new:
+    pattern:  /new
+    defaults: { _controller: "BuskoBusBundle:Buses:new" }
+
+buses_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoBusBundle:Buses:create" }
+    requirements: { _method: post }
+
+buses_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BuskoBusBundle:Buses:edit" }
+
+buses_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoBusBundle:Buses:update" }
+    requirements: { _method: post|put }
+
+buses_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoBusBundle:Buses:delete" }
+    requirements: { _method: post|delete }

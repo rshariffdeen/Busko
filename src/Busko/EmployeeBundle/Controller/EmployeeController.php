@@ -21,7 +21,7 @@ use Busko\EntityBundle\Form\OperatorsType;
  * Operators controller.
  *
  */
-class OperatorController extends Controller
+class EmployeeController extends Controller
 {
 
     /**
@@ -39,14 +39,26 @@ class OperatorController extends Controller
                 ->where('a.roles LIKE :title')
                 ->setParameter('title', '%OPERATOR%')
                 ->getQuery();
-         
-
-
-        $entities = $query->getResult();
-        // $entities = $em->getRepository('BuskoEntityBundle:Operators')->findAll();
-
-        return $this->render('BuskoEmployeeBundle:OPerators:index.html.twig', array(
-                    'entities' => $entities,
+         $operators = $query->getResult();
+        /* $query1 = $repository->createQueryBuilder('a')
+                ->where('a.roles LIKE :title')
+                ->setParameter('title', '%ADMIN%')
+                ->getQuery();
+         $admins = $query1->getResult();
+         $query2 = $repository->createQueryBuilder('a')
+                ->where('a.roles LIKE :title')
+                ->setParameter('title', '%DRIVER%')
+                ->getQuery();
+         $drivers = $query2->getResult();
+         $query3 = $repository->createQueryBuilder('a')
+                ->where('a.roles LIKE :title')
+                ->setParameter('title', '%ASSISTANT%')
+                ->getQuery();
+         $assistants = $query3->getResult();
+        
+*/
+        return $this->render('BuskoEmployeeBundle:Employee:index.html.twig', array(
+                  //  'drivers' => $drivers,'operators' => $operators,'admins' => $admins,'assistants' => $assistants,
             
         ));
     }
@@ -108,20 +120,18 @@ class OperatorController extends Controller
      */
     public function showAction($id)
     {
-        
-        
         $em = $this->getDoctrine()->getManager();
         
-        $profile = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
-        if (!$profile) {
+        $entity = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+        if (!$entity) {
             throw $this->createNotFoundException('Unable to find Operators entity.');
         }
 
-     
+        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BuskoEmployeeBundle:Operators:show.html.twig', array(
-            'profile'      => $profile,
-              ));
+            'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
@@ -153,32 +163,57 @@ class OperatorController extends Controller
      * Edits an existing Operators entity.
      *
      */
-  
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        $user = $userManager->findUserByUsername($id);
+        $id2 = $user->getId();
+        $entity = $em->getRepository('BuskoEntityBundle:Operators')->find($id2);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Operators entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('operators_edit', array('id' => $id)));
+        }
+
+        return $this->render('BuskoEmployeeBundle:Operators:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
     /**
      * Deletes a Operators entity.
      *
      */
-    public function deleteAction(Request $request)
+    public function deleteAction(Request $request, $id)
     {
-          $id = $request->get('id');
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
 
-        if ($id) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
-            
-            if ($employee) {
-                $em->remove($employee);
-                $em->flush();
-                return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Operator")));
+            $entity = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Operators entity.');
             }
 
-            if (!$employee) {
-                return $this->redirect($this->generateUrl('site_emp', array('type'=>'E','message' => "Operator Not Found")));
-            }
+            $em->remove($entity);
+            $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('site_emp', array('message' => "Oops! something went wrong",'type'=>'E')));
-    
+        return $this->redirect($this->generateUrl('operators'));
     }
 
     /**
@@ -188,5 +223,13 @@ class OperatorController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('operators_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
+    }
 }
