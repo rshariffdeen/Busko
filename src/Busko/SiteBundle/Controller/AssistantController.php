@@ -3,7 +3,7 @@
 namespace Busko\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Symfony\Component\HttpFoundation\Request;
 class AssistantController extends Controller
 {
      public function homeAction()
@@ -11,10 +11,7 @@ class AssistantController extends Controller
         return $this->render('BuskoSiteBundle:Assistant:home.html.twig');
     }
     
-    public function employeeAction()
-    {
-        return $this->render('BuskoSiteBundle:Assistant:employee.html.twig');
-    }
+    
     
     
     public function routesAction()

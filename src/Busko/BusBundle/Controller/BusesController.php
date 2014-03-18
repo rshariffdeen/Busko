@@ -4,7 +4,6 @@ namespace Busko\BusBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Busko\EntityBundle\Entity\Buses;
 use Busko\EntityBundle\Form\BusesType;
 
@@ -12,37 +11,35 @@ use Busko\EntityBundle\Form\BusesType;
  * Buses controller.
  *
  */
-class BusesController extends Controller
-{
+class BusesController extends Controller {
 
     /**
      * Lists all Buses entities.
      *
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('BuskoEntityBundle:Buses')->findAll();
 
         return $this->render('BuskoBusBundle:Buses:index.html.twig', array(
-            'entities' => $entities,
+                    'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Buses entity.
      *
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request) {
         $entity = new Buses();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $entity = $form->getData();
-            
-            
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -51,26 +48,34 @@ class BusesController extends Controller
         }
 
         return $this->render('BuskoBusBundle:Buses:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+                    'entity' => $entity,
+                    'form' => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Buses entity.
-    *
-    * @param Buses $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Buses $entity)
-    {
+     * Creates a form to create a Buses entity.
+     *
+     * @param Buses $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(Buses $entity) {
         $form = $this->createForm(new BusesType(), $entity, array(
-            'action' => $this->generateUrl('buses_create'),
+            'action' => $this->generateUrl('buses_create'),            
             'method' => 'POST',
+            'attr' => array(
+                'class' => 'form-horizontal center',
+            )
         ));
-        
-        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        $form->add('submit', 'submit', array('label' => 'Create',
+            'attr'=> array(
+                
+                'class'=>'btn btn-success'
+            )
+            
+            ));
 
         return $form;
     }
@@ -79,14 +84,12 @@ class BusesController extends Controller
      * Displays a form to create a new Buses entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Buses();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
-        return $this->render('BuskoBusBundle:Buses:new.html.twig', array(
-
-            'form'   => $form->createView(),
+        return $this->render('BuskoBusBundle:Buses:form.html.twig', array(
+                    'form' => $form->createView(),
         ));
     }
 
@@ -94,29 +97,13 @@ class BusesController extends Controller
      * Finds and displays a Buses entity.
      *
      */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Buses entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('BuskoBusBundle:Buses:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
-    }
+   
 
     /**
      * Displays a form to edit an existing Buses entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
@@ -126,39 +113,41 @@ class BusesController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('BuskoBusBundle:Buses:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+       
+        return $this->render('BuskoBusBundle:Buses:form.html.twig', array(
+                    'entity' => $entity,
+                    'form' => $editForm->createView(),
+               
         ));
     }
 
     /**
-    * Creates a form to edit a Buses entity.
-    *
-    * @param Buses $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Buses $entity)
-    {
+     * Creates a form to edit a Buses entity.
+     *
+     * @param Buses $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(Buses $entity) {
         $form = $this->createForm(new BusesType(), $entity, array(
             'action' => $this->generateUrl('buses_update', array('id' => $entity->getLicNum())),
             'method' => 'PUT',
+            'attr' => array(
+                'class'=>'form-horizontal center'
+            )
+            
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update','attr'=> array( 'class'=>'btn btn-inverse')));
 
         return $form;
     }
+
     /**
      * Edits an existing Buses entity.
      *
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
@@ -167,42 +156,39 @@ class BusesController extends Controller
             throw $this->createNotFoundException('Unable to find Buses entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+      
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('buses_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('site_bus'));
         }
 
-        return $this->render('BuskoBusBundle:Buses:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('BuskoBusBundle:Buses:form.html.twig', array(
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                   
         ));
     }
+
     /**
      * Deletes a Buses entity.
      *
      */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+    public function deleteAction(Request $request) {
+        $id = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Buses entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Buses entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
+
 
         return $this->redirect($this->generateUrl('buses'));
     }
@@ -214,13 +200,6 @@ class BusesController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('buses_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
+   
+
 }
