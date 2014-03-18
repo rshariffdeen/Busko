@@ -17,9 +17,9 @@ site_emp:
     defaults: { _controller: BuskoSiteBundle:Main:emp }
     
     
-site_bus:
-    pattern:  /busess
-    defaults: { _controller: BuskoSiteBundle:Main:bus }
+site_bus:    
+    pattern:   /buses
+    defaults: { _controller: "BuskoBusBundle:Buses:index" }
     
 site_branch:
     pattern:  /branches

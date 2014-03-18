@@ -4,7 +4,6 @@ namespace Busko\BusBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Busko\EntityBundle\Entity\Buses;
 use Busko\EntityBundle\Form\BusesType;
 
