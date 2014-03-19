@@ -31,11 +31,11 @@ class TimetableIndexController extends Controller {
                 'attr' => array(
                     'class' => 'form-horizontal',))
             );
-            $errorMsg = 'Select different bus stops !';
+            $errorMsg = 'Select different bus stops';
             $sErrorMsg = '';
             return $this->render('BuskoJourneyBundle:Home:HomeError.html.twig', array('form' => $form->createView(), 'errorMsg' => $errorMsg));
         }
-        
+
         //Checks whether the user has selected a valid time interval
         if ($from >= $to) {
             $form = $this->createForm(new TimetableType(), null, array(
@@ -51,9 +51,9 @@ class TimetableIndexController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $intermediates = $em->getRepository('BuskoEntityBundle:Intermediates');
         $journeys = $em->getRepository('BuskoEntityBundle:Journeys');
-        
 
-        $query = $em->createQuery('SELECT t.routeId
+
+        $query = $em->createQuery('SELECT t.routeId,t.stationNumber,s.stationNumber
             FROM  BuskoEntityBundle:Intermediates AS t, BuskoEntityBundle:Intermediates AS s
             WHERE t.routeId = s.routeId
             AND t.stopId = :id1
@@ -63,22 +63,25 @@ class TimetableIndexController extends Controller {
         $query->setParameter('id2', $StopBusStop);
 
         $presentRoutes = $query->getResult();
-        //echo json_encode($presentRoutes);
+        echo json_encode($presentRoutes);
 
         if ($presentRoutes) {
             
         } else {
+            //If there are no direct routes between these 
             $form = $this->createForm(new TimetableType(), null, array(
                 'action' => $this->generateUrl('busko_journey_Timetablehomepage'),
                 'attr' => array(
                     'class' => 'form-horizontal',))
             );
-            $StartBusStop= $em->find('BuskoEntityBundle:BusStops', $StartBusStop)->getCity();
-            $StopBusStop= $em->find('BuskoEntityBundle:BusStops', $StopBusStop)->getCity();
+            $StartBusStop = $em->find('BuskoEntityBundle:BusStops', $StartBusStop)->getCity();
+            $StopBusStop = $em->find('BuskoEntityBundle:BusStops', $StopBusStop)->getCity();
 
             $errorMsg = 'There are no direct buses between ' . $StartBusStop . ' and ' . $StopBusStop;
             return $this->render('BuskoJourneyBundle:Home:HomeError.html.twig', array('form' => $form->createView(), 'errorMsg' => $errorMsg));
         }
+        
+        
 
 
 
