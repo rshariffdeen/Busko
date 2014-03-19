@@ -245,13 +245,6 @@ class Employees extends BaseUser
     {
         return $this->id;
     }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-        
-        return $this;
-    }
    
     /**
      * Set branch
@@ -259,14 +252,18 @@ class Employees extends BaseUser
      * @param \Busko\EntityBundle\Entity\Branches $branch
      * @return Employees
      */
-    public function setBranch(\Busko\EntityBundle\Entity\Branches $branch = null)
+    
+    public function setId($id)
+
     {
         $this->city = $id;
         return $this;
     }
+
     
         public function __toString()
     {
         return strval($this->id);
     }
+
 }

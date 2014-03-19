@@ -5,7 +5,7 @@
       <unique-constraint name="stop_id" columns="stop_id"/>
     </unique-constraints>
     <id name="stopId" type="string" column="stop_id" length="10">
-      <generator strategy="IDENTITY"/>
+      <!--generator strategy="IDENTITY"/!-->
     </id>
     <field name="city" type="string" column="city" length="20" nullable="false"/>
     <many-to-many field="route" target-entity="Routes" mapped-by="stop"/>

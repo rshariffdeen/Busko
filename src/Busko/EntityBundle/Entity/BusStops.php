@@ -64,6 +64,10 @@ class BusStops
     {
         return $this->stopId;
     }
+     public function setStopId($id)
+    {
+        $this->stopId=$id;
+    }
 
     /**
      * Add route

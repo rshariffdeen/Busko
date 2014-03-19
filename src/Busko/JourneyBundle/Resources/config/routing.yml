@@ -37,3 +37,12 @@ update_drives_assistant:
 reset_drives_assistant:
    pattern: /drivesassistantreset
    defaults: { _controller: BuskoJourneyBundle:Drives:resetAssistant }
+
+busko_journey_homepage:
+    pattern:  /index
+    defaults: { _controller: BuskoJourneyBundle:Home:index }
+    
+busko_journey_Timetablehomepage:
+    pattern:  /index
+    defaults: { _controller: BuskoJourneyBundle:TimetableIndex:Timetable }
+
