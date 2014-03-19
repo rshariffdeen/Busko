@@ -1,3 +1,6 @@
 busko_entity_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: BuskoEntityBundle:Default:index }
+BuskoEntityBundle_routes:
+        resource: "@BuskoEntityBundle/Resources/config/routing/routes.yml"
+        prefix:   /routess
