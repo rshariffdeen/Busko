@@ -1,7 +1,48 @@
 busko_journey_homepage:
+    pattern:  /home
+    defaults: { _controller: BuskoJourneyBundle:Home:index }
+    
+busko_journey_HRAss:
+   pattern: /HRAss
+   defaults: { _controller: BuskoJourneyBundle:HRAssignment:select }
+   
+create_drives_entry:
+   pattern: /drives
+   defaults: { _controller: BuskoJourneyBundle:Drives:set }
+    
+show_date:
+  pattern: /showdate
+  defaults: { _controller: BuskoJourneyBundle:HRAssignment:selectDate }
+  
+busko_journey_HRUp:
+   pattern: /HRUp
+   defaults: { _controller: BuskoJourneyBundle:HRAssignment:update }
+  
+update_drives_entry:
+   pattern: /drivesupdate
+   defaults: { _controller: BuskoJourneyBundle:Drives:update }
+   
+update_drives_driver:
+   pattern: /drivesdriverupdate
+   defaults: { _controller: BuskoJourneyBundle:Drives:updateDriver }
+   
+reset_drives_driver:
+   pattern: /drivesdriverreset
+   defaults: { _controller: BuskoJourneyBundle:Drives:resetDriver }
+   
+update_drives_assistant:
+   pattern: /drivesassistantupdate
+   defaults: { _controller: BuskoJourneyBundle:Drives:updateAssistant }
+   
+reset_drives_assistant:
+   pattern: /drivesassistantreset
+   defaults: { _controller: BuskoJourneyBundle:Drives:resetAssistant }
+
+busko_journey_homepage:
     pattern:  /index
     defaults: { _controller: BuskoJourneyBundle:Home:index }
     
 busko_journey_Timetablehomepage:
     pattern:  /index
     defaults: { _controller: BuskoJourneyBundle:TimetableIndex:Timetable }
+
