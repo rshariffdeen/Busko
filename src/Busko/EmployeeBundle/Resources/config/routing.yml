@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 BuskoEntityBundle_assistants:
        resource: "@BuskoEmployeeBundle/Resources/config/routing/assistants.yml"
        prefix:   /assistants
@@ -14,20 +13,3 @@ BuskoEntityBundle_operators:
 BuskoEntityBundle_admins:
         resource: "@BuskoEmployeeBundle/Resources/config/routing/administrators.yml"
         prefix:   /admins
-=======
-BuskoEntityBundle_assistants:
-       resource: "@BuskoEmployeeBundle/Resources/config/routing/assistants.yml"
-       prefix:   /assistants
-       
-BuskoEntityBundle_drivers:
-        resource: "@BuskoEmployeeBundle/Resources/config/routing/drivers.yml"
-        prefix:   /drivers
-
-BuskoEntityBundle_operators:
-        resource: "@BuskoEmployeeBundle/Resources/config/routing/operators.yml"
-        prefix:   /operators
-        
-BuskoEntityBundle_admins:
-        resource: "@BuskoEmployeeBundle/Resources/config/routing/administrators.yml"
-        prefix:   /admins
->>>>>>> 134fd333e68013bd1a32a5a099c1e36ea85a06be
