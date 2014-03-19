@@ -1,0 +1,33 @@
+busstops:
+    pattern:  /
+    defaults: { _controller: "BuskoBranchBundle:BusStops:index" }
+
+busstops_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoBranchBundle:BusStops:show" }
+busstops_search:
+    pattern:  /search
+    defaults: { _controller: "BuskoBranchBundle:BusStops:search" }
+
+busstops_new:
+    pattern:  /new
+    defaults: { _controller: "BuskoBranchBundle:BusStops:new" }
+
+busstops_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoBranchBundle:BusStops:create" }
+    requirements: { _method: post }
+
+busstops_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BuskoBranchBundle:BusStops:edit" }
+
+busstops_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoBranchBundle:BusStops:update" }
+    requirements: { _method: post|put }
+
+busstops_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoBranchBundle:BusStops:delete" }
+    requirements: { _method: post|delete }

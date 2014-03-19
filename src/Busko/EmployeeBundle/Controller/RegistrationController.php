@@ -75,8 +75,8 @@ class RegistrationController extends ContainerAware
             if($roles[0]==='ASSISTANT'){
                 $url = $this->container->get('router')->generate('assistants_new');
                     $response = new RedirectResponse($url);
-            
-                    return $response;
+            return $this->redirect($this->generateUrl('assistants_new', array('id' => $user->getId())));
+                  //  return $response;
             }
             if($roles[0]==='OPERATOR'){
                 $url = $this->container->get('router')->generate('operators');

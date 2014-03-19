@@ -10,11 +10,7 @@ class DriverController extends Controller
     {
         return $this->render('BuskoSiteBundle:Driver:home.html.twig');
     }
-    
-    public function employeeAction()
-    {
-        return $this->render('BuskoSiteBundle:Driver:employee.html.twig');
-    }
+ 
     
   
     
