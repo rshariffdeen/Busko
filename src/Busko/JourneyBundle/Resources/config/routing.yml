@@ -46,3 +46,6 @@ busko_journey_Timetablehomepage:
     pattern:  /index
     defaults: { _controller: BuskoJourneyBundle:TimetableIndex:Timetable }
 
+busko_journey_selectroute:
+    pattern:  /Routem
+    defaults: { _controller: BuskoJourneyBundle:RouteManage:selectRoute }
