@@ -81,7 +81,9 @@ class TimetableIndexController extends Controller {
             return $this->render('BuskoJourneyBundle:Home:HomeError.html.twig', array('form' => $form->createView(), 'errorMsg' => $errorMsg));
         }
         
-        
+        foreach($presentRoutes['routeId'] as $route ){
+            echo $route;
+        }
 
 
 
