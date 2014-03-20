@@ -80,15 +80,15 @@ class TimetableIndexController extends Controller {
             return $this->render('BuskoJourneyBundle:Home:HomeError.html.twig', array('form' => $form->createView(), 'errorMsg' => $errorMsg));
         }
         
-        foreach($presentRoutes['routeId'] as $route ){
+        foreach($presentRoutes as $route ){
             $route=$route['routeId'];
-            echo jason_encode($route);
-            break;
-            $query = $em->createQuery('SELECT t.routeId,t.stationNumber,s.stationNumber
-            FROM  BuskoEntityBundle:Intermediates AS t, BuskoEntityBundle:Intermediates AS s
-            WHERE t.routeId = s.routeId
-            AND t.stopId = :id1
-            AND s.stopId = :id2');
+            echo $route;
+            $query = $em->createQuery('SELECT stationNumber FROM  BuskoEntityBundle:Intermediates 
+                WHERE routeId = :rid
+                AND stopId = :startid
+               ');
+            $startStationNumber= $query->getSingleResult();
+            
             
         }
         
