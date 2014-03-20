@@ -12,18 +12,18 @@ class BranchPageController extends Controller
 {
     public function branchPageAction()
     {
-        $employee=$this->getUser();
+       $employee=$this->getUser();
         $em = $this->getDoctrine()->getEntityManager();
         $employees = $em->getRepository('BuskoEntityBundle:Employees');
-        $branches = $em->getRepository('BuskoEntityBundle:Branches');
+        $branchRepo = $em->getRepository('BuskoEntityBundle:Branches');
         if($employee){          
-            $branch = $branches->findAll();
+            $branches = $branchRepo->findAll();
             //return $this->render('BuskoBranchBundle:BranchPage:branchPage.html.twig', array('id' => $id,'branch'=> $branch));
             if(!in_array('ADMIN',$employee->getRoles())){
-                    return $this->render('BuskoBranchBundle:BranchPage:branchPage.html.twig', array('id' => $employee->getId(),'branch'=> $branch));
+                    return $this->render('BuskoBranchBundle:BranchPage:branchPage.html.twig', array('id' => $employee->getId(),'branches'=> $branches));
             }
             if(in_array('ADMIN',$employee->getRoles())){
-                    return $this->render('BuskoBranchBundle:BranchPage:branchPageAdmin.html.twig', array('id'=>$employee->getId(),'branch'=> $branch));
+                    return $this->render('BuskoBranchBundle:BranchPage:branchPageAdmin.html.twig', array('id'=>$employee->getId(),'branches'=> $branches));
             }
         }
         return $this->render('BuskoEmployeeBundle:Security:login.html.twig');

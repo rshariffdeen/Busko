@@ -13,55 +13,25 @@ class BranchDeletionController extends Controller
 {
     public function deleteBranchAction(Request $request)
     {
-        $id = $request->get('id'); 
-        $em = $this->getDoctrine()->getEntityManager();
-        $employees = $em->getRepository('BuskoEntityBundle:Employees');
-        $employee = $employees->findOneBy(array('id' => $id));
-        if($employee){
-            $defaultData = array('message' => 'Select Branch to delete');
-            
-            $form = $this->createFormBuilder($defaultData)
-             ->add('branch', 'entity', array(
-            'label' =>'Branch',
-            'class' => 'BuskoEntityBundle:Branches',
-            'property' => 'branchId',
-            ))
-            ->add('submit','submit', array(
-                'label' => 'Delete Branch',
-                'attr' => array(
-                    'class' => 'button'
-                )
-            ))
-           
-            ->getForm();
-            
-            $form->handleRequest($request);
+            $id = $request->get('id');
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('BuskoEntityBundle:Branches')->find($id);
 
-            if ($form->isValid()) {
-                $message;
-                $data = $form->getData();
-                $branch=$data['branch'];
-                $branchName= $branch->getBranchId();
-                try{
-                $em->remove($branch);
-                $em->flush();
-                $message='Branch '.$branchName.'has been deleted Successfully ';
-                }
-                catch(\Exception $e){
-                    $message= 'Make sure that the branch you are trying to delete has no employees or buses associated with it!!';
-                }
-                
-                return $this->render('BuskoBranchBundle:BranchDeletion:deleteBranchMessage.html.twig', array('message' => $message, 'id' => $id));
-        
+            if (!$entity) {
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>'Unable to find Branch'));
             }
-            return $this->render('BuskoBranchBundle:BranchDeletion:deleteBranch.html.twig', array(
-            'form' =>$form->createView(),
-            ));
+            try{
+            $em->remove($entity);
+            $em->flush();
+            }
+            catch (\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Make sure the branch has no employee or buses attached to it'));
+            
+            }
 
-       
-        }
-        return $this->render('BuskoBranchBundle:BranchPage:branchPageAdmin.html.twig');
-        }    
+
+            return $this->redirect($this->generateUrl('branch_page'));
+                }    
         
 
 }
