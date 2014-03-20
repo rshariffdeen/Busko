@@ -1,0 +1,30 @@
+intermediates:
+    pattern:  /
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:index" }
+
+intermediates_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:show" }
+
+intermediates_new:
+    pattern:  /new
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:new" }
+
+intermediates_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:create" }
+    requirements: { _method: post }
+
+intermediates_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:edit" }
+
+intermediates_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:update" }
+    requirements: { _method: post|put }
+
+intermediates_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:delete" }
+    requirements: { _method: post|delete }

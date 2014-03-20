@@ -18,7 +18,7 @@ class Intermediates
     /**
      * @var string
      */
-    private $id;
+    private $stopId;
 
     /**
      * @var 
@@ -67,9 +67,9 @@ class Intermediates
      *
      * @return string 
      */
-    public function setId($id)
+    public function setStopId($id)
     {
-        $this->id=$id;
+        $this->stopId=$id;
     }
     public function getDuration()
     {
@@ -79,9 +79,9 @@ class Intermediates
     {
         $this->duration=$duration;
     }
-    public function getId()
+    public function getStopId()
     {
-        return $this->id;
+        return $this->stopId;
     }
     
 

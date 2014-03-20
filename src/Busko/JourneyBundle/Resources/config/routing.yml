@@ -3,5 +3,11 @@ busko_journey_homepage:
     defaults: { _controller: BuskoJourneyBundle:Home:index }
     
 busko_journey_Timetablehomepage:
-    pattern:  /indexTimetable
+    pattern:  /timetable
     defaults: { _controller: BuskoJourneyBundle:TimetableIndex:Timetable }
+BuskoJourneyBundle_routes:
+        resource: "@BuskoJourneyBundle/Resources/config/routing/routes.yml"
+        prefix:   /routess
+BuskoJourneyBundle_intermediates:
+        resource: "@BuskoJourneyBundle/Resources/config/routing/intermediates.yml"
+        prefix:   /intermediates

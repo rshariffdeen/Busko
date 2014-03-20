@@ -37,21 +37,41 @@ class MainController extends Controller {
         if ($user == null) {
             return $this->forward('FOSUserBundle:Security:login');
         }
+        
+         $form = $this->createFormBuilder()
+                ->setAction($this->generateUrl('busstops_search'))
+                ->setMethod('GET')
+                ->add('city', 'entity', array(
+            'label' =>'City',
+            'label_attr' => array('class' => 'control-label'),
+            'attr' => array(
+            'class' =>'controls',
+                'data-rel'=>'chosen'
+                )
+            ,
+            'class' => 'BuskoEntityBundle:BusStops',
+            'property' => 'city',
+            ))
+                ->add('search', 'submit', array('attr'=>array('class'=>'btn btn-primary')))
+                ->getForm();
+
+        
+        
 
         if (in_array("ADMIN", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Admin:route');
+            return $this->forward('BuskoSiteBundle:Admin:route',array('search'=>$form->createView()));
         }
         
         if (in_array("OPERATOR", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Operator:route');
+            return $this->forward('BuskoSiteBundle:Operator:route',array('search'=>$form));
         }
         
         if (in_array("DRIVER", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Driver:route');
+            return $this->forward('BuskoSiteBundle:Driver:route',array('search'=>$form));
         }
         
         if (in_array("ASSISTANT", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Assistant:route');
+            return $this->forward('BuskoSiteBundle:Assistant:route',array('search'=>$form));
         }
     }
 

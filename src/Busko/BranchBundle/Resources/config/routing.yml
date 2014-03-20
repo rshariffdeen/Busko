@@ -1,23 +1,7 @@
-busko_branch_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BuskoBranchBundle:Default:index }
+BuskoBranchBundle_branch:
+        resource: "@BuskoBranchBundle/Resources/config/routing/branches.yml"
+        prefix:   /branches
 
-branch_page:
-    pattern: /branchPage
-    defaults: { _controller: BuskoBranchBundle:BranchPage:branchPage }
-
-create_branch:
-    pattern: /createBranch
-    defaults: { _controller: BuskoBranchBundle:BranchCreation:createBranch }
-
-submit_branch:
-    pattern: /submitBranch
-    defaults: { _controller: BuskoBranchBundle:BranchSubmission:submitBranch }
-
-confirm_branch:
-    pattern: /confirmBranch
-    defaults: { _controller: BuskoBranchBundle:BranchConfirmation:confirmBranch }
-    
 BuskoBranchBundle_busstops:
         resource: "@BuskoBranchBundle/Resources/config/routing/busstops.yml"
         prefix:   /busstops
