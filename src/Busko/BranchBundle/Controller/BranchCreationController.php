@@ -3,7 +3,6 @@
 namespace Busko\BranchBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Busko\EntityBundle\Entity\Employees;
 use Busko\EntityBundle\Entity\Branches;
 use Busko\EntityBundle\Form\BranchesType;
 use Symfony\Component\HttpFoundation\Request;

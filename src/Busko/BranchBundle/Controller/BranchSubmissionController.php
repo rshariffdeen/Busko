@@ -19,6 +19,7 @@ class BranchSubmissionController extends Controller
         
         if ($form->isValid()) {
                 $Branches = $form->getData();
+                
                 $em->persist($Branches);
                 try{
                     $em->flush();
@@ -27,7 +28,7 @@ class BranchSubmissionController extends Controller
                     return $this->render('BuskoBranchBundle:BranchSubmission:submitBranch.html.twig', array('id' => $id,'form' => $form->createView()));
                 }
 
-        return $this->redirect($this->generateUrl('confirm_branch',array('id'=>$id)));
+                return $this->redirect($this->generateUrl('confirm_branch',array('id'=>$id)));
         }
 
         return $this->render(
