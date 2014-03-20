@@ -1,0 +1,30 @@
+drivers:
+    pattern:  /
+    defaults: { _controller: "BuskoEmployeeBundle:Drivers:index" }
+
+drivers_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoEmployeeBundle:Drivers:show" }
+
+drivers_new:
+    pattern:  /new
+    defaults: { _controller: "BuskoEmployeeBundle:Drivers:new" }
+
+drivers_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoEmployeeBundle:Drivers:create" }
+    requirements: { _method: post }
+
+drivers_edit:
+    pattern:  /edit
+    defaults: { _controller: "BuskoEmployeeBundle:Drivers:edit" }
+
+drivers_update:
+    pattern:  /update
+    defaults: { _controller: "BuskoEmployeeBundle:Drivers:update" }
+    requirements: { _method: post|put }
+
+driver_delete:
+    pattern:  /delete
+    defaults: { _controller: "BuskoEmployeeBundle:Drivers:delete" }
+    requirements: { _method: post|delete }

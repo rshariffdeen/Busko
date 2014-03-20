@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BuskoBranchBundle:BranchView:viewBranch{% endblock %}
+
+{% block body %}
+<div class="notify">
+    
+<h2 class="price">{{branch.getBranchId()}}</h2>
+<form action="createBranch?id={{id}}" method="post" >
+<p align="left">
+<button type="submit">update</button>
+ </p>
+</form>
+    <br><br>
+
+<p align="left">
+<strong>Phone</strong>
+<br>{{branch.getPhone()}}<br><br>
+<strong>Street No.</strong>
+<br>{{branch.getStreetno()}}
+<br><br>
+
+<strong>Street Name</strong>
+<br>{{branch.getStreet()}}<br><br>
+<strong>City</strong>
+<br>{{branch.getCity()}}<br><br>
+</div>
+
+{% endblock %}

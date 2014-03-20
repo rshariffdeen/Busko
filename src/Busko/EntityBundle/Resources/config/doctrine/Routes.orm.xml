@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Busko\EntityBundle\Entity\Routes" table="routes">
+    <indexes>
+      <index name="start_stop" columns="start_stop"/>
+      <index name="end_stop" columns="end_stop"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="route_id" columns="route_id"/>
+    </unique-constraints>
+    <id name="routeId" type="string" column="route_id" length="10">
+      <!--generator strategy="IDENTITY"/-->
+    </id>
+    <many-to-one field="startStop" target-entity="BusStops">
+      <join-columns>
+        <join-column name="start_stop" referenced-column-name="stop_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="endStop" target-entity="BusStops">
+      <join-columns>
+        <join-column name="end_stop" referenced-column-name="stop_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="stop" target-entity="BusStops" inversed-by="route">
+      <join-table name="intermediates">
+        <join-columns>
+          <join-column name="route_id" referenced-column-name="route_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="stop_id" referenced-column-name="stop_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

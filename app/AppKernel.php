@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Busko\JourneyBundle\BuskoJourneyBundle(),
             new Busko\StyleBundle\BuskoStyleBundle(),
             new Busko\MessageBundle\BuskoMessageBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Busko\SiteBundle\BuskoSiteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

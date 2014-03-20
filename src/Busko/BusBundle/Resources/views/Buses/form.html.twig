@@ -1,0 +1,99 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-fluid">
+                    
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+		
+                        <div id="content" class="span10 ">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            
+						<h2><i class="icon-locked"></i> Add New Bus</h2>
+						
+					</div>
+                                <div class="box-content ">
+                                    
+                           <div class="pull-right">
+                               <a href="{{ path('buses') }}">
+                                   <button class="btn btn-large btn-primary">Back to Buses</button>
+                        </a>
+                           </div>
+                                    <br><br>
+
+                    {{ form_start(form) }}
+                    
+                    <div class="control-group warning">
+      {{form_label(form.licNum, 'License Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.licNum)}}
+                               <span class="help-inline">{{ form_errors(form.licNum) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.model, 'Model',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.model)}}
+                               <span class="help-inline">{{ form_errors(form.model) }}</span>
+                       </div></div>
+                         
+                                           <div class="control-group warning">
+      {{form_label(form.capacity, 'Capacity',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.capacity)}}
+                               <span class="help-inline">{{ form_errors(form.capacity) }}</span>
+                       </div></div>
+                                   
+                                     <div class="control-group warning">
+      {{form_label(form.conditions, 'Conditions',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.conditions)}}
+                               <span class="help-inline">{{ form_errors(form.conditions) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.branch, 'Branch',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.branch)}}
+                               <span class="help-inline">{{ form_errors(form.branch) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.route, 'Route',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.route)}}
+                               <span class="help-inline">{{ form_errors(form.route) }}</span>
+                       </div></div>
+                                      <div class="control-group warning">
+      {{form_label(form.route, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.submit)}}
+                           
+                       </div></div>
+                                    
+                                    
+{{ form_end(form) }}
+                    
+                      
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
