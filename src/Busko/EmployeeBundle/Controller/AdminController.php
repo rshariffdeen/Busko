@@ -45,7 +45,10 @@ class AdminController extends Controller
         $entities = $query->getResult();
         // $entities = $em->getRepository('BuskoEntityBundle:Operators')->findAll();
 
-        return $this->render('BuskoEmployeeBundle:Operators:index.html.twig', array(
+
+        return $this->render('BuskoEmployeeBundle:OPerators:index.html.twig', array(
+
+
                     'entities' => $entities,
             
         ));

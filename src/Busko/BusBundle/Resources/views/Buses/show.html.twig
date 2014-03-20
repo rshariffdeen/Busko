@@ -1,0 +1,48 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div id="content" class="span10">
+        <div class="box-content span12">
+    <h1>Buses</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Capacity</th>
+                <td>{{ entity.capacity }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ entity.model }}</td>
+            </tr>
+            <tr>
+                <th>Conditions</th>
+                <td>{{ entity.conditions }}</td>
+            </tr>
+            <tr>
+                <th>LicNum</th>
+                <td>{{ entity.licNum }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('buses') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('buses_edit', { 'id': entity.licNum }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
