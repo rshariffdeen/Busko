@@ -118,12 +118,11 @@ class Buses
     {
         return $this->licNum;
     }
-    
-    public function setLicNum($lic)
+        
+     public function setLicNum($licnum)
     {
-        $this->licNum=$lic;
+        return $this->licNum = $licnum;
     }
-
     /**
      * Set branch
      *

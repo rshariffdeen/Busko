@@ -24,6 +24,3 @@ site_bus:
 site_branch:
     pattern:  /branches
     defaults: { _controller: BuskoSiteBundle:Main:branch }
-    
-    
-    

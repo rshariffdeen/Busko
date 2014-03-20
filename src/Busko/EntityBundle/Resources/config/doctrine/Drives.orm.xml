@@ -6,7 +6,7 @@
       <index name="assistant" columns="ass_id"/>
       <index name="IDX_66614C4F907FC368" columns="lic_num"/>
     </indexes>
-    <id name="date" type="date" column="date"/>
+    <id name="date" type="string" column="date"/>
     <id name="licNum" association-key="true"/>
     <one-to-one field="licNum" target-entity="Buses">
       <join-columns>
