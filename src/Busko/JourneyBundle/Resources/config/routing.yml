@@ -60,7 +60,7 @@ busko_journey_submitbus:
 
 busko_journey_timeas:
     pattern:  /timeset
-    defaults: { _controller: BuskoJourneyBundle:TimeManagement:submitDate }
+    defaults: { _controller: BuskoJourneyBundle:TimeManagement:selectDate }
     
 busko_journey_dep:
     pattern:  /departure
