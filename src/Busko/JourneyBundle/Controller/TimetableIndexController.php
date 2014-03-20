@@ -82,8 +82,15 @@ class TimetableIndexController extends Controller {
         }
         
         foreach($presentRoutes['routeId'] as $route ){
-            echo $route;
+            $query = $em->createQuery('SELECT t.routeId,t.stationNumber,s.stationNumber
+            FROM  BuskoEntityBundle:Intermediates AS t, BuskoEntityBundle:Intermediates AS s
+            WHERE t.routeId = s.routeId
+            AND t.stopId = :id1
+            AND s.stopId = :id2');
+            
         }
+        
+        
 
 
 
