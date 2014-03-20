@@ -29,6 +29,7 @@ class MainController extends Controller {
             return $this->forward('BuskoSiteBundle:Assistant:home');
         }
         
+        return $this->render('BuskoStyleBundle:Error:permission.html.twig');
         
     }
 
@@ -73,6 +74,8 @@ class MainController extends Controller {
         if (in_array("ASSISTANT", $user->getRoles())) {
             return $this->forward('BuskoSiteBundle:Assistant:route',array('search'=>$form));
         }
+        
+        return $this->render('BuskoStyleBundle:Error:permission.html.twig');
     }
 
     public function empAction(Request $request) {
@@ -89,6 +92,7 @@ class MainController extends Controller {
             return $this->forward('BuskoSiteBundle:Operator:employee',array('request'=> $request));
         }
         
+        return $this->render('BuskoStyleBundle:Error:permission.html.twig');
       
     }
 
@@ -106,13 +110,9 @@ class MainController extends Controller {
             return $this->forward('BuskoSiteBundle:Operator:branch');
         }
         
-        if (in_array("DRIVER", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Driver:branch');
-        }
+      
         
-        if (in_array("ASSISTANT", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Assistant:branch');
-        }
+        return $this->render('BuskoStyleBundle:Error:permission.html.twig');
     }
 
     
