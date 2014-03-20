@@ -1,0 +1,30 @@
+routes:
+    pattern:  /
+    defaults: { _controller: "BuskoJourneyBundle:Routes:index" }
+
+routes_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoJourneyBundle:Routes:show" }
+
+routes_new:
+    pattern:  /new
+    defaults: { _controller: "BuskoJourneyBundle:Routes:new" }
+
+routes_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoJourneyBundle:Routes:create" }
+    requirements: { _method: post }
+
+routes_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BuskoJourneyBundle:Routes:edit" }
+
+routes_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoJourneyBundle:Routes:update" }
+    requirements: { _method: post|put }
+
+routes_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoJourneyBundle:Routes:delete" }
+    requirements: { _method: post|delete }

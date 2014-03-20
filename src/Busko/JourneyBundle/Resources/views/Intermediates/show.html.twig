@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Intermediates</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Stationnumber</th>
+                <td>{{ entity.stationNumber }}</td>
+            </tr>
+            <tr>
+                <th>Routeid</th>
+                <td>{{ entity.routeId }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ entity.duration }}</td>
+            </tr>
+            <tr>
+                <th>StopId</th>
+                <td>{{ entity.stopId}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('intermediates') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('intermediates_edit', { 'id': entity.stopId,'rId': entity.routeId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

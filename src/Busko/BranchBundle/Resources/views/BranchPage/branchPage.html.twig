@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BuskoBranchBundle:BranchPage:branchPage{% endblock %}
+
+{% block body %}
+
+<h2>Branches of Busko situated Islandwide</h2><br><br>
+ {% for b in branch %}  
+
+<h2 class="none"><a href="viewBranch?id={{id}}&bid={{b.getBranchId()}}"><div class="notify" ><strong>{{b.getBranchId()}}</strong></div></a></h2>
+        
+    {% endfor %}
+{% endblock %}
