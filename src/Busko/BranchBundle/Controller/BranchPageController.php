@@ -7,12 +7,11 @@ use Busko\EntityBundle\Entity\Branches;
 use Busko\EntityBundle\Entity\Employees;
 
 
-
+/**/
 class BranchPageController extends Controller
 {
     public function branchPageAction()
     {
-        
         $employee=$this->getUser();
         $em = $this->getDoctrine()->getEntityManager();
         $employees = $em->getRepository('BuskoEntityBundle:Employees');
