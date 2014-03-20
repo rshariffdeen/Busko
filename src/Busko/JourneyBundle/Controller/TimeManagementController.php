@@ -31,6 +31,7 @@ class TimeManagementController extends Controller{
                                               ->orderBy('p.licNum', 'ASC');
                                    }
             ))
+        ->add()
         ->add('route','hidden',array('data' => $date))
         ->add('select', 'submit')
         ->setAction($this->generateUrl(''))
