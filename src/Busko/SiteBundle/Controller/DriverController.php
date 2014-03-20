@@ -14,7 +14,7 @@ class DriverController extends Controller
     
   
     
-    public function routesAction()
+    public function routeAction()
     {
         return $this->render('BuskoSiteBundle:Driver:routes.html.twig');
     }
