@@ -12,7 +12,7 @@ class Routes
     /**
      * @var string
      */
-    private $id;
+    private $routeId;
 
     /**
      * @var \Busko\EntityBundle\Entity\BusStops
@@ -42,13 +42,13 @@ class Routes
      *
      * @return string 
      */
-    public function getId()
+    public function getRouteId()
     {
-        return $this->id;
+        return $this->routeId;
     }
-    public function setId($id)
+    public function setRouteId($id)
     {
-        $this->id=$id;
+        $this->routeId=$id;
     }
 
     /**

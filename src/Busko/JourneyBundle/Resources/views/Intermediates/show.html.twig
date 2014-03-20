@@ -18,8 +18,8 @@
                 <td>{{ entity.duration }}</td>
             </tr>
             <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
+                <th>StopId</th>
+                <td>{{ entity.stopId}}</td>
             </tr>
         </tbody>
     </table>
@@ -31,7 +31,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('intermediates_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('intermediates_edit', { 'id': entity.stopId,'rId': entity.routeId }) }}">
             Edit
         </a>
     </li>
