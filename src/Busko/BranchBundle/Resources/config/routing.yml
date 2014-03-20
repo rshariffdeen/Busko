@@ -1,3 +1,8 @@
-busko_branch_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BuskoBranchBundle:Default:index }
+BuskoBranchBundle_branch:
+        resource: "@BuskoBranchBundle/Resources/config/routing/branches.yml"
+        prefix:   /branches
+
+BuskoBranchBundle_busstops:
+        resource: "@BuskoBranchBundle/Resources/config/routing/busstops.yml"
+        prefix:   /busstops
+

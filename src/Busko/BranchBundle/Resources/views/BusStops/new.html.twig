@@ -1,0 +1,68 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-fluid">
+                    
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+		
+                        <div id="content" class="span10 ">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            
+						<h2><i class="icon-locked"></i> Add New Bus Stop</h2>
+						
+					</div>
+                                <div class="box-content ">
+                                    
+                           <div class="pull-right">
+                               <a href="{{ path('site_route') }}">
+                                   <button class="btn btn-large btn-primary">Back to Routes</button>
+                        </a>
+                           </div>
+                                    <br><br>
+
+                    {{ form_start(form) }}
+                    
+                    <div class="control-group warning">
+      {{form_label(form.stopId, 'Bus Stop Name',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.stopId)}}
+                               <span class="help-inline">{{ form_errors(form.stopId) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.city, 'City',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.city)}}
+                               <span class="help-inline">{{ form_errors(form.city) }}</span>
+                       </div></div>
+                         
+                                      <div class="control-group warning">
+      {{form_label(form.city, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.submit)}}
+                           
+                       </div></div>
+                                    
+                                    
+{{ form_end(form) }}
+                    
+                      
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

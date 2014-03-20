@@ -1,0 +1,240 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig"%}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+
+        <!-- left menu ends -->
+
+        <noscript>
+        <div class="alert alert-block span10">
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+        </div>
+        </noscript>
+
+        <div id="content" class="span10">
+            <!-- content starts -->
+
+
+
+
+
+
+            <div class="row-fluid sortable">
+
+
+                <div class="box span6">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Administrators</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+                                <div class="pull-right">
+                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Administrator </button></a>
+
+                                </div>
+                                <br><br>
+                                  {% for admin in admins %}
+                                <li>
+                                    <a href="#">
+                                        <img class="dashboard-avatar" alt="Saruar Ahmed" src="http://www.gravatar.com/avatar/564e1bb274c074dc4f6823af229d9dbb.png?s=50"></a>
+                                    <strong>Name:</strong> <a href="#">{{admin.firstname}} {{admin.lastname}}
+                                    </a><br>
+                                    <strong>City:</strong> <a href="#">{{admin.city}} 
+                                    </a><br>
+                                    <strong>Employee ID: </strong><span class="label label-warning"> {{admin.username}}</span>
+
+                                    <div class="pull-right">
+
+                                        <a href="{{ path('admins_show', { 'id': admin.id }) }}"><button  class="btn btn-mini btn-primary">show</button></a>
+
+                                        <button class="btn btn-mini btn-danger btn-account" url="{{ path('admin_delete') }}" id="{{admin.id}}" > delete </button>
+
+                                    </div>
+                                </li>
+        {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/span-->
+
+                <div class="box span6">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Operators</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+
+                                <div class="pull-right">
+                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Operator </button></a>
+
+                                </div>
+                                <br><br>
+
+                                  {% for operator in operators %}
+                                <li>
+                                    <a href="#">
+                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.gravatar.com/avatar/3232415a0380253cfffe19163d04acab.png?s=50"></a>
+                                    <strong>Name:</strong> <a href="#">{{operator.firstname}} {{operator.lastname}}
+                                    </a><br>
+                                    <strong>City:</strong> <a href="#">{{operator.city}} 
+                                    </a><br>
+                                    <strong>Employee ID: </strong><span class="label label-warning"> {{operator.username}}</span>
+
+                                    <div class="pull-right">
+
+                                        <a href="{{ path('operators_show', { 'id': operator.id }) }}"><button  class="btn btn-mini btn-primary">show</button></a>
+
+                                        <button class="btn btn-mini btn-danger btn-account" url="{{ path('operator_delete') }}" id="{{operator.id}}">delete</button>
+
+                                    </div>
+                                </li>
+        {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/span-->
+
+
+
+
+
+
+            </div><!--/row-->
+
+            <div class="row-fluid sortable">
+
+
+                <div class="box span6">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Drivers</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+                                <div class="pull-right">
+                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Driver </button></a>
+
+                                </div>
+                                <br><br>
+                                                             {% for driver in drivers %}
+                                <li>
+                                    <a href="#">
+                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                    <strong>Name:</strong> <a href="#">{{driver.firstname}} {{driver.lastname}}
+                                    </a><br>
+                                    <strong>City:</strong> <a href="#">{{driver.city}} 
+                                    </a><br>
+                                    <strong>Employee ID: </strong><span class="label label-warning"> {{driver.username}}</span>
+                                    <div class="pull-right">
+
+                                        <a href="{{ path('drivers_show', { 'id': driver.username }) }}"><button  class="btn btn-mini btn-primary">show</button></a>
+
+                                        <button class="btn btn-mini btn-danger btn-account" url="{{ path('driver_delete') }}" id="{{driver.id}}">delete</button>
+
+                                    </div>
+                                </li>
+        {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/span-->
+
+                <div class="box span6">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Assistants</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+                                <div class="pull-right">
+                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Assistant </button></a>
+
+                                </div>
+                                <br><br>
+                                               {% for assistant in assistants %}
+                                <li>
+                                    <a href="#">
+                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                    <strong>Name:</strong> <a href="#">{{assistant.firstname}} {{assistant.lastname}}
+                                    </a><br>
+                                    <strong>City:</strong> <a href="#">{{assistant.city}} 
+                                    </a><br>
+                                    <strong>Employee ID: </strong><span class="label label-warning"> {{assistant.username}}</span>
+
+                                    <div class="pull-right">
+
+                                        <a href="{{ path('assistants_show', { 'id': assistant.username }) }}"><button  class="btn btn-mini btn-primary">show</button></a>
+
+                                        <button class="btn btn-mini btn-danger btn-account" url="{{ path('assistant_delete') }}" id="{{assistant.id}}">delete</button>
+
+                                    </div>
+                                </li>
+        {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/span-->
+
+
+
+
+
+
+            </div><!--/row-->
+
+
+
+            <!-- content ends -->
+        </div><!--/#content.span10-->
+    </div><!--/fluid-row-->
+    
+     <div class="modal hide fade" id="account">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Confirm</h3>
+			</div>
+			<div class="modal-body">
+                            <p align="center">Are you sure you want to delete this account?                          		
+                            </p>
+                          
+                            
+			</div>
+			<div class="modal-footer">
+				
+                                <form action="empty" id = "continue-form" method="POST">
+                                    <input name="id" id="del-id" type="hidden" value="empty" />
+                                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+                                    <input type="submit" class="btn btn-primary" value="continue">
+                                </form>
+				 
+			</div>
+		</div>
+        
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BuskoBranchBundle:BranchCreation:createBranch{% endblock %}
+
+
+
+{% block body %}
+ <section class="container">
+    <div class="notify">
+      <h1>Enter Branch Information</h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+      <strong>Branch ID</strong><br>
+        {{form_widget(form.branchId)}}        
+        <br><br>
+        <strong>Phone Number</strong><br>        
+        {{form_widget(form.phone)}}        
+        <br><br>
+        <strong>Street Number</strong><br>   
+        {{form_widget(form.streetno)}}        
+        <br><br>
+        <strong>Street</strong><br>   
+        {{form_widget(form.street)}}        
+        <br><br>
+        <strong>City</strong><br>   
+        {{form_widget(form.city)}}        
+        <br><br>
+        
+        <p align="right">
+        {{form_widget(form.submit)}}
+        {{ form_end(form) }}
+                </p>
+    </div>
+        
+
+  </section>
+
+
+{% endblock %}
+
+
+
+
+

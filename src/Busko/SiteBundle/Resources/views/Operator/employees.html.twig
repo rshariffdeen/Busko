@@ -1,0 +1,150 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig"%}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+
+        <!-- left menu ends -->
+
+        <noscript>
+        <div class="alert alert-block span10">
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+        </div>
+        </noscript>
+
+        <div id="content" class="span10">
+            <!-- content starts -->
+
+
+
+
+
+
+            <div class="row-fluid sortable">
+
+
+
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Operators</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+
+                               
+
+                                  {% for operator in operators %}
+                                <li>
+                                    <a href="#">
+                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.gravatar.com/avatar/3232415a0380253cfffe19163d04acab.png?s=50"></a>
+                                    <strong>Name:</strong> <a href="#">{{operator.firstname}} {{operator.lastname}}
+                                    </a><br>
+                                    <strong>City:</strong> <a href="#">{{operator.city}} 
+                                    </a><br>
+                                    <strong>Employee ID: </strong><span class="label label-warning"> {{operator.username}}</span>
+
+                                 
+                                </li>
+        {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/span-->
+
+
+
+
+
+
+            </div><!--/row-->
+
+            <div class="row-fluid sortable">
+
+
+                <div class="box span6">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Drivers</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+                              
+                                                             {% for driver in drivers %}
+                                <li>
+                                    <a href="#">
+                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                    <strong>Name:</strong> <a href="#">{{driver.firstname}} {{driver.lastname}}
+                                    </a><br>
+                                    <strong>City:</strong> <a href="#">{{driver.city}} 
+                                    </a><br>
+                                    <strong>Employee ID: </strong><span class="label label-warning"> {{driver.username}}</span>
+                             
+                                </li>
+        {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/span-->
+
+                <div class="box span6">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Assistants</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+                               
+                                               {% for assistant in assistants %}
+                                <li>
+                                    <a href="#">
+                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                    <strong>Name:</strong> <a href="#">{{assistant.firstname}} {{assistant.lastname}}
+                                    </a><br>
+                                    <strong>City:</strong> <a href="#">{{assistant.city}} 
+                                    </a><br>
+                                    <strong>Employee ID: </strong><span class="label label-warning"> {{assistant.username}}</span>
+
+                                
+                                </li>
+        {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/span-->
+
+
+
+
+
+
+            </div><!--/row-->
+
+
+
+            <!-- content ends -->
+        </div><!--/#content.span10-->
+    </div><!--/fluid-row-->
+    
+  
+        
+
+
+{% endblock %}

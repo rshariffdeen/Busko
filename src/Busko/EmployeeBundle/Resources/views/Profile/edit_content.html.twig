@@ -1,0 +1,130 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+
+        <noscript>
+        <div class="alert alert-block span10">
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+        </div>
+        </noscript>
+        <div id="content" class="span10 ">
+            <!-- content starts -->
+
+            <div class="row-fluid">
+                <div class="box span12">
+
+                    <div class="box-header well">
+
+                        <h2><i class="icon-user"></i> Edit Profile Details</h2>
+
+                    </div>
+                    <div class="box-content span12 ">
+						 {% trans_default_domain 'FOSUserBundle' %}
+
+                        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal center">
+
+                            <div class="control-group warning ">
+                      {{form_label(form.username, 'Username',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.username)}}
+                                         <span class="help-inline">{{ form_errors(form.username) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.email, 'Email Address',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.email)}}
+                                     <span class="help-inline">{{ form_errors(form.email) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.first_name, 'First Name',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.first_name)}}
+                                     <span class="help-inline">{{ form_errors(form.first_name) }}</span>
+                                </div></div>
+
+
+                            <div class="control-group warning">
+                      {{form_label(form.last_name, 'Last Name',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.last_name)}}
+                                     <span class="help-inline">{{ form_errors(form.last_name) }}</span>
+                                </div></div>
+
+
+                            <div class="control-group warning">
+                      {{form_label(form.street_no, 'Street Number',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.street_no)}}
+                                     <span class="help-inline">{{ form_errors(form.street_no) }}</span>
+                                </div></div>
+
+
+                            <div class="control-group warning">
+                      {{form_label(form.street, 'Street',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.street)}}
+                                     <span class="help-inline">{{ form_errors(form.street) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.city, 'City',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.city)}}
+                                     <span class="help-inline">{{ form_errors(form.city) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.branchId, 'Branch',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.branchId,{'attr':{'data-rel':'chosen'}})}}
+                         <span class="help-inline">{{ form_errors(form.branchId) }}</span>
+                                </div></div>
+
+
+                            {{ form_widget(form) }}
+
+
+
+                            <input class ='btn btn-primary span8'type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div><!--/row-->
+
+
+
+
+
+            <!-- content ends -->
+        </div><!--/#content.span10-->
+
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+
+
+
+
+{% endblock%}
+
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Busko\EntityBundle\Entity\Employees" table="employees">
+    <indexes>
+      <index name="branch_id" columns="branch_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="username" columns="username"/>
+      <unique-constraint name="id" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    
+    <field name="firstName" type="string" column="first_name" length="20" nullable="true"/>
+    <field name="lastName" type="string" column="last_name" length="20" nullable="true"/>
+    <field name="streetNo" type="string" column="street_no" length="5" nullable="true"/>
+    <field name="street" type="string" column="street" length="20" nullable="true"/>
+    <field name="city" type="string" column="city" length="20" nullable="true"/>
+    
+    
+    
+    
+    
+    <!--one-to-many field="phone" target-entity="EmployeePhones" mapped-by="id"/-->
+    <many-to-one field="branchId" target-entity="Branches">
+      <join-columns>
+        <join-column name="branch_id" referenced-column-name="branch_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

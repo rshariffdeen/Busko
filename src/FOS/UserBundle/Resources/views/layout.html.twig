@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        
+
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+        
+        
+        <script type="text/javascript">
+                            window.onload=function(){
+                                  noty(jQuery.parseJSON('{"text":"{{message}}","layout":"center","type":"information"}'));
+                                
+                           }
+                            </script>
+                
+            {% endfor %}
+        {% endfor %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+    </body>
+</html>

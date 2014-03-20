@@ -1,0 +1,25 @@
+employees:
+    pattern:  /
+    defaults: { _controller: "BuskoEmployeeBundle:Employee:index" }
+
+employees_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoEmployeeBundle:Employee:show" }
+
+
+employees_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoEmployeeBundle:Employee:create" }
+    requirements: { _method: post }
+
+
+
+employees_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoEmployeeBundle:Employee:update" }
+    requirements: { _method: post|put }
+
+employees_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoEmployeeBundle:Employee:delete" }
+    requirements: { _method: post|delete }

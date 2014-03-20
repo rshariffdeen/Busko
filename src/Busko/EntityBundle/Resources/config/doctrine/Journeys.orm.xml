@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Busko\EntityBundle\Entity\Journeys" table="journeys">
+    <indexes>
+      <index name="round_number" columns="round_number"/>
+      <index name="date" columns="date"/>
+      <index name="route_id" columns="route_id"/>
+      <index name="start_stop" columns="start_stop"/>
+      <index name="IDX_231E1B09907FC368" columns="lic_num"/>
+    </indexes>
+    <id name="roundNumber" type="integer" column="round_number"/>
+    <id name="date" type="date" column="date"/>
+    <id name="licNum" association-key="true"/>
+    <field name="startTime" type="date" column="start_time" nullable="false"/>
+    <field name="endTime" type="date" column="end_time" nullable="false"/>
+    <one-to-one field="licNum" target-entity="Buses">
+      <join-columns>
+        <join-column name="lic_num" referenced-column-name="lic_num"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="startStop" target-entity="BusStops">
+      <join-columns>
+        <join-column name="start_stop" referenced-column-name="stop_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="route" target-entity="Routes">
+      <join-columns>
+        <join-column name="route_id" referenced-column-name="route_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
