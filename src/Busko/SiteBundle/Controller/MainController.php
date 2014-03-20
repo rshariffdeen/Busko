@@ -115,5 +115,6 @@ class MainController extends Controller {
         return $this->render('BuskoStyleBundle:Error:permission.html.twig');
     }
 
+    
 
 }
