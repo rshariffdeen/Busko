@@ -18,15 +18,16 @@ class BusStopsController extends Controller {
      *
      */
     
-    public function indexAction() {
+    public function indexAction(Request $request) {
 
         $form = $this->createSearchForm();
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('BuskoEntityBundle:BusStops')->findAll();
-
+        
         return $this->render('BuskoBranchBundle:BusStops:index.html.twig', array(
                     'entities' => $entities, 'form' => $form->createView(),
+                    'request' => $request
         ));
     }
 

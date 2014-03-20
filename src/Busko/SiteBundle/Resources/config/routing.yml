@@ -1,5 +1,7 @@
 
-
+site_home:
+    pattern:  /home
+    defaults: { _controller: BuskoSiteBundle:Main:index }
 site_main:
     pattern:  /main
     defaults: { _controller: BuskoSiteBundle:Main:index }

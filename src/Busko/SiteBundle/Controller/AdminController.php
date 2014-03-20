@@ -70,10 +70,7 @@ class AdminController extends Controller
         
     }
     
-    public function busAction()
-    {
-        return $this->render('BuskoSiteBundle:Admin:buses.html.twig');
-    }
+   
     
     public function routeAction(Request $request)
     {
