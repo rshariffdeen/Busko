@@ -69,10 +69,7 @@ class OperatorController extends Controller
             return $this->render('BuskoSiteBundle:Operator:employees.html.twig', array('drivers' => $drivers, 'assistants' => $assistants, 'admins' => $admins, 'OP'=>'false','operators' => $operators,'message'=>$message,'type'=>$type));
          }
     
-    public function busAction()
-    {
-        return $this->render('BuskoSiteBundle:Operator:buses.html.twig');
-    }
+    
     
     public function routeAction()
     {

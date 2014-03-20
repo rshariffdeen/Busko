@@ -17,13 +17,13 @@ class BusesController extends Controller {
      * Lists all Buses entities.
      *
      */
-    public function indexAction() {
+    public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BuskoEntityBundle:Buses')->findAll();
-
+        $entities = $em->getRepository('BuskoEntityBundle:Buses')->findAll();        
         return $this->render('BuskoBusBundle:Buses:index.html.twig', array(
                     'entities' => $entities,
+                    'request'  => $request
         ));
     }
 
@@ -44,12 +44,14 @@ class BusesController extends Controller {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('buses_show', array('id' => $entity->getLicNum())));
+            return $this->redirect($this->generateUrl('site_bus'));
         }
 
         return $this->render('BuskoBusBundle:Buses:new.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
+                    'type'=>'S',
+                    'message' => "succesfully added new bus"
         ));
     }
 
