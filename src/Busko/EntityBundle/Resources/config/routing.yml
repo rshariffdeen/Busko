@@ -4,3 +4,6 @@ busko_entity_homepage:
 BuskoEntityBundle_routes:
         resource: "@BuskoEntityBundle/Resources/config/routing/routes.yml"
         prefix:   /routess
+BuskoEntityBundle_intermediates:
+        resource: "@BuskoEntityBundle/Resources/config/routing/intermediates.yml"
+        prefix:   /intermediates
