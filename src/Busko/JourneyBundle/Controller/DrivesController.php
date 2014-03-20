@@ -15,6 +15,7 @@ class DrivesController extends Controller
 {
     public function setAction(Request $request)
     {
+     
         $em = $this->getDoctrine()->getEntityManager();
         $form = $this->createForm(new DrivesType(),  new Drives());
         $form->handleRequest($request);
@@ -22,7 +23,6 @@ class DrivesController extends Controller
             $date = $request->get('date');
             $drives = $form->getData();
             $drives->setDate($date);
-            
             $product = $this->getDoctrine()
                             ->getRepository('BuskoEntityBundle:Drives')
                             ->findOneBy(array('date'=> $date,'licNum' => $drives->getLicNum()));
@@ -82,10 +82,6 @@ class DrivesController extends Controller
                 'label' => 'Driver',
                 'class' => 'BuskoEntityBundle:Drivers',
                 'property' => 'id',
-                'query_builder' => function(EntityRepository $er) {
-                                    return $er->createQueryBuilder('p')
-                                              ->orderBy('p.id', 'ASC');
-                                   }
             ))
         ->add('date','hidden',array('data' => $date))
         ->add('licNum','hidden',array('data' => $lic))
@@ -113,10 +109,6 @@ class DrivesController extends Controller
                             'label' => 'Driver',
                             'class' => 'BuskoEntityBundle:Drivers',
                             'property' => 'id',
-                            'query_builder' => function(EntityRepository $er) {
-                                    return $er->createQueryBuilder('p')
-                                              ->orderBy('p.id', 'ASC');
-                                                }
                             ))
                         ->add('date','hidden',array('data' => $date))
                         ->add('licNum','hidden',array('data' => $lic))

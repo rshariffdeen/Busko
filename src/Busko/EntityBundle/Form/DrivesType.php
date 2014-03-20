@@ -17,9 +17,6 @@ class DrivesType extends AbstractType
                 'label' => 'Bus',
                 'class' => 'BuskoEntityBundle:Buses',
                 'property' => 'lic_num',
-                'query_builder' => function(EntityRepository $er) {
-                                    return $er->createQueryBuilder('p');
-                                   }
             )    )
                ->add(
             'driv',
@@ -27,10 +24,6 @@ class DrivesType extends AbstractType
                 'label' => 'Driver',
                 'class' => 'BuskoEntityBundle:Drivers',
                 'property' => 'id',
-                'query_builder' => function(EntityRepository $er) {
-                                    return $er->createQueryBuilder('p')
-                                              ->orderBy('p.id', 'ASC');
-                                   }
             )    )
               ->add(
             'ass',
@@ -38,16 +31,8 @@ class DrivesType extends AbstractType
                 'label' => 'Assistant',
                 'class' => 'BuskoEntityBundle:Assistants',
                 'property' => 'id',
-                'query_builder' => function(EntityRepository $er) {
-                                    return $er->createQueryBuilder('p')
-                                             ->orderBy('p.id', 'ASC');
-                                   }
-            )    );
-            
-            
-            
-            
-            
+            )    )
+             ->add('date','hidden');
         $builder->add('submit', 'submit', array(
             'label' => 'Set'))
         ;
