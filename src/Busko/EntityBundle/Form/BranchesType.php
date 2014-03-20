@@ -44,9 +44,11 @@ class BranchesType extends AbstractType
                'placeholder' =>'type Street' 
             )
             ));
-             $builder
-            ->add('city', 'text', array( 
+                         $builder
+            ->add('city', 'entity', array( 
             'label'  => 'City',
+            'class' => 'BuskoEntityBundle:BusStops',
+            'property' => 'city',
             'attr'  => array(
                'placeholder' =>'type City' 
             )
