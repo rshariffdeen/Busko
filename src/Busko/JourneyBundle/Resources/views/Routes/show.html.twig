@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ entity.id }}</td>
+                <td>{{ entity.routeId}}</td>
             </tr>
         </tbody>
     </table>
@@ -19,7 +19,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('routes_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('routes_edit', { 'id': entity.routeId }) }}">
             Edit
         </a>
     </li>

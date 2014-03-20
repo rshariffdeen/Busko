@@ -1,6 +1,6 @@
 <?php
 
-namespace Busko\EntityBundle\Controller;
+namespace Busko\JourneyBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,7 +25,7 @@ class RoutesController extends Controller
 
         $entities = $em->getRepository('BuskoEntityBundle:Routes')->findAll();
 
-        return $this->render('BuskoEntityBundle:Routes:index.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Routes:index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -44,10 +44,10 @@ class RoutesController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('routes_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('routes_show', array('id' => $entity->getRouteId())));
         }
 
-        return $this->render('BuskoEntityBundle:Routes:new.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Routes:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -81,7 +81,7 @@ class RoutesController extends Controller
         $entity = new Routes();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('BuskoEntityBundle:Routes:new.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Routes:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -103,7 +103,7 @@ class RoutesController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BuskoEntityBundle:Routes:show.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Routes:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -125,7 +125,7 @@ class RoutesController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BuskoEntityBundle:Routes:edit.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Routes:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -142,7 +142,7 @@ class RoutesController extends Controller
     private function createEditForm(Routes $entity)
     {
         $form = $this->createForm(new RoutesType(), $entity, array(
-            'action' => $this->generateUrl('routes_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('routes_update', array('id' => $entity->getRouteId())),
             'method' => 'PUT',
         ));
 
@@ -174,7 +174,7 @@ class RoutesController extends Controller
             return $this->redirect($this->generateUrl('routes_edit', array('id' => $id)));
         }
 
-        return $this->render('BuskoEntityBundle:Routes:edit.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Routes:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
