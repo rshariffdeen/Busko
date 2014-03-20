@@ -4,7 +4,7 @@ namespace Busko\JourneyBundle\Entity;
 
 class Date1
 {
-    //duedate
+    //duedate1
     protected $dueDate;
   
 
