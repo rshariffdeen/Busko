@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BuskoBranchBundle:BranchDeletion:deleteBranch{% endblock %}
+
+{% block body %}
+
+<section class="container">
+    <div class="notify">
+      <h1>Select Branch to delete</h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+      <strong>Branch</strong><br>
+        {{form_widget(form.branch)}}        
+        <br><br>
+        
+        <p align="right">
+        {{form_widget(form.submit)}}
+        {{ form_end(form) }}
+                </p>
+    </div>
+        
+
+  </section>
+
+{% endblock %}

@@ -5,7 +5,7 @@
       <unique-constraint name="branch_id" columns="branch_id"/>
     </unique-constraints>
     <id name="branchId" type="string" column="branch_id" length="10">
-      <generator strategy="IDENTITY"/>
+     
     </id>
     <field name="phone" type="string" column="phone" length="10" nullable="false"/>
     <field name="streetno" type="string" column="streetno" length="10" nullable="false"/>
