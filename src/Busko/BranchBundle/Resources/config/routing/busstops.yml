@@ -28,6 +28,6 @@ busstops_update:
     requirements: { _method: post|put }
 
 busstops_delete:
-    pattern:  /{id}/delete
+    pattern:  /delete
     defaults: { _controller: "BuskoBranchBundle:BusStops:delete" }
     requirements: { _method: post|delete }
