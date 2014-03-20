@@ -49,11 +49,13 @@ class EmployeePhones
      * @param \Busko\EntityBundle\Entity\Employees $id
      * @return EmployeePhones
      */
-    public function setId(\Busko\EntityBundle\Entity\Employees $id)
+    public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
+    }
+    
+    public function __toString(){
+        return $this->phone;
     }
 
     /**

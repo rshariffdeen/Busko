@@ -1,0 +1,30 @@
+routes:
+    pattern:  /
+    defaults: { _controller: "BuskoEntityBundle:Routes:index" }
+
+routes_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BuskoEntityBundle:Routes:show" }
+
+routes_new:
+    pattern:  /new
+    defaults: { _controller: "BuskoEntityBundle:Routes:new" }
+
+routes_create:
+    pattern:  /create
+    defaults: { _controller: "BuskoEntityBundle:Routes:create" }
+    requirements: { _method: post }
+
+routes_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BuskoEntityBundle:Routes:edit" }
+
+routes_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BuskoEntityBundle:Routes:update" }
+    requirements: { _method: post|put }
+
+routes_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BuskoEntityBundle:Routes:delete" }
+    requirements: { _method: post|delete }
