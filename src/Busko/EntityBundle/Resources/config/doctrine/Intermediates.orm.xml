@@ -2,9 +2,9 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Busko\EntityBundle\Entity\Intermediates" table="intermediates">
     <unique-constraints>
-      <unique-constraint name="stop_id" columns="stop_id"/>
+      <unique-constraint name="id" columns="stop_id"/>
     </unique-constraints>
-    <id name="stopId" type="string" column="stop_id" length="10">
+    <id name="id" type="string" column="stop_id" length="10">
       
     </id>
     <field name="stationNumber" type="integer" column="station_number" length="4" nullable="false"/>

@@ -18,7 +18,7 @@ class Intermediates
     /**
      * @var string
      */
-    private $stopId;
+    private $id;
 
     /**
      * @var 
@@ -57,19 +57,19 @@ class Intermediates
      *
      * @return integer
      */
-    public function getstationNumber()
+    public function getStationNumber()
     {
-        return $this->stationNnumber;
+        return $this->stationNumber;
     }
 
     /**
-     * Get stopId
+     * Get id
      *
      * @return string 
      */
-    public function setStopId($stopId)
+    public function setId($id)
     {
-        $this->stopId=$stopId;
+        $this->id=$id;
     }
     public function getDuration()
     {
@@ -79,9 +79,9 @@ class Intermediates
     {
         $this->duration=$duration;
     }
-    public function getStopId()
+    public function getId()
     {
-        return $this->stopId;
+        return $this->id;
     }
     
 
@@ -91,7 +91,7 @@ class Intermediates
      * 
      * @return BusStops
      */
-    public function addRoute( $route)
+    public function setRouteId( $route)
     {
         $this->routeId = $route;
 
@@ -109,7 +109,7 @@ class Intermediates
      *
      * 
      */
-    public function getRoute()
+    public function getRouteId()
     {
         return $this->routeId;
     }

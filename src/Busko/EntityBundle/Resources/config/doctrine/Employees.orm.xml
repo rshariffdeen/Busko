@@ -22,7 +22,7 @@
     
     
     
-    
+    <!--one-to-many field="phone" target-entity="EmployeePhones" mapped-by="id"/-->
     <many-to-one field="branchId" target-entity="Branches">
       <join-columns>
         <join-column name="branch_id" referenced-column-name="branch_id"/>
