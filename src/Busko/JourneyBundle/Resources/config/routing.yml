@@ -49,3 +49,11 @@ busko_journey_Timetablehomepage:
 busko_journey_selectroute:
     pattern:  /Routem
     defaults: { _controller: BuskoJourneyBundle:RouteManage:selectRoute }
+
+busko_journey_selectbus:
+    pattern:  /Buss
+    defaults: { _controller: BuskoJourneyBundle:RouteManage:selectBus }
+    
+busko_journey_submitbus:
+    pattern:  /Bussub
+    defaults: { _controller: BuskoJourneyBundle:RouteManage:submitBus }

@@ -36,6 +36,7 @@ class RegistrationFormType extends BaseType
         $builder->add('street_no');
         $builder->add('street');
         $builder->add('city');
+        $builder->add('phone', 'collection', array('type' => new \Busko\EntityBundle\Form\EmployeePhonesType()));
         $builder->add('roles', 'collection', array(
         'type'   => 'choice',
         'options'  => array(

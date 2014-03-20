@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class IntermediatesType extends AbstractType
+class EmployeePhonesType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,10 +15,8 @@ class IntermediatesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('stationNumber')
-            ->add('routeId')
-            ->add('duration')
-            ->add('id')
+            ->add('phone','text')
+           
         ;
     }
     
@@ -28,7 +26,7 @@ class IntermediatesType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Busko\EntityBundle\Entity\Intermediates'
+            'data_class' => 'Busko\EntityBundle\Entity\EmployeePhones'
         ));
     }
 
@@ -37,6 +35,6 @@ class IntermediatesType extends AbstractType
      */
     public function getName()
     {
-        return 'busko_entitybundle_intermediates';
+        return 'busko_entitybundle_employeephones';
     }
 }

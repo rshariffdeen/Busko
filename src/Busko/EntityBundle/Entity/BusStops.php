@@ -101,4 +101,7 @@ class BusStops
     {
         return $this->route;
     }
+    public function __toString(){
+        return $this->stopId;
+    }
 }

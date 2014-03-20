@@ -13,12 +13,14 @@ class Employees extends BaseUser
      public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->phone = new \Doctrine\Common\Collections\ArrayCollection();// your own logic
     }
     /**
      * @var string
      */
-  
+    private $phone;
+
+
     private $branchId;
 
     /**
@@ -58,6 +60,33 @@ class Employees extends BaseUser
      * @param string $username
      * @return Employees
      */
+   /* public function setPhone( $phone)
+    {
+        $this->phone[] = $phone;
+
+        return $this;
+    }*/
+
+    /**
+     * Remove phone
+     *
+     * @param \Busko\EntityBundle\Entity\EmployeePhones $phone
+     */
+    public function removePhone(EmployeePhones $phone)
+    {
+        $this->phone->removeElement($phone);
+    }
+   
+
+    /**
+     * Get phone
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
     public function setUsername($username)
     {
         $this->username = $username;
@@ -245,25 +274,5 @@ class Employees extends BaseUser
     {
         return $this->id;
     }
-   
-    /**
-     * Set branch
-     *
-     * @param \Busko\EntityBundle\Entity\Branches $branch
-     * @return Employees
-     */
     
-    public function setId($id)
-
-    {
-        $this->city = $id;
-        return $this;
-    }
-
-    
-        public function __toString()
-    {
-        return strval($this->id);
-    }
-
 }
