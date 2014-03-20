@@ -43,7 +43,7 @@ busko_journey_homepage:
     defaults: { _controller: BuskoJourneyBundle:Home:index }
     
 busko_journey_Timetablehomepage:
-    pattern:  /index
+    pattern:  /indexT
     defaults: { _controller: BuskoJourneyBundle:TimetableIndex:Timetable }
 
 busko_journey_selectroute:
