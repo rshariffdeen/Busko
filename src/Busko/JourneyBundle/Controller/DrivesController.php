@@ -95,13 +95,19 @@ class DrivesController extends Controller
     public function resetDriverAction(Request $request){
         $lic = $_POST['form']['licNum'];
         $date = $_POST['form']['date'];
-        $newdrivid = $_POST['form']['driv'];
+        $newdrivname = $_POST['form']['driv'];
+        
+        $driver = $this->getDoctrine()
+                        ->getRepository('BuskoEntityBundle:Employees')
+                        ->findOneBy(array('username' => $newdrivname));
+        
+        $newdrivid = $driver->getId();
         
         $product = $this->getDoctrine()
                         ->getRepository('BuskoEntityBundle:Drives')
                         ->findOneBy(array('date'=> $date,'licNum' => $lic));
         
-        if($product->getDriv()->getId() == $newdrivid){
+        if($product->getDriv()->getId()->getId() == $newdrivid){
             $form = $this->createFormBuilder(new Drives())
                          ->add(
                             'driv',
@@ -126,7 +132,7 @@ class DrivesController extends Controller
             $product->setDriv($driver);
             $this->getDoctrine()->getEntityManager()->flush();
             
-            return $this->render('BuskoJourneyBundle:HRAssignment:update.html.twig',array('driv' => $newdrivid,'ass' => $product->getAss()->getId(), 'date' =>$date, 'lic' => $lic));
+            return $this->render('BuskoJourneyBundle:HRAssignment:update.html.twig',array('driv' => $newdrivname,'ass' => $product->getAss()->getId(), 'date' =>$date, 'lic' => $lic));
             
         }
     }
@@ -142,10 +148,6 @@ class DrivesController extends Controller
                 'label' => 'Assistant',
                 'class' => 'BuskoEntityBundle:Assistants',
                 'property' => 'id',
-                'query_builder' => function(EntityRepository $er) {
-                                    return $er->createQueryBuilder('p')
-                                              ->orderBy('p.id', 'ASC');
-                                   }
             ))
         ->add('date','hidden',array('data' => $date))
         ->add('licNum','hidden',array('data' => $lic))
@@ -159,13 +161,18 @@ class DrivesController extends Controller
     public function resetAssistantAction(Request $request){
         $lic = $_POST['form']['licNum'];
         $date = $_POST['form']['date'];
-        $newassid = $_POST['form']['ass'];
+        $newassname = $_POST['form']['ass'];
+        
+        $assistant = $this->getDoctrine()
+                        ->getRepository('BuskoEntityBundle:Employees')
+                        ->findOneBy(array('username' => $newassname));
+        $newassid = $assistant->getId();
         
         $product = $this->getDoctrine()
                         ->getRepository('BuskoEntityBundle:Drives')
                         ->findOneBy(array('date'=> $date,'licNum' => $lic));
         
-        if($product->getAss()->getId() == $newassid){
+        if($product->getAss()->getId()->getId() == $newassid){
             $form = $this->createFormBuilder(new Drives())
                          ->add(
                             'ass',
@@ -173,10 +180,6 @@ class DrivesController extends Controller
                             'label' => 'Assistant',
                             'class' => 'BuskoEntityBundle:Assistants',
                             'property' => 'id',
-                            'query_builder' => function(EntityRepository $er) {
-                                    return $er->createQueryBuilder('p')
-                                              ->orderBy('p.id', 'ASC');
-                                                }
                             ))
                         ->add('date','hidden',array('data' => $date))
                         ->add('licNum','hidden',array('data' => $lic))
@@ -194,7 +197,7 @@ class DrivesController extends Controller
             $product->setAss($assistant);
             $this->getDoctrine()->getEntityManager()->flush();
             
-            return $this->render('BuskoJourneyBundle:HRAssignment:update.html.twig',array('driv' => $product->getDriv()->getId(),'ass' => $newassid, 'date' =>$date, 'lic' => $lic));
+            return $this->render('BuskoJourneyBundle:HRAssignment:update.html.twig',array('driv' => $product->getDriv()->getId(),'ass' => $newassname, 'date' =>$date, 'lic' => $lic));
             
         }
     }
