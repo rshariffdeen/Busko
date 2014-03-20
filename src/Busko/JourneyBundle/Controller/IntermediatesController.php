@@ -1,6 +1,6 @@
 <?php
 
-namespace Busko\EntityBundle\Controller;
+namespace Busko\JourneyBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,7 +25,7 @@ class IntermediatesController extends Controller
 
         $entities = $em->getRepository('BuskoEntityBundle:Intermediates')->findAll();
 
-        return $this->render('BuskoEntityBundle:Intermediates:index.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Intermediates:index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -44,10 +44,10 @@ class IntermediatesController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('intermediates_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('intermediates_show', array('id' => $entity-> getStopId(),'rId' => $entity->getRouteId())));
         }
 
-        return $this->render('BuskoEntityBundle:Intermediates:new.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Intermediates:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -81,7 +81,7 @@ class IntermediatesController extends Controller
         $entity = new Intermediates();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('BuskoEntityBundle:Intermediates:new.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Intermediates:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -91,19 +91,19 @@ class IntermediatesController extends Controller
      * Finds and displays a Intermediates entity.
      *
      */
-    public function showAction($id)
+    public function showAction($id,Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->find($id);
+        $rId=$request->get('rId');
+        $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->findOneBy(array("stopId"=>$id,"routeId"=>$rId));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intermediates entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id,$rId);
 
-        return $this->render('BuskoEntityBundle:Intermediates:show.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Intermediates:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -112,20 +112,21 @@ class IntermediatesController extends Controller
      * Displays a form to edit an existing Intermediates entity.
      *
      */
-    public function editAction($id)
+    public function editAction($id,Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->find($id);
+        $rId=$request->get('rId');
+        $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->findOneBy(array("stopId"=>$id,"routeId"=>$rId));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intermediates entity.');
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id,$rId);
 
-        return $this->render('BuskoEntityBundle:Intermediates:edit.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Intermediates:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -142,7 +143,7 @@ class IntermediatesController extends Controller
     private function createEditForm(Intermediates $entity)
     {
         $form = $this->createForm(new IntermediatesType(), $entity, array(
-            'action' => $this->generateUrl('intermediates_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('intermediates_update', array('id' => $entity-> getStopId(),'rId' => $entity->getRouteId())),
             'method' => 'PUT',
         ));
 
@@ -158,23 +159,24 @@ class IntermediatesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->find($id);
+        $rId=$request->get('rId');
+        $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->findOneBy(array("stopId"=>$id,"routeId"=>$rId));
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intermediates entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id,$rId);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('intermediates_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('intermediates_edit', array('id' => $id,'rId'=> $rId)));
         }
 
-        return $this->render('BuskoEntityBundle:Intermediates:edit.html.twig', array(
+        return $this->render('BuskoJourneyBundle:Intermediates:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -185,13 +187,16 @@ class IntermediatesController extends Controller
      *
      */
     public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
+    {   
+        $rId=$request->get('rId');
+        
+
+        $form = $this->createDeleteForm($id,$rId);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->find($id);
+            $entity = $em->getRepository('BuskoEntityBundle:Intermediates')->findOneBy(array("stopId"=>$id,"routeId"=>$rId));
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Intermediates entity.');
@@ -211,10 +216,11 @@ class IntermediatesController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($id,$rId)
     {
+         //$rId=$request->get('rId');
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('intermediates_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('intermediates_delete', array('id' => $id,'rId'=> $rId)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

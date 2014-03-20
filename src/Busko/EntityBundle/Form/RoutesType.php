@@ -15,10 +15,10 @@ class RoutesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id')
+            ->add('routeId')
             ->add('startStop')
             ->add('endStop')
-            ->add('stop')
+            
         ;
     }
     

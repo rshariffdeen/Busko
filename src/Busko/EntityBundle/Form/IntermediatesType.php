@@ -18,7 +18,7 @@ class IntermediatesType extends AbstractType
             ->add('stationNumber')
             ->add('routeId')
             ->add('duration')
-            ->add('id')
+            ->add('stopId')
         ;
     }
     
