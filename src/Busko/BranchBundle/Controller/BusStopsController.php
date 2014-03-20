@@ -17,6 +17,7 @@ class BusStopsController extends Controller {
      * Lists all BusStops entities.
      *
      */
+    
     public function indexAction() {
 
         $form = $this->createSearchForm();
@@ -33,6 +34,7 @@ class BusStopsController extends Controller {
      * Creates a new BusStops entity.
      *
      */
+    
     public function createAction(Request $request) {
         $entity = new BusStops();
         $form = $this->createCreateForm($entity);
@@ -43,7 +45,7 @@ class BusStopsController extends Controller {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('busstops_show', array('id' => $entity->getStopId())));
+            return $this->redirect($this->generateUrl('site_route',array('smessage'=>'Bus Stop Added') ));
         }
 
         return $this->render('BuskoBranchBundle:BusStops:new.html.twig', array(
@@ -72,13 +74,15 @@ class BusStopsController extends Controller {
 
             return $this->render('BuskoBranchBundle:BusStops:search.html.twig', array(
                         'entities' => $entities,
-                        'form' => $form->createView(),
+                        'search' => $form->createView(),
+                        'request'=>$request
             ));
         }
 
         return $this->render('BuskoBranchBundle:BusStops:search.html.twig', array(
                     'entities' => $entity,
                     'form' => $form->createView(),
+                    'request'=>$request
         ));
     }
 
@@ -89,13 +93,15 @@ class BusStopsController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
+    
     private function createCreateForm(BusStops $entity) {
         $form = $this->createForm(new BusStopsType(), $entity, array(
             'action' => $this->generateUrl('busstops_create'),
             'method' => 'POST',
+            'attr'  => array  ('class' =>'form-horizontal center')
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create','attr'=>array('class'=>'btn btn-success')));
 
         return $form;
     }
@@ -104,6 +110,7 @@ class BusStopsController extends Controller {
      * Displays a form to create a new BusStops entity.
      *
      */
+    
     public function newAction() {
         $entity = new BusStops();
         $form = $this->createCreateForm($entity);
@@ -118,6 +125,7 @@ class BusStopsController extends Controller {
      * Finds and displays a BusStops entity.
      *
      */
+    
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
@@ -138,6 +146,7 @@ class BusStopsController extends Controller {
      * Displays a form to edit an existing BusStops entity.
      *
      */
+    
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
@@ -164,18 +173,20 @@ class BusStopsController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
+    
     private function createEditForm(BusStops $entity) {
         $form = $this->createForm(new BusStopsType(), $entity, array(
             'action' => $this->generateUrl('busstops_update', array('id' => $entity->getStopId())),
             'method' => 'PUT',
+            'attr'  => array  ('class' =>'form-horizontal center')
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update','attr'=> array('class'=>'btn btn-success')));
 
         return $form;
     }
 
-    private function createSearchForm() {
+    public function createSearchForm() {
         $form = $this->createFormBuilder()
                 ->setAction($this->generateUrl('busstops_search'))
                 ->setMethod('GET')
@@ -190,7 +201,7 @@ class BusStopsController extends Controller {
             'class' => 'BuskoEntityBundle:BusStops',
             'property' => 'city',
             ))
-                ->add('search', 'submit')
+                ->add('search', 'submit', array('attr'=>array('class'=>'btn btn-primary')))
                 ->getForm();
 
         return $form;
@@ -200,6 +211,7 @@ class BusStopsController extends Controller {
      * Edits an existing BusStops entity.
      *
      */
+    
     public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
@@ -230,11 +242,12 @@ class BusStopsController extends Controller {
      * Deletes a BusStops entity.
      *
      */
-    public function deleteAction(Request $request, $id) {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
+    
+    public function deleteAction(Request $request) {
+        $id = $request->get('id');
+        $return =  $request->headers->get('referer');
+        if (!$id){
+        
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('BuskoEntityBundle:BusStops')->find($id);
 
@@ -244,9 +257,11 @@ class BusStopsController extends Controller {
 
             $em->remove($entity);
             $em->flush();
+        
         }
-
-        return $this->redirect($this->generateUrl('busstops'));
+        
+        return $this->redirect($return,302 ,array('message' => "Oops! something went wrong",'type'=>'E'));
+    
     }
 
     /**
@@ -256,6 +271,7 @@ class BusStopsController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
+    
     private function createDeleteForm($id) {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl('busstops_delete', array('id' => $id)))
