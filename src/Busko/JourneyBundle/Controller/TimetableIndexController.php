@@ -53,8 +53,7 @@ class TimetableIndexController extends Controller {
         $journeys = $em->getRepository('BuskoEntityBundle:Journeys');
 
 
-        $query = $em->createQuery('SELECT t.routeId,t.stationNumber,s.stationNumber
-            FROM  BuskoEntityBundle:Intermediates AS t, BuskoEntityBundle:Intermediates AS s
+        $query = $em->createQuery('SELECT t.routeId FROM  BuskoEntityBundle:Intermediates AS t, BuskoEntityBundle:Intermediates AS s
             WHERE t.routeId = s.routeId
             AND t.stopId = :id1
             AND s.stopId = :id2');
@@ -63,7 +62,7 @@ class TimetableIndexController extends Controller {
         $query->setParameter('id2', $StopBusStop);
 
         $presentRoutes = $query->getResult();
-        echo json_encode($presentRoutes);
+        //echo json_encode($presentRoutes);
 
         if ($presentRoutes) {
             
@@ -82,6 +81,9 @@ class TimetableIndexController extends Controller {
         }
         
         foreach($presentRoutes['routeId'] as $route ){
+            $route=$route['routeId'];
+            echo jason_encode($route);
+            break;
             $query = $em->createQuery('SELECT t.routeId,t.stationNumber,s.stationNumber
             FROM  BuskoEntityBundle:Intermediates AS t, BuskoEntityBundle:Intermediates AS s
             WHERE t.routeId = s.routeId
