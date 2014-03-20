@@ -115,27 +115,6 @@ class MainController extends Controller {
         }
     }
 
-    public function busAction() {
-        $user = $this->getUser();
-        if ($user == null) {
-            return $this->forward('FOSUserBundle:Security:login');
-        }
-
-        if (in_array("ADMIN", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Admin:bus');
-        }
-        
-        if (in_array("OPERATOR", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Operator:bus');
-        }
-        
-        if (in_array("DRIVER", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Driver:bus');
-        }
-        
-        if (in_array("ASSISTANT", $user->getRoles())) {
-            return $this->forward('BuskoSiteBundle:Assistant:bus');
-        }
-    }
+    
 
 }

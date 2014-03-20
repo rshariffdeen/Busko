@@ -68,7 +68,7 @@
                         <div class="box-content">
                             <ul class="dashboard-list">
                                 <div class="pull-right">
-                                    <a href="{{ path('busstops_new') }}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> Add Bus </button></a>
+                                    <a href="{{ path('busstops_new') }}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> Add Bus Stop</button></a>
 
                                 </div>
                          
@@ -93,8 +93,7 @@
                                             <td>
                                                 <div class="pull-right">
 
-                                                    <a href=" {{ path('busstops_edit', { 'id': entity.stopId }) }}"><button  class="btn btn-mini btn-inverse">Update</button></a>
-
+                                          
                                                     <button class="btn btn-mini btn-danger btn-account" url="{{ path('busstops_delete') }}" id="{{entity.stopId}}" > delete </button>
 
                                                 </div>
