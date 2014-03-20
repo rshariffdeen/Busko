@@ -12,23 +12,27 @@ class BranchCreationController extends Controller
 {
     public function createBranchAction(Request $request)
     {
-       $id = $request->get('id'); 
-        $em = $this->getDoctrine()->getEntityManager();
-        $employees = $em->getRepository('BuskoEntityBundle:Employees');
-        $employee = $employees->findOneBy(array('id' => $id));
-        if($employee){
+        
+        $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        if (in_array("ADMIN", $user->getRoles())) {
             $Branch = new Branches();
             $form = $this->createForm(new BranchesType(), $Branch, array(
-                'action' => $this->generateUrl('submit_branch', array('id' => $id)),
+                'action' => $this->generateUrl('submit_branch'),
+                'attr'  => array(
+                    'class'=>'form-horizontal center'
+                )
             ));
             
           
-           return $this->render('BuskoBranchBundle:BranchCreation:createBranch.html.twig', array('form' => $form->createView(), 'id' => $id)); 
-        }   
-        else {
-
-            return $this->render('BuskoBranchBundle:BranchPage:branchPage.html.twig');
+           return $this->render('BuskoBranchBundle:BranchCreation:createBranch.html.twig', array('form' => $form->createView())); 
+        
         }
+        return $this->render('BuskoStyleBundle:Error:permission.html.twig');
+       
     }
 
 }

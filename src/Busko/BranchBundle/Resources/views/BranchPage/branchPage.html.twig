@@ -1,13 +1,71 @@
-{% extends "::base.html.twig" %}
+{% extends "BuskoStyleBundle:home:basic.html.twig" %}
 
-{% block title %}BuskoBranchBundle:BranchPage:branchPage{% endblock %}
 
-{% block body %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
 
-<h2>Branches of Busko situated Islandwide</h2><br><br>
- {% for b in branch %}  
+        <noscript>
+        <div class="alert alert-block span10">
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+        </div>
+        </noscript>
 
-<h2 class="none"><a href="viewBranch?id={{id}}&bid={{b.getBranchId()}}"><div class="notify" ><strong>{{b.getBranchId()}}</strong></div></a></h2>
-        
-    {% endfor %}
+
+        <div id="content" class="span10">
+            <div class="row-fluid">
+                <div class="box span12">
+                    <div class="box-header well">
+                        <h2><i class="icon-gear"></i> Branches</h2>
+
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+                                
+                             {% block add %}
+{% endblock %}
+                                <table class="records_list" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Branch Name</th>
+                                            <th>Street No</th>
+                                            <th>Street</th>
+                                            <th>City</th>
+                                            <th>Phone Number</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+        {% for branch in branches %}
+
+                                        <tr>
+                                            <td align="center">{{ branch.branchId }}</td>
+                                            <td align="center">{{ branch.streetno }}</td>
+                                            <td align="center">{{ branch.street }}</td>  
+                                            <td align="center">{{ branch.city }}</td> 
+                                            <td align="center"><span class="label label-info">{{ branch.phone }}</span></td>
+
+                                            <td>
+                                                {% block controls %}
+{% endblock %}
+                                            </td>
+                                        </tr>
+        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </ul>
+
+                        </div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block confirm %}
+{% endblock %}
+
+ 
 {% endblock %}
