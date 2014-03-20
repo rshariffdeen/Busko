@@ -17,7 +17,7 @@ class BusStopsType extends AbstractType
         $builder
             ->add('city')
             ->add('stopId')
-            ->add('route')
+          
         ;
     }
     

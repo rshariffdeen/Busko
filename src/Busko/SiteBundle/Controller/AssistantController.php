@@ -14,7 +14,7 @@ class AssistantController extends Controller
     
     
     
-    public function routesAction()
+    public function routeAction()
     {
         return $this->render('BuskoSiteBundle:Assistant:routes.html.twig');
     }
