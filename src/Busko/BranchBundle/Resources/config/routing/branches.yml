@@ -13,6 +13,10 @@ branch_page:
 create_branch:
     pattern: /createBranch
     defaults: { _controller: BuskoBranchBundle:BranchCreation:createBranch }
+    
+edit_branch:
+    pattern: /branchPage
+    defaults: { _controller: BuskoBranchBundle:BranchPage:edit }
 
 submit_branch:
     pattern: /submitBranch

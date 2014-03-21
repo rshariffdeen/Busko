@@ -10,6 +10,24 @@ use Busko\EntityBundle\Entity\Employees;
 /**/
 class BranchPageController extends Controller
 {
+    public function editAction($id){
+     
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BuskoEntityBundle:Branches')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Branches entity.');
+        }
+        $form = $this->createForm(new BranchesType(), $Branch, array(
+                'action' => $this->generateUrl('submit_branch'),
+                'attr'  => array(
+                    'class'=>'form-horizontal center'
+                )
+            ));
+       
+        return $this->render('BuskoBranchBundle:BranchCreation:createBranch.html.twig', array('form' => $form->createView()));
+    }
     public function branchPageAction()
     {
        $employee=$this->getUser();
