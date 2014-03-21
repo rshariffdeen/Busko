@@ -11,6 +11,8 @@ class HomeController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $msgType = $request->get('type');
+        $msgDetails = $request->get('message');
         echo $request->get('OK');
         $form = $this->createForm(new TimetableType(), null,array(
                 'action' => $this->generateUrl('busko_journey_Timetablehomepage'),
@@ -18,6 +20,6 @@ class HomeController extends Controller
                     'class' =>'form-horizontal', ))
                 
                 );
-        return $this->render('BuskoJourneyBundle:Home:Home.html.twig', array('form' => $form->createView()));
+        return $this->render('BuskoJourneyBundle:Home:Home.html.twig', array('form' => $form->createView(),'type'=>$msgType,'message'=> $msgDetails));
     }
 }

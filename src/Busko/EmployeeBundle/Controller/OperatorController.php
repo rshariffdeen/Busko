@@ -163,23 +163,31 @@ class OperatorController extends Controller
     {
           $id = $request->get('id');
 
-        if ($id) {
+        if (!$id) {
+            return $this->redirect($this->generateUrl('site_emp', array('message' => "Oops! something went wrong",'type'=>'E')));
+        }
             $em = $this->getDoctrine()->getManager();
             $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
             
-            if ($employee) {
+            if (!$employee) {
+                return $this->render('BuskoStyleBundle:Error:error.html.twig',array('message'=>'Operator Not Found'));
+              }
+            
+            try {
                 $em->remove($employee);
                 $em->flush();
-                return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Operator")));
             }
-
-            if (!$employee) {
-                return $this->redirect($this->generateUrl('site_emp', array('type'=>'E','message' => "Operator Not Found")));
+            catch (\Exception $e){
+                    return $this->render('BuskoStyleBundle:Error:error.html.twig',array('message'=>'User Cannot be Deleted.',));
             }
-        }
+            
+            return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Operator")));
+       
 
-        return $this->redirect($this->generateUrl('site_emp', array('message' => "Oops! something went wrong",'type'=>'E')));
-    
+            
+        
+
+        
     }
 
     /**
