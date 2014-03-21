@@ -53,10 +53,13 @@ class TimeManagementController extends Controller
     
     
     public function setJourneyAction(Request $request){
-        echo $_POST['form']['licNum']." ";
-        echo $_POST['form']['date']." ";
-        echo $_POST['form']['startTime']['hour']." ";
-        echo $_POST['form']['startTime']['minute']." ";
+        $lic = $_POST['form']['licNum'];
+        $date = $_POST['form']['date'];
+        $deptime = $_POST['form']['startTime'];
+        
+        //get route in journeys table
+        //get departure time, search intermediates table for total duration for particular route, add tot duration to departue time and set arrival time 
+        
         
         
     }
