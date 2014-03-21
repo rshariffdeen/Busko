@@ -9,7 +9,7 @@
       <index name="IDX_231E1B09907FC368" columns="lic_num"/>
     </indexes>
     <id name="roundNumber" type="integer" column="round_number"/>
-    <id name="date" type="date" column="date"/>
+    <id name="date" type="string" column="date"/>
     <id name="licNum" association-key="true"/>
     <field name="startTime" type="date" column="start_time" nullable="false"/>
     <field name="endTime" type="date" column="end_time" nullable="false"/>
