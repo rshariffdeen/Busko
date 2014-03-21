@@ -19,13 +19,11 @@ class BusesController extends Controller {
      */
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        
+
         $entities = $em->getRepository('BuskoEntityBundle:Buses')->findAll();        
         return $this->render('BuskoBusBundle:Buses:index.html.twig', array(
                     'entities' => $entities,
-                    'type'  => $request->get('type'),
-                    'message' => $request->get('message')
-                    
+                    'request'  => $request
         ));
     }
 
@@ -41,25 +39,19 @@ class BusesController extends Controller {
         if ($form->isValid()) {
             $entity = $form->getData();
 
-            
+
             $em = $this->getDoctrine()->getManager();
-            try{
             $em->persist($entity);
             $em->flush();
-            }
-            catch(\Exception $e){
-                return $this->redirect($this->generateUrl('site_bus',array( 'type'=>'E',
-                    'message' => "bus was not added. make sure its not a duplicate")));
-            }
 
-            return $this->redirect($this->generateUrl('site_bus',array( 'type'=>'S',
-                    'message' => "succesfully added new bus")));
+            return $this->redirect($this->generateUrl('site_bus'));
         }
 
         return $this->render('BuskoBusBundle:Buses:new.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
-                   
+                    'type'=>'S',
+                    'message' => "succesfully added new bus"
         ));
     }
 
@@ -119,8 +111,8 @@ class BusesController extends Controller {
         $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
 
         if (!$entity) {
-            return $this->redirect($this->generateUrl('site_emp', array('type'=>'E','message' => "Bus Not Found")));
-           }
+            throw $this->createNotFoundException('Unable to find Buses entity.');
+        }
 
         $editForm = $this->createEditForm($entity);
        
@@ -163,8 +155,8 @@ class BusesController extends Controller {
         $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
 
         if (!$entity) {
-            return $this->render('BuskoStyleBundle:Error:error.html.twig',array('message'=>'Bus Not Found'));
-              }
+            throw $this->createNotFoundException('Unable to find Buses entity.');
+        }
 
       
         $editForm = $this->createEditForm($entity);
@@ -173,8 +165,7 @@ class BusesController extends Controller {
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('site_bus',array( 'type'=>'S',
-                    'message' => "succesfully updated the details of the bus")));
+            return $this->redirect($this->generateUrl('site_bus'));
         }
 
         return $this->render('BuskoBusBundle:Buses:form.html.twig', array(
@@ -194,22 +185,14 @@ class BusesController extends Controller {
         $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
 
         if (!$entity) {
-           return $this->render('BuskoStyleBundle:Error:error.html.twig',array('message'=>'Bus Not Found'));
-              }
-        try{
-            $em->remove($entity);
-            $em->flush();
-        }
-        
-        catch (\Exception $e){
-                    return $this->redirect($this->generateUrl('buses',array( 'type'=>'E',
-                    'message' => "cannot delete this bus. make sure its not assigned for journeys")));
-                    
+            throw $this->createNotFoundException('Unable to find Buses entity.');
         }
 
+        $em->remove($entity);
+        $em->flush();
 
-        return $this->redirect($this->generateUrl('buses',array( 'type'=>'S',
-                    'message' => "succesfully deleted the bus")));
+
+        return $this->redirect($this->generateUrl('buses'));
     }
 
     /**

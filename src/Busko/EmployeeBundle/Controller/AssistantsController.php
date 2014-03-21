@@ -135,34 +135,25 @@ class AssistantsController extends Controller {
     public function deleteAction(Request $request) {
         $id = $request->get('id');
 
-        if (!$id) {
-            return $this->redirect($this->generateUrl('site_emp', array('message' => "Oops! something went wrong",'type'=>'E')));
-        }
-        
+        if ($id) {
             $em = $this->getDoctrine()->getManager();
             $assistant = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
             $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
             
-            if (!$employee) {
-                return $this->render('BuskoStyleBundle:Error:error.html.twig',array('message'=>'Assistant Not Found'));
-              }
-            
-            try {
+            if ($employee) {
                 $em->remove($employee);
                 $em->remove($assistant);
                 $em->flush();
-            }
-            
-            catch (\Exception $e){
-                    return $this->render('BuskoStyleBundle:Error:error.html.twig',array('message'=>'User Cannot be Deleted.'));
-                }
                 return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Assistant")));
             }
 
-            
-        
+            if (!$employee) {
+                return $this->redirect($this->generateUrl('site_emp', array('type'=>'E','message' => "Assistant Not Found")));
+            }
+        }
 
-    
+        return $this->redirect($this->generateUrl('site_emp', array('message' => "Oops! something went wrong",'type'=>'E')));
+     }
 
     /**
      * Creates a form to delete a Assistants entity by id.
