@@ -57,3 +57,15 @@ busko_journey_selectbus:
 busko_journey_submitbus:
     pattern:  /Bussub
     defaults: { _controller: BuskoJourneyBundle:RouteManage:submitBus }
+    
+busko_journey_selectdepdate:
+    pattern:  /seldat
+    defaults: { _controller: BuskoJourneyBundle:TimeManagement:selectDate }
+    
+busko_journey_selectdepbus:
+    pattern:  /selbus
+    defaults: { _controller: BuskoJourneyBundle:TimeManagement:selectDepa }
+    
+busko_journey_setjourney:
+    pattern:  /setjou
+    defaults: { _controller: BuskoJourneyBundle:TimeManagement:setJourney }
