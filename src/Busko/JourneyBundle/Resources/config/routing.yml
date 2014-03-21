@@ -57,3 +57,11 @@ busko_journey_selectbus:
 busko_journey_submitbus:
     pattern:  /Bussub
     defaults: { _controller: BuskoJourneyBundle:RouteManage:submitBus }
+
+Busko_journeyBundle_intermediates:
+        resource: "@BuskoJourneyBundle/Resources/config/routing/intermediates.yml"
+        prefix:   /intermediates
+
+Busko_journeyBundle_routes:
+        resource: "@BuskoJourneyBundle/Resources/config/routing/routes.yml"
+        prefix:   /routess

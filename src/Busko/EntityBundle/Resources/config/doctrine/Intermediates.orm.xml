@@ -4,13 +4,22 @@
     <unique-constraints>
       <unique-constraint name="stopId" columns="stop_id"/>
     </unique-constraints>
-    <id name="stopId" type="string" column="stop_id" length="10"/>
-    <id name="routeId" type="string" column="route_id" length="10" />
+    <id name="stopId" association-key="true"/>
+    <id name="routeId" type="string" column="route_id"  nullable="false" />
     
     <field name="stationNumber" type="integer" column="station_number" length="4" nullable="false"/>
     <!--field name="routeId" type="string" column="route_id" length="10" nullable="false"/-->
      <field name="duration" type="string" column="duration"  nullable="false"/>
-    
+    <many-to-one field="stopId" target-entity="BusStops">
+      <join-columns>
+        <join-column name="stop_id" referenced-column-name="stop_id"/>
+      </join-columns>
+    </many-to-one>
+    <!--many-to-one field="routeId" target-entity="Routes">
+      <join-columns>
+        <join-column name="route_id" referenced-column-name="route_id"/>
+      </join-columns>
+    </many-to-one-->
     
   </entity>
 </doctrine-mapping>

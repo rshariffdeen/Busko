@@ -44,7 +44,7 @@ class RoutesController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('routes_show', array('id' => $entity->getRouteId())));
+            return $this->redirect($this->generateUrl('intermediates_createInter', array('rId' => $entity->getRouteId())));
         }
 
         return $this->render('BuskoJourneyBundle:Routes:new.html.twig', array(
