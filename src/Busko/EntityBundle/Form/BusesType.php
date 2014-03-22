@@ -18,7 +18,13 @@ class BusesType extends AbstractType
             ->add('licNum','text')
             ->add('capacity')
             ->add('model')
-            ->add('conditions')
+           
+            ->add('conditions', 'choice', array(
+    'choices' => array(
+        'GOOD' => 'GOOD',
+        'UNDER REPAIR' => 'UNDER REPAIR',
+        'NEEDS REPAIR'=>'NEEDS REPAIR'
+    )))
             ->add('branch','entity',array(
                 'label' =>'Source',
             'class' => 'BuskoEntityBundle:Branches',            

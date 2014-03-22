@@ -5,12 +5,13 @@ namespace Busko\BranchBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Busko\EntityBundle\Entity\Branches;
 use Busko\EntityBundle\Entity\Employees;
-
+use Busko\EntityBundle\Form\BranchesType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**/
 class BranchPageController extends Controller
 {
-    public function editAction($id) {
+       public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('BuskoEntityBundle:Branches')->find($id);
@@ -18,10 +19,10 @@ class BranchPageController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Branches entity.');
         }
-        //creates form for editing
+        
        $editForm = $this->createEditForm($entity);
        
-        return $this->render('BuskoBusBundle:BranchPage:editBranch.html.twig', array(
+        return $this->render('BuskoBranchBundle:BranchPage:editBranch.html.twig', array(
                     'entity' => $entity,
                     'form' => $editForm->createView(),
                
@@ -39,14 +40,20 @@ class BranchPageController extends Controller
       
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
+        
+       
         if ($editForm->isValid()) {
+            try{
             $em->flush();
-
-            return $this->redirect($this->generateUrl('confirm_branch'));
+            }
+            catch(\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>'Branch Identifier cannot be changed!'));      
+            }
         }
+            return $this->redirect($this->generateUrl('confirm_branch'));
+        
 
-        return $this->render('BuskoBusBundle:Buses:form.html.twig', array(
+        return $this->render('BuskoBranchBundle:BranchPage:editBranch.html.twig', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
                    
@@ -54,8 +61,8 @@ class BranchPageController extends Controller
     }
     private function createEditForm(Branches $entity) {
             $form = $this->createForm(new BranchesType(), $entity, array(
-            'action' => $this->generateUrl('buses_update', array('id' => $entity->getBranchId())),
-            'method' => 'PUT',
+            'action' => $this->generateUrl('update_branch', array('id' => $entity->getBranchId())),
+            'method' => 'POST',
             'attr' => array(
                 'class'=>'form-horizontal center'
             )
@@ -63,6 +70,8 @@ class BranchPageController extends Controller
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update','attr'=> array( 'class'=>'btn btn-inverse')));
+        return $form;
+        
     }
 
     public function branchPageAction()

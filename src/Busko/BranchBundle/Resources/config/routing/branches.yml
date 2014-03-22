@@ -16,7 +16,12 @@ create_branch:
     
 edit_branch:
     pattern: /{id}/edit
-    defaults: { _controller: BuskoBranchBundle:BranchCreation:createBranch }
+    defaults: { _controller: BuskoBranchBundle:BranchPage:edit }
+
+update_branch:
+    pattern: /{id}/update
+    defaults: { _controller: BuskoBranchBundle:BranchPage:update }
+    requirements: { _method: post|put }
 
 submit_branch:
     pattern: /submitBranch
