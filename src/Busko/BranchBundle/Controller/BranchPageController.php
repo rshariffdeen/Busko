@@ -10,8 +10,7 @@ use Busko\EntityBundle\Entity\Employees;
 /**/
 class BranchPageController extends Controller
 {
-    public function editAction($id){
-     
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('BuskoEntityBundle:Branches')->find($id);
@@ -19,15 +18,53 @@ class BranchPageController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Branches entity.');
         }
-        $form = $this->createForm(new BranchesType(), $Branch, array(
-                'action' => $this->generateUrl('submit_branch'),
-                'attr'  => array(
-                    'class'=>'form-horizontal center'
-                )
-            ));
+        //creates form for editing
+       $editForm = $this->createEditForm($entity);
        
-        return $this->render('BuskoBranchBundle:BranchCreation:createBranch.html.twig', array('form' => $form->createView()));
+        return $this->render('BuskoBusBundle:BranchPage:editBranch.html.twig', array(
+                    'entity' => $entity,
+                    'form' => $editForm->createView(),
+               
+        ));
     }
+       public function updateAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BuskoEntityBundle:Branches')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Branches entity.');
+        }
+
+      
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('confirm_branch'));
+        }
+
+        return $this->render('BuskoBusBundle:Buses:form.html.twig', array(
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                   
+        ));
+    }
+    private function createEditForm(Branches $entity) {
+            $form = $this->createForm(new BranchesType(), $entity, array(
+            'action' => $this->generateUrl('buses_update', array('id' => $entity->getBranchId())),
+            'method' => 'PUT',
+            'attr' => array(
+                'class'=>'form-horizontal center'
+            )
+            
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Update','attr'=> array( 'class'=>'btn btn-inverse')));
+    }
+
     public function branchPageAction()
     {
        $employee=$this->getUser();
