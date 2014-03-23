@@ -10,12 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Journeys
 {
     /**
-     * @var \DateTime
+     * @var \Time
      */
     private $startTime;
 
     /**
-     * @var \DateTime
+     * @var \Time
      */
     private $endTime;
 
@@ -48,7 +48,7 @@ class Journeys
     /**
      * Set startTime
      *
-     * @param \DateTime $startTime
+     * @param \Time $startTime
      * @return Journeys
      */
     public function setStartTime($startTime)
@@ -61,7 +61,7 @@ class Journeys
     /**
      * Get startTime
      *
-     * @return \DateTime 
+     * @return \Time 
      */
     public function getStartTime()
     {
@@ -71,7 +71,7 @@ class Journeys
     /**
      * Set endTime
      *
-     * @param \DateTime $endTime
+     * @param \Time $endTime
      * @return Journeys
      */
     public function setEndTime($endTime)
@@ -84,7 +84,7 @@ class Journeys
     /**
      * Get endTime
      *
-     * @return \DateTime 
+     * @return \Time 
      */
     public function getEndTime()
     {

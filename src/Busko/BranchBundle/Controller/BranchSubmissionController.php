@@ -12,7 +12,11 @@ class BranchSubmissionController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $id = $request->get('id');
-        $form = $this->createForm(new BranchesType(), new Branches());
+        $form = $this->createForm(new BranchesType(), new Branches(),array(
+            'attr'=> array(
+                'class' => 'form-horizontal center'
+            )
+        ));
 
         $form->handleRequest($request);
         
@@ -25,16 +29,14 @@ class BranchSubmissionController extends Controller
                     $em->flush();
                 }
                 catch(\Exception $e){
-                    return $this->render('BuskoBranchBundle:BranchSubmission:submitBranch.html.twig', array('id' => $id,'form' => $form->createView()));
+                    return $this->render('BuskoBranchBundle:BranchSubmission:submitBranch.html.twig', array('id' => $id,'form' => $form->createView(),'type'=>'E','message'=>'ops! something is not right'));
                 }
 
-                return $this->redirect($this->generateUrl('confirm_branch',array('id'=>$id)));
+                return $this->redirect($this->generateUrl('branch_page',array('type'=>'S','message'=>'successfully added new branch')));
         }
 
         return $this->render(
-            'BuskoBranchBundle:Error:error.html.twig',
-           array('form' => $form->createView(),'id'=>$id)
-        );
+            'BuskoStyleBundle:Error:error.html.twig',array('message'=>' could not add the branch') );
     }
 
 }

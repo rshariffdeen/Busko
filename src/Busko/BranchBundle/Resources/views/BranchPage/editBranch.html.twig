@@ -20,12 +20,13 @@
                                 
 					<div class="box-header well">
                                             
-						<h2><i class="icon-locked"></i>Add New Branch</h2>
-						
+						<h2><i class="icon-locked"></i> Add New Branch</h2>
+					
 					</div>
                                 <div class="box-content ">
                                     
                            <div class="pull-right">
+                               
                                <a href="{{ path('branch_page') }}">
                                    <button class="btn btn-large btn-primary">Back to Branches</button>
                         </a>
@@ -78,8 +79,8 @@
                                       <div class="control-group warning">
       {{form_label(form.city, ' ',{ 'label_attr': {'class': 'control-label'} })}}
                         
-                        <div class="controls">
-                        {{form_widget(form.submit,{'attr':{'class':'btn btn-success'}})}}
+                       <div class="controls">
+                        {{form_widget(form.submit)}}
                            
                        </div></div>
                                     

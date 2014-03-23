@@ -65,4 +65,21 @@ class Assistants
     {
         return $this->id;
     }
+    
+     public function setEmployees(\Busko\EntityBundle\Entity\Employees $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return \Busko\EntityBundle\Entity\Employees 
+     */
+    public function getEmployee()
+    {
+        return $this->id;
+    }
 }

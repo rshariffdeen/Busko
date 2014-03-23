@@ -18,14 +18,18 @@
         <div id="content" class="span10">
             <!-- content starts -->
 
-
+            <div class="pull-right">
+                                    <a href="{{path('fos_user_registration_register')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Employee </button></a>
+                                    
+                                </div>
+                <br><br>
 
 
 
 
             <div class="row-fluid sortable">
 
-
+                
                 <div class="box span6">
                     <div class="box-header well" data-original-title>
                         <h2><i class="icon-user"></i> Administrators</h2>
@@ -37,11 +41,7 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                <div class="pull-right">
-                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Administrator </button></a>
-
-                                </div>
-                                <br><br>
+                                
                                   {% for admin in admins %}
                                 <li>
                                     <a href="#">
@@ -79,11 +79,7 @@
                         <div class="box-content">
                             <ul class="dashboard-list">
 
-                                <div class="pull-right">
-                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Operator </button></a>
-
-                                </div>
-                                <br><br>
+                                
 
                                   {% for operator in operators %}
                                 <li>
@@ -131,11 +127,7 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                <div class="pull-right">
-                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Driver </button></a>
-
-                                </div>
-                                <br><br>
+                                
                                                              {% for driver in drivers %}
                                 <li>
                                     <a href="#">
@@ -171,11 +163,7 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                <div class="pull-right">
-                                    <a href=""><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Assistant </button></a>
-
-                                </div>
-                                <br><br>
+                               
                                                {% for assistant in assistants %}
                                 <li>
                                     <a href="#">

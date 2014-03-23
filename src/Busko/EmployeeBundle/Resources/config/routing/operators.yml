@@ -14,7 +14,7 @@ operators_edit:
 operators_create:
     pattern:  /create
     defaults: { _controller: "BuskoEmployeeBundle:Operator:create" }
-    requirements: { _method: post }
+ 
 
 
 
