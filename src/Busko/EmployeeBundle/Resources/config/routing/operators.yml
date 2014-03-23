@@ -14,10 +14,11 @@ operators_edit:
 operators_create:
     pattern:  /create
     defaults: { _controller: "BuskoEmployeeBundle:Operator:create" }
+    
+operators_add:
+    pattern:  /add
+    defaults: { _controller: "BuskoEmployeeBundle:Operator:register" }
  
-
-
-
 operators_update:
     pattern:  /update
     defaults: { _controller: "BuskoEmployeeBundle:Operator:update" }
