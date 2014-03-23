@@ -18,10 +18,10 @@
         <div id="content" class="span10">
             <!-- content starts -->
 
-            <div class="pull-right">
+            <!--div class="pull-right">
                                     <a href="{{path('fos_user_registration_register')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Employee </button></a>
                                     
-                                </div>
+                                </div-->
                 <br><br>
 
 
@@ -41,7 +41,10 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                
+                                <div class="pull-right">
+                                    <a href="{{path('admins_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Administrator </button></a>
+
+                                </div>
                                   {% for admin in admins %}
                                 <li>
                                     <a href="#">
@@ -78,9 +81,10 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
+                                <div class="pull-right">
+                                    <a href="{{path('operators_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Operator </button></a>
 
-                                
-
+                                </div>
                                   {% for operator in operators %}
                                 <li>
                                     <a href="#">
@@ -127,7 +131,10 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                
+                                 <div class="pull-right">
+                                    <a href="{{path('drivers_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Driver </button></a>
+
+                                </div>
                                                              {% for driver in drivers %}
                                 <li>
                                     <a href="#">
@@ -163,7 +170,10 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                               
+                               <div class="pull-right">
+                                    <a href="{{path('assistant_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Assistant </button></a>
+
+                                </div>
                                                {% for assistant in assistants %}
                                 <li>
                                     <a href="#">
