@@ -81,6 +81,10 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
+                                <div class="pull-right">
+                                    <a href="{{path('drivers_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Driver </button></a>
+
+                                </div>
                               
                                                              {% for driver in drivers %}
                                 <li>
@@ -111,7 +115,10 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                               
+                               <div class="pull-right">
+                                    <a href="{{path('assistant_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Assistant </button></a>
+
+                                </div>
                                                {% for assistant in assistants %}
                                 <li>
                                     <a href="#">
