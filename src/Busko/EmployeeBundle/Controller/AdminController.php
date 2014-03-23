@@ -13,19 +13,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
-use Busko\EntityBundle\Form\EmployeePhonesType;
+
 use Busko\EntityBundle\Entity\EmployeePhones;
 use Doctrine\Common\Collections\ArrayCollection;
 use Busko\EntityBundle\Entity\Administrators;
-
-
-
-
-
-
-
 use Busko\EntityBundle\Entity\Employees;
-use Busko\EntityBundle\Form\EmployeeType;
+
 
 /**
  * Operators controller.
@@ -140,30 +133,7 @@ class AdminController extends Controller
             ));
     }
 
-    /**
-     * Displays a form to edit an existing Operators entity.
-     *
-     */
    
-
-
-    /**
-    * Creates a form to edit a Operators entity.
-    *
-    * @param Operators $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    
-    /**
-     * Edits an existing Operators entity.
-     *
-     */
-    
-    /**
-     * Deletes a Operators entity.
-     *
-     */
     public function deleteAction(Request $request)
     {
          $id = $request->get('id');
@@ -271,12 +241,5 @@ class AdminController extends Controller
     }
 
 
-    /**
-     * Creates a form to delete a Operators entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
    
 }
