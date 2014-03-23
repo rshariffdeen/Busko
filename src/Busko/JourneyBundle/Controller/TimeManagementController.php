@@ -104,7 +104,7 @@ class TimeManagementController extends Controller
            $bus = $this->getDoctrine()
                             ->getRepository('BuskoEntityBundle:Buses')
                             ->findOneBy(array('licNum'=> $licnum));         
-            
+           
            $route = $bus->getRoute();
            $routeid = $bus->getRoute()->getRouteId();
                    
@@ -127,38 +127,48 @@ class TimeManagementController extends Controller
                $duration = $a->diff($b);
                $totduration->add($duration);
            }
-           $finalTotalDuration = $totdu->diff($totduration);
-           echo $finalTotalDuration->format("%H:%I"), "\n";
+           $finalTotalDuration = $totdu->diff($totduration);        
            
-           $starttime->add($finalTotalDuration);
-           echo $starttime->format("%H:%I"), "\n";
-           /*echo "Total interval : ", $finalTotalDuration->format("%H:%I"), "\n";
-           
-           echo "Start time : ", $starttime->format("%H:%I"), "\n";
-           
-           $starttime->add($finalTotalDuration);
-           $stc = clone $starttime;
-           
-           echo $stc->diff($starttime)->format("%H:%I"), "\n";*/
-                     
            $journey = new Journeys();
            $journey->setDate($date);
            $journey->setLicNum($licnum);
-           $journey->setStartTime($starttime);
+           $journey->setStartTime(new DateTime());
            $journey->setRoundNumber($roundnum);
            $journey->setRoute($route);
+           $journey->setEndTime(new DateTime());
+           $journey->setStartStop($startstop);
+           
+           $product = $this->getDoctrine()
+                            ->getRepository('BuskoEntityBundle:Journeys')
+                            ->findOneBy(array('date'=> $date,'licNum' => $licnum,'roundNumber'=> $roundnum));          
+            if($product){
+                return $this->render('BuskoJourneyBundle:TimeManage:duplicate.html.twig',array('form' => $form->createView()));                   
+            }
+            else{
+                $em = $this->getDoctrine()->getEntityManager();
+                try {
+                    $em->persist($journey);
+                    $em->flush();
+                } catch (Exception $e) {}
+           
+                return $this->render('BuskoJourneyBundle:TimeManage:display.html.twig');  
+            }
            
            
            
+           
+           
+           $em = $this->getDoctrine()->getEntityManager();
+           try {
+                $em->persist($journey);
+                $em->flush();
+                } catch (Exception $e) {}
+           
+           return $this->render('BuskoJourneyBundle:TimeManage:display.html.twig');  
            
         }else{
             return $this->render('BuskoJourneyBundle:TimeManage:busdisplay.html.twig',array('form' => $form->createView()));    
-        }
-        
-        //get route in journeys table
-        //get departure time, search intermediates table for total duration for particular route, add tot duration to departue time and set arrival time 
-        
-        
+        }        
         
     }
 }
