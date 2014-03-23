@@ -3,7 +3,7 @@ intermediates:
     defaults: { _controller: "BuskoJourneyBundle:Intermediates:index" }
 
 intermediates_show:
-    pattern:  /{id}/show
+    pattern:  /{id}/{rId}/show
     defaults: { _controller: "BuskoJourneyBundle:Intermediates:show" }
 
 intermediates_new:
@@ -14,17 +14,25 @@ intermediates_create:
     pattern:  /create
     defaults: { _controller: "BuskoJourneyBundle:Intermediates:create" }
     requirements: { _method: post }
+intermediates_save:
+    pattern:  /{rId}/save
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:createRouteSave" }
+    
+
+intermediates_createInter:
+    pattern: /{rId}/createInter
+    defaults: { _controller: "BuskoJourneyBundle:Intermediates:createRoute" }
 
 intermediates_edit:
-    pattern:  /{id}/edit
+    pattern:  /{id}/{rId}/edit
     defaults: { _controller: "BuskoJourneyBundle:Intermediates:edit" }
 
 intermediates_update:
-    pattern:  /{id}/update
+    pattern:  /{id}/{rId}/update
     defaults: { _controller: "BuskoJourneyBundle:Intermediates:update" }
     requirements: { _method: post|put }
 
 intermediates_delete:
-    pattern:  /{id}/delete
+    pattern:  /{id}/{rId}/delete
     defaults: { _controller: "BuskoJourneyBundle:Intermediates:delete" }
     requirements: { _method: post|delete }

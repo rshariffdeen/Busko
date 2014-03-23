@@ -25,7 +25,7 @@ class Journeys
     private $roundNumber;
 
     /**
-     * @var \DateTime
+     * @var string
      */
     private $date;
 
@@ -117,7 +117,7 @@ class Journeys
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param string
      * @return Journeys
      */
     public function setDate($date)
@@ -130,7 +130,7 @@ class Journeys
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getDate()
     {
