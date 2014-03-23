@@ -1,34 +1,101 @@
-{% extends "::base.html.twig" %}
 
-{% block title %}BuskoBranchBundle:BranchSubmission:submitBranch{% endblock %}
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
 
-{% block body %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-fluid">
+                    
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+		
+                        <div id="content" class="span10 ">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            
+						<h2><i class="icon-locked"></i>Add New Branch</h2>
+						
+					</div>
+                                <div class="box-content ">
+                                    
+                           <div class="pull-right">
+                               <a href="{{ path('branch_page') }}">
+                                   <button class="btn btn-large btn-primary">Back to Branches</button>
+                        </a>
+                           </div>
+                                    <br><br>
 
-<h1 align ="center"> The branch ID already exists! Specify another ID.</h1>
- <section class="container">
-     <div class="login">
-      <h1>Create Branch</h1>
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{form_row(form.branchId)}}        
-        <br><br>
-        {{form_row(form.phone)}}        
-        <br><br>
-        {{form_row(form.streetno)}}        
-        <br><br>
-        {{form_row(form.street)}}        
-        <br><br>
-        {{form_row(form.city)}}        
-        <br><br>
-        {{form_widget(form.submit)}}
-        {{ form_end(form) }}
+                    {{ form_start(form) }}
+                    
+                    <div class="control-group warning">
+      {{form_label(form.branchId, 'Branch Name',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.branchId)}}
+                               <span class="help-inline">{{ form_errors(form.branchId) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.streetno, 'Street Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.streetno)}}
+                               <span class="help-inline">{{ form_errors(form.streetno) }}</span>
+                       </div></div>
+                         
+                                           <div class="control-group warning">
+      {{form_label(form.street, 'Street',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.street)}}
+                               <span class="help-inline">{{ form_errors(form.street) }}</span>
+                       </div></div>
+                                   
+                                     <div class="control-group warning">
+      {{form_label(form.city, 'City',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.city)}}
+                               <span class="help-inline">{{ form_errors(form.city) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.phone, 'Phone Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.phone)}}
+                               <span class="help-inline">{{ form_errors(form.phone) }}</span>
+                       </div></div>
+                                    
+                                 
+                                      <div class="control-group warning">
+      {{form_label(form.city, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.submit,{'attr':{'class':'btn btn-success'}})}}
+                           
+                       </div></div>
+                                    
+                                    
+{{ form_end(form) }}
+                    
+                      
+           </div>
+        </div>
     </div>
-        
-
-  </section>
-
-
+</div>
 {% endblock %}
+
+
+
+
 
 
 

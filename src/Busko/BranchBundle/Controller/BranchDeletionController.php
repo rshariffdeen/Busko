@@ -21,8 +21,8 @@ class BranchDeletionController extends Controller
                 return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>'Unable to find Branch'));
             }
             try{
-            $em->remove($entity);
-            $em->flush();
+                $em->remove($entity);
+                $em->flush();
             }
             catch (\Exception $e){
                 return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Make sure the branch has no employee or buses attached to it'));
@@ -30,7 +30,7 @@ class BranchDeletionController extends Controller
             }
 
 
-            return $this->redirect($this->generateUrl('branch_page'));
+            return $this->redirect($this->generateUrl('branch_page',array('type'=>'S','message'=>'successfully deleted the branch')));
                 }    
         
 

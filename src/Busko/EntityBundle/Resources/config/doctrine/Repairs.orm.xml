@@ -4,7 +4,7 @@
     <indexes>
       <index name="IDX_57E93B61907FC368" columns="lic_num"/>
     </indexes>
-    <id name="startDate" type="date" column="start_date"/>
+    <id name="startDate" type="string" column="start_date"/>
     <id name="licNum" association-key="true"/>
     <field name="description" type="text" column="description" nullable="false"/>
     <field name="amount" type="string" column="amount" length="10" nullable="false"/>
