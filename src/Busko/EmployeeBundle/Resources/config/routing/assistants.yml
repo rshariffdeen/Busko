@@ -13,7 +13,7 @@ assistants_new:
 assistants_create:
     pattern:  /create
     defaults: { _controller: "BuskoEmployeeBundle:Assistants:create" }
-    requirements: { _method: post }
+   
 
 assistants_edit:
     pattern:  /edit
