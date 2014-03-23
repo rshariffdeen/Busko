@@ -17,7 +17,7 @@ class AssistantsType extends AbstractType
         $builder
             
             ->add('machineNumber')
-            ->add('id')
+            
         ;
     }
     

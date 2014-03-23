@@ -14,7 +14,9 @@ admins_edit:
 admins_create:
     pattern:  /create
     defaults: { _controller: "BuskoEmployeeBundle:Admin:create" }
-   
+admins_add:
+    pattern:  /add
+    defaults: { _controller: "BuskoEmployeeBundle:Admin:register" }   
 
 
 

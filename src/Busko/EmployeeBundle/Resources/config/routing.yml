@@ -13,3 +13,11 @@ BuskoEntityBundle_operators:
 BuskoEntityBundle_admins:
         resource: "@BuskoEmployeeBundle/Resources/config/routing/administrators.yml"
         prefix:   /admins
+drivers_add:
+    pattern:  /driverAdd
+    defaults: { _controller: "BuskoEmployeeBundle:DriversAdd:register" }
+    
+    
+assistant_add:
+    pattern:  /assistantAdd
+    defaults: { _controller: "BuskoEmployeeBundle:AssistantAdd:register" }

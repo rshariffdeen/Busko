@@ -16,7 +16,6 @@ class DriversType extends AbstractType
     {
         $builder
             ->add('driverLicenceNumber')
-            ->add('id')
         ;
     }
     
