@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Intermediates creation</h1>
+{{ form_start(form) }}
+    {# render the task's only field: description #}
+    
+
+    <h3>Tags</h3>
+    <ul class="tags">
+        {# iterate over each existing tag and render its only field: name #}
+        {% for tag in form.stop %}
+            <li>{{ form_row(tag.stationNumber) }}</li>
+            <li>{{ form_row(tag.routeId) }}</li>
+            <li>{{ form_row(tag.duration) }}</li>
+            <li>{{ form_row(tag.stopId) }}</li>
+        {% endfor %}
+    </ul>
+    {{ form_widget(form) }}
+{{ form_end(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('intermediates') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

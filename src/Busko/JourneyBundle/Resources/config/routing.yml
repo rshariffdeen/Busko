@@ -69,3 +69,10 @@ busko_journey_selectdepbus:
 busko_journey_setjourney:
     pattern:  /setjou
     defaults: { _controller: BuskoJourneyBundle:TimeManagement:setJourney }
+Busko_journeyBundle_intermediates:
+        resource: "@BuskoJourneyBundle/Resources/config/routing/intermediates.yml"
+        prefix:   /intermediates
+
+Busko_journeyBundle_routes:
+        resource: "@BuskoJourneyBundle/Resources/config/routing/routes.yml"
+        prefix:   /routess
