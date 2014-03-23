@@ -10,8 +10,7 @@
 
                                       {% block controls %}
 <div class="pull-right">
-    <a href=" {{ path('edit_branch', { 'id': branch.branchId }) }}"><button  class="btn btn-mini btn-inverse">Update</button></a>
-    <button class="btn btn-mini btn-danger btn-account" url="{{ path('delete_branch') }}" id="{{branch.branchId}}" > delete </button>
+     <button class="btn btn-mini btn-danger btn-account" url="{{ path('delete_branch') }}" id="{{branch.branchId}}" > delete </button>
     
 </div>
 
