@@ -70,6 +70,7 @@ class Intermediates
     public function setStopId($id)
     {
         $this->stopId=$id;
+        return $this;
     }
     public function getDuration()
     {
@@ -78,6 +79,7 @@ class Intermediates
     public function setDuration($duration)
     {
         $this->duration=$duration;
+        return $this;
     }
     public function getStopId()
     {
