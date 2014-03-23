@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BranchCreationController extends Controller
 {
-    public function createBranchAction(Request $request)
+    public function createBranchAction()
     {
         
         $user = $this->getUser();

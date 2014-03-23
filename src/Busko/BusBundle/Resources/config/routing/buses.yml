@@ -28,3 +28,11 @@ buses_delete:
     pattern:  /delete
     defaults: { _controller: "BuskoBusBundle:Buses:delete" }
     requirements: { _method: post|delete }
+
+add_repair:
+    pattern: /addRepair
+    defaults: { _controller: BuskoBusBundle:Repairs:addRepair }
+
+show_repairs:
+    pattern: /showRepairs
+    defaults: { _controller: BuskoBusBundle:Repairs:showRepairs }
