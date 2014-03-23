@@ -13,7 +13,7 @@ drivers_new:
 drivers_create:
     pattern:  /create
     defaults: { _controller: "BuskoEmployeeBundle:Drivers:create" }
-    requirements: { _method: post }
+    
 
 drivers_edit:
     pattern:  /edit

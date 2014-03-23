@@ -26,6 +26,7 @@ class AssistantsController extends Controller {
 
         return $this->render('BuskoEmployeeBundle:Assistants:index.html.twig', array(
                     'entities' => $entities,
+            'type'=>$request->get('type'),'message'=>$request->get('message') 
         ));
     }
 
@@ -41,14 +42,31 @@ class AssistantsController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+          try{
             $em->flush();
 
-            return $this->redirect($this->generateUrl('assistants_show', array('id' => $entity->getId())));
-        }
+            }
+            
+            catch(\Exception $e){
+                 return $this->render('BuskoEmployeeBundle:Assistants:new.html.twig', array(
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                    'type' => 'E',
+                    'message' => 'something was not right'
+        ));
+            }
+
+           return $this->forward('BuskoSiteBundle:Admin:employee', array(
+                    'type' => 'S',
+                    'message' => 'successfully added new assistant',
+        )); }
 
         return $this->render('BuskoEmployeeBundle:Assistants:new.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
+                    'type' => 'E',
+                    'message' => 'something was not right',
+                   
         ));
     }
 
@@ -74,13 +92,15 @@ class AssistantsController extends Controller {
      * Displays a form to create a new Assistants entity.
      *
      */
-    public function newAction() {
+    public function newAction(Request $request) {
         $entity = new Assistants();
         $form = $this->createCreateForm($entity);
 
         return $this->render('BuskoEmployeeBundle:Assistants:new.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
+                    'id'    => $request->get('id')
+            
         ));
     }
 
@@ -143,7 +163,13 @@ class AssistantsController extends Controller {
             if ($employee) {
                 $em->remove($employee);
                 $em->remove($assistant);
+                try{
                 $em->flush();
+                }
+                
+                catch(\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Assistant could not be deleted. Make sure he/she is not assigned for future tasks'));      
+            }
                 return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Assistant")));
             }
 

@@ -14,8 +14,8 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Busko\EntityBundle\Entity\Operators;
-use Busko\EntityBundle\Form\OperatorsType;
+use Busko\EntityBundle\Entity\Employees;
+use Busko\EntityBundle\Form\EmployeeType;
 
 /**
  * Operators controller.
@@ -28,7 +28,7 @@ class AdminController extends Controller
      * Lists all Operators entities.
      *
      */
-    public function indexAction() {
+    public function indexAction(Request $request) {
         $user =  $this->getUser();
         if (in_array("ADMIN", $user->getRoles())) {
         $em = $this->getDoctrine()->getManager();
@@ -48,7 +48,7 @@ class AdminController extends Controller
 
         return $this->render('BuskoEmployeeBundle:OPerators:index.html.twig', array(
 
-
+                    'type'=>$request->get('type'),'message'=>$request->get('message') ,
                     'entities' => $entities,
             
         ));
@@ -61,14 +61,20 @@ class AdminController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Operators();
+        $entity = new Employees();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
             $em->persist($entity);
+            try{
             $em->flush();
+            }
+            catch(\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Administrator cannot be added. Make sure details are unique'));      
+            }
 
             return $this->redirect($this->generateUrl('operators_show', array('id' => $entity->getId())));
         }
@@ -158,8 +164,12 @@ class AdminController extends Controller
             
             if ($employee) {
                 $em->remove($employee);
-                
+                try{
                 $em->flush();
+                }
+                catch(\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Administrator could not be deleted'));      
+            }
                 return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Administrator")));
             }
 

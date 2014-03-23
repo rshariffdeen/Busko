@@ -24,6 +24,7 @@ class DriversController extends Controller {
 
         return $this->render('BuskoEmployeeBundle:Drivers:index.html.twig', array(
                     'entities' => $entities,
+            'type'=>$request->get('type'),'message'=>$request->get('message') 
         ));
     }
 
@@ -39,14 +40,30 @@ class DriversController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+            try{
             $em->flush();
 
-            return $this->redirect($this->generateUrl('drivers_show', array('id' => $entity->getId())));
+            }
+            
+            catch(\Exception $e){
+                 return $this->render('BuskoEmployeeBundle:Drivers:new.html.twig', array(
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                    'type' => 'E',
+                    'message' => 'exception! something was not right'
+        ));
+            }
+             return $this->forward('BuskoSiteBundle:Admin:employee', array(
+                    'type' => 'S',
+                    'message' => 'successfully added new driver',
+        ));
         }
 
         return $this->render('BuskoEmployeeBundle:Drivers:new.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
+                    'type' => 'E',
+                    'message' => 'something was not right'
         ));
     }
 
@@ -72,13 +89,14 @@ class DriversController extends Controller {
      * Displays a form to create a new Drivers entity.
      *
      */
-    public function newAction() {
+    public function newAction(Request $request) {
         $entity = new Drivers();
         $form = $this->createCreateForm($entity);
 
         return $this->render('BuskoEmployeeBundle:Drivers:new.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
+                    'id' => $request->get('id')
         ));
     }
 
@@ -151,7 +169,12 @@ class DriversController extends Controller {
             if ($employee) {
                 $em->remove($employee);
                 $em->remove($driver);
+                try{
                 $em->flush();
+                }
+                catch(\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Driver could not be deleted. Make sure he/she is not assigned for future tasks'));      
+            }
                 return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Driver")));
             }
 

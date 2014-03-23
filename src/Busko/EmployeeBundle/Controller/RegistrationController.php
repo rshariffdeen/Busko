@@ -36,6 +36,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class RegistrationController extends ContainerAware {
 
     public function registerAction(Request $request) {
+        
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -91,24 +92,19 @@ class RegistrationController extends ContainerAware {
 
 
                 if ($roles[0] === 'DRIVER') {
-                    $url = $this->container->get('router')->generate('drivers_new');
+                    $url = $this->container->get('router')->generate('drivers_new',array('id' => $user->getId()));
                     $response = new RedirectResponse($url);
 
                     return $response;
                 }
                 if ($roles[0] === 'ASSISTANT') {
-                    $url = $this->container->get('router')->generate('assistants_new');
+                    $url = $this->container->get('router')->generate('assistants_new',array('id' => $user->getId()));
                     $response = new RedirectResponse($url);
-                    return $this->redirect($this->generateUrl('assistants_new', array('id' => $user->getId())));
+                    return $response;
                     //  return $response;
                 }
-                if ($roles[0] === 'OPERATOR') {
-                    $url = $this->container->get('router')->generate('operators');
-                    $response = new RedirectResponse($url);
-
-                    return $response;
-                }
-                $url = $this->container->get('router')->generate('fos_user_registration_confirmed');
+                
+                $url = $this->container->get('router')->generate('site_emp',array('type'=>'S','message'=>'successfully added new employee'));
                 $response = new RedirectResponse($url);
             }
 

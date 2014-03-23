@@ -14,8 +14,8 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Busko\EntityBundle\Entity\Operators;
-use Busko\EntityBundle\Form\OperatorsType;
+use Busko\EntityBundle\Entity\Employees;
+use Busko\EntityBundle\Form\EmployeeType;
 
 /**
  * Operators controller.
@@ -47,6 +47,7 @@ class OperatorController extends Controller
 
         return $this->render('BuskoEmployeeBundle:OPerators:index.html.twig', array(
                     'entities' => $entities,
+            'type'=>$request->get('type'),'message'=>$request->get('message') 
             
         ));
     }
@@ -58,7 +59,7 @@ class OperatorController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Operators();
+        $entity = new Employees();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -169,7 +170,12 @@ class OperatorController extends Controller
             
             if ($employee) {
                 $em->remove($employee);
+                try{
                 $em->flush();
+                }
+                catch(\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Operator could not be deleted.'));      
+            }
                 return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Operator")));
             }
 

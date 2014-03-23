@@ -1,15 +1,76 @@
-{% extends '::base.html.twig' %}
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
 
-{% block body -%}
-    <h1>Assistants creation</h1>
+{% block content %}
 
-    {{ form(form) }}
+<div class="container-fluid">
+		<div class="row-fluid">
+                    
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+		
+                        <div id="content" class="span10 ">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            
+						<h2><i class="icon-locked"></i> Add New Driver</h2>
+						
+					</div>
+                                <div class="box-content ">
+                                    
+                           
+                                    {% trans_default_domain 'FOSUserBundle' %}
+                    <form name="busko_entitybundle_drivers" method="post" action="/Busko/web/app_dev.php/drivers/create" class='form-horizontal center'>              
+                    
+                        <div class="control-group warning">
+      {{form_label(form.id, 'Employee Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                            {% if id is defined %}
+                        {{form_widget(form.id,{'value':id,'attr':{'data-rel':"chosen"}})}}
+                        {% else %}
+                        {{form_widget(form.id,{'attr':{'data-rel':"chosen"}})}}
+                         {% endif %}
+                               <span class="help-inline">{{ form_errors(form.id) }}</span>
+                       </div></div>
+                    <div class="control-group warning">
+      {{form_label(form.machineNumber, 'Machine Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.machineNumber)}}
+                               <span class="help-inline">{{ form_errors(form.machineNumber) }}</span>
+                       </div></div>
+                                    
+                      
+                       
+                                    
+                                 
+                                      <div class="controls">
+      {{form_label(form.machineNumber, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div>
+                        {{form_widget(form.submit,{'attr':{'class':'btn btn-success'}})}}
+                           
+                       </div></div>
+                                    
+                                    
+{{ form_end(form) }}
+                    </form>
+                    
+                                    </div>   
+           </div>
+        </div>
+    </div>
+</div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('assistants') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+
 {% endblock %}
+
+
