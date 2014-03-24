@@ -22,9 +22,10 @@ class BranchSubmissionController extends Controller
         
         
         if ($form->isValid()) {
-                $Branches = $form->getData();
-                
-                $em->persist($Branches);
+                $Branch = $form->getData();
+                $busstop=$Branch->getCity();
+                $Branch->setCity($busstop->getCity());
+                $em->persist($Branch);
                 try{
                     $em->flush();
                 }
