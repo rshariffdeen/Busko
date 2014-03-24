@@ -38,3 +38,7 @@ view_branch:
 delete_branch:
     pattern: /deleteBranch
     defaults: { _controller: BuskoBranchBundle:BranchDeletion:deleteBranch }
+    
+view_details:
+    pattern: /{id}/viewdetails
+    defaults: { _controller: BuskoBranchBundle:BranchPage:viewDetails }

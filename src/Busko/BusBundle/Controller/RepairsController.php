@@ -59,12 +59,13 @@ class RepairsController extends Controller
                     ->setParameter('title', $id)
                     ->getQuery();
         $repairs = $query->getResult();
-//        foreach($repairs as $r){
-//            $date=$r->getStartDate();
-//            $date=new DateTime($date);
-//            $r->setStartDate($date);
-//        
-//        }
+        foreach($repairs as $r){
+            $date=$r->getStartDate();
+            /*Need to convert the string to date*/
+            
+            $r->setStartDate($date);
+        
+        }
         /*send the selected repairs along with the template*/
         return $this->render('BuskoBusBundle:Repairs:showRepairs.html.twig',array('repairs'=>$repairs,'id'=>$id));
     }
