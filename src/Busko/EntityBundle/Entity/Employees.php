@@ -14,7 +14,11 @@ class Employees extends BaseUser
     {
         parent::__construct();
         $this->phone = new \Doctrine\Common\Collections\ArrayCollection();// your own logic
+        $this->driver = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->assistant = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    private $assistant;
+    private $driver;
     /**
      * @var string
      */
@@ -86,6 +90,14 @@ class Employees extends BaseUser
     public function getPhone()
     {
         return $this->phone;
+    }
+     public function getDriver()
+    {
+        return $this->driver;
+    }
+    public function getAssistant()
+    {
+        return $this->assistant;
     }
     public function setUsername($username)
     {

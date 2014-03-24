@@ -26,6 +26,7 @@ use FOS\UserBundle\Model\UserInterface;
 use Busko\EntityBundle\Form\EmployeePhonesType;
 use Busko\EntityBundle\Entity\EmployeePhones;
 use Doctrine\Common\Collections\ArrayCollection;
+use Busko\EntityBundle\Entity\Drivers;
 
 /**
  * Controller managing the registration
@@ -46,11 +47,12 @@ class RegistrationController extends ContainerAware {
 
         $user = $userManager->createUser();
         $phone = new EmployeePhones();
+        $driver=new Drivers();
 
         $user->setEnabled(true);
         $user->getPhone()->add($phone);
 
-
+        //$user->getDriver()->add($driver);
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
 
@@ -114,7 +116,7 @@ class RegistrationController extends ContainerAware {
         }
 
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.' . $this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Registration:register_content.html.' . $this->getEngine(), array(
                     'form' => $form->createView(), 'form1' => $form->createView(),
         ));
     }
