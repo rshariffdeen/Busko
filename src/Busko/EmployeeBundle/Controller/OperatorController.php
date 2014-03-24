@@ -193,6 +193,14 @@ class OperatorController extends Controller
     }
       
      public function registerAction(Request $request) {
+         $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        if (!(in_array("ADMIN", $user->getRoles()))) {
+           return $this->forward('FOSUserBundle:Security:login');
+        }
         
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');

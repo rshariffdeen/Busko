@@ -40,8 +40,13 @@
                                                 <div class="propic" >
                                             <img src="{{asset(user.path)}}" width="200" height="200"></h2>
                                                   </div> 
-                                                       
-                                                <a href="{{path('photo_add')}}" class="btn btn-primary">Edit Profile Picture</a>
+                                                <form action="{{ path('photo_add') }}" method="post" {{ form_enctype(form) }}>
+                                                    {{ form_widget(form) }}
+                                                    
+                                                   <input type="submit" class='btn btn-success' value="Edit profile picture" />
+                                                   
+                                                </form>         
+                                               
                                             <form  class="form-horizontal span12">
                                             
                                                  

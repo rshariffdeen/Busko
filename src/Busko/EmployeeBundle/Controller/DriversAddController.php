@@ -34,9 +34,22 @@ use Busko\EntityBundle\Entity\Drivers;
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
  */
-class DriversAddController extends ContainerAware {
+class DriversAddController extends Controller {
 
     public function registerAction(Request $request) {
+         $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        if (in_array("ADMIN", $user->getRoles())) {
+            
+        }else {
+            if (in_array("OPERATOR", $user->getRoles())) {
+            }else{
+        
+                 return $this->forward('FOSUserBundle:Security:login');
+        } }
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */

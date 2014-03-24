@@ -32,8 +32,8 @@ class RegistrationFormType extends BaseType {
         $builder->add('street');
         $builder->add('city');
         $builder->add('phone', 'collection', array('type' => new \Busko\EntityBundle\Form\EmployeePhonesType()));
-        $builder->add('driver', 'collection', array('type' => new \Busko\EntityBundle\Form\DriversType()));
-        $builder->add('assistant', 'collection', array('type' => new \Busko\EntityBundle\Form\AssistantsType()));
+        $builder->add('driver', 'collection', array('type' => new \Busko\EntityBundle\Form\DriversType(),'label' => false));
+        $builder->add('assistant', 'collection', array('type' => new \Busko\EntityBundle\Form\AssistantsType(),'label' => false));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
