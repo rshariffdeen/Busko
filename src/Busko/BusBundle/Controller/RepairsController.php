@@ -41,8 +41,22 @@ class RepairsController extends Controller
 
     
 
-    public function showRepairsAction()
+    public function showRepairsAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
+        $repairs=$em->getRepository('BuskoEntityBundle:Repairs');
+
+        if (!$entity) {
+             return $this->render('BuskoStyleBundle:Error:error.html.twig', array(
+                    'message' => ' bus could not be found'                   
+                    
+        ));}
+        /*add query to retrieve repairs belonging to this bus*/
+        $qb = $repairs->createQueryBuilder();
+        /*send the selected repairs along with the template*/
+        return $this->render('showRepairs.html.twig',array());
     }
 
 }

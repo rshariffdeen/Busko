@@ -23,7 +23,8 @@ class BusesType extends AbstractType
     'choices' => array(
         'GOOD' => 'GOOD',
         'UNDER REPAIR' => 'UNDER REPAIR',
-        'NEEDS REPAIR'=>'NEEDS REPAIR'
+        'NEEDS REPAIR'=>'NEEDS REPAIR',
+        'BAD'=>'BAD'
     )))
             ->add('branch','entity',array(
                 'label' =>'Source',

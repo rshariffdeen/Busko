@@ -119,7 +119,7 @@ class BusesController extends Controller {
 
         if (!$entity) {
              return $this->render('BuskoStyleBundle:Error:error.html.twig', array(
-                    'message' => ' bus couldn not be found'                   
+                    'message' => ' bus could not be found'                   
                     
         ));}
 

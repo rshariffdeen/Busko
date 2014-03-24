@@ -26,7 +26,7 @@ class RepairsType extends AbstractType
                 'data-rel'=>'chosen'
                 )
             ))
-          
+          /*persist date*/
              ->add('startDate','date',array(
             'label' =>'Start Date',
             'widget'=>'single_text'

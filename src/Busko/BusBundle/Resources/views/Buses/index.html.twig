@@ -50,8 +50,9 @@
                                                 <div class="pull-right">
 
                                                     <a href=" {{ path('buses_edit', { 'id': entity.licNum }) }}"><button  class="btn btn-mini btn-inverse">Update</button></a>
-
                                                     <button class="btn btn-mini btn-danger btn-account" url="{{ path('buses_delete') }}" id="{{entity.licNum}}" > delete </button>
+                                                    <a href=" {{ path('show_repairs', { 'id': entity.licNum }) }}"><button  class="btn btn-mini btn-info">View Repairs</button></a>
+                                   
 
                                                 </div>
                                             </td>
