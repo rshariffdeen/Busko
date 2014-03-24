@@ -16,6 +16,9 @@ BuskoEntityBundle_admins:
 drivers_add:
     pattern:  /driverAdd
     defaults: { _controller: "BuskoEmployeeBundle:DriversAdd:register" }
+photo_add:
+    pattern:  /PhotoAdd
+    defaults: { _controller: "BuskoEmployeeBundle:Profile:create" }
     
     
 assistant_add:
