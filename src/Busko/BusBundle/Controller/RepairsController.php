@@ -22,7 +22,8 @@ class RepairsController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
                 $repair = $form->getData();
-                
+                $date=$repair->getStartDate()->getTimeStamp();
+                $repair->setStartDate($date);
                 $em->persist($repair);
                 try{
                     $em->flush();
@@ -39,14 +40,13 @@ class RepairsController extends Controller
        
     }
 
-    
 
     public function showRepairsAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
-        $repairs=$em->getRepository('BuskoEntityBundle:Repairs');
+        $repairs=$em->getRepository('BuskoEntityBundle:Repairs')->findAll();
 
         if (!$entity) {
              return $this->render('BuskoStyleBundle:Error:error.html.twig', array(

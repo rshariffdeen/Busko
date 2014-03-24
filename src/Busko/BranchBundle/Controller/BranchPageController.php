@@ -36,13 +36,15 @@ class BranchPageController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Branches entity.');
         }
-
-      
+     
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
         
        
         if ($editForm->isValid()) {
+            $Branch=$editForm->getData();
+            $busstop=$Branch->getCity();
+            $Branch->setCity($busstop->getCity());
             try{
             $em->flush();
             }
