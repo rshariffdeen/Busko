@@ -62,7 +62,6 @@ class TimetableIndexController extends Controller {
         $query->setParameter('id2', $StopBusStop);
 
         $presentRoutes = $query->getResult();
-        //echo json_encode($presentRoutes);
 
         if ($presentRoutes) {
             
@@ -79,23 +78,101 @@ class TimetableIndexController extends Controller {
             $errorMsg = 'There are no direct buses between ' . $StartBusStop . ' and ' . $StopBusStop;
             return $this->render('BuskoJourneyBundle:Home:HomeError.html.twig', array('form' => $form->createView(), 'errorMsg' => $errorMsg));
         }
-        
-        foreach($presentRoutes as $route ){
-            $route=$route['routeId'];
-          
-            $query = $em->createQuery('SELECT stationNumber FROM BuskoEntityBundle:Intermediates 
-                WHERE routeId =:rid
-                AND stopId =:startid
-               ');
+
+        $numberOfRoutes = count($presentRoutes); //Number of routes between the given bus stops
+        $resultArray; // Contains the results of the final schedule
+
+        echo $numberOfRoutes;
+        //For each present route in the given destination and source generates the schedules as follows
+        for ($x = 0; $x < $numberOfRoutes; $x++) {
+
+            $route = $presentRoutes[$x]['routeId'];
+            echo $route;
+            //Get the station number of the StartBusStop
+            $query = $em->createQuery('SELECT t.stationNumber FROM BuskoEntityBundle:Intermediates AS t
+                WHERE t.routeId =:rid
+                AND t.stopId =:startid'
+            );
             $query->setParameter('startid', $StartBusStop);
             $query->setParameter('rid', $route);
-            $startStationNumber= $query->getSingleResult();
-            echo json_encode($startStationNumber);
-            
-            
+            $startStationNumber = $query->getSingleResult();
+
+            $startStationNumber = $startStationNumber['stationNumber'];
+            echo 'start:' . $startStationNumber;
+
+            //Get the station number of the StopBusStop
+            $query = $em->createQuery('SELECT t.stationNumber FROM BuskoEntityBundle:Intermediates AS t
+                WHERE t.routeId =:rid
+                AND t.stopId =:stopid'
+            );
+            $query->setParameter('stopid', $StopBusStop);
+            $query->setParameter('rid', $route);
+            $stopStationNumber = $query->getSingleResult();
+
+            $stopStationNumber = $stopStationNumber['stationNumber'];
+            echo 'stop:' . $stopStationNumber;
+
+
+            //Calculates the time between the given bus stops in the considering route
+            $query = $em->createQuery('SELECT SUM(t.duration) FROM BuskoEntityBundle:Intermediates AS t
+                WHERE t.routeId =:rid
+                AND t.stationNumber >:startstationnumber
+                AND t.stationNumber <=:stopstationnumber'
+            );
+            if ($startStationNumber > $stopStationNumber) {
+                $query->setParameter('stopstationnumber', $startStationNumber);
+                $query->setParameter('startstationnumber', $stopStationNumber);
+            } else {
+                $query->setParameter('stopstationnumber', $stopStationNumber);
+                $query->setParameter('startstationnumber', $startStationNumber);
+            }
+            $query->setParameter('rid', $route);
+            $duration = $query->getResult(); //----------------------------------------------------------------------------
+            //Calculates the time from departure of the bus from the base bus stop in the considering route and the 
+
+            if ($startStationNumber < $stopStationNumber) {
+
+                $stmt = $this->getDoctrine()->getEntityManager()
+                        ->getConnection()
+                        ->prepare('SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(duration))) FROM intermediates 
+                WHERE route_id =:rid
+                AND station_number >:startstationid');
+                $stmt->bindValue('rid',  0);
+                $stmt->bindValue('startstationid', $startStationNumber);
+               
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                echo json_encode($result);
+                /*
+                $query = $em->createQuery('SELECTSUM(t.duration) FROM BuskoEntityBundle:Intermediates AS t
+                WHERE t.routeId =:rid
+                AND t.stationNumber >:routestartid
+                AND t.stationNumber <=:startstationid'
+                );
+                $query->setParameter('routestartid', 0);
+                $query->setParameter('startstationid', $startStationNumber);*/
+            } else {
+                $query = $em->createQuery('SELECT SUM(t.duration ) FROM BuskoEntityBundle:Intermediates AS t
+                WHERE t.routeId =:rid
+                AND t.stationNumber >:startstationid'
+                );
+                $query->setParameter('startstationid', $startStationNumber);
+            }
+            $query->setParameter('rid', $route);
+            echo $durationToStartBusStop = $query->getResult(); //----------------------------------------------------------------------------
+            //Get all the departure time of the considering route for the given date
+
+            $query = $em->createQuery('SELECT t.startTime FROM BuskoEntityBundle:Journeys AS t
+                WHERE t.route =:rid
+                AND t.date =:date'
+            );
+
+            $query->setParameter('date', $date);
+            $query->setParameter('rid', $route);
+            $departureTime = $query->getResult();
         }
-        
-        
+
+
 
 
 
