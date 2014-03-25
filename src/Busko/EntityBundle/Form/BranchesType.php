@@ -5,6 +5,8 @@ namespace Busko\EntityBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Busko\EntityBundle\Entity\BusStops;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BranchesType extends AbstractType
 {
@@ -15,7 +17,14 @@ class BranchesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
-            
+//           $em = $this->getDoctrine()->getManager();
+//           $i=0;$cit;
+//           $entity = $em->getRepository('BuskoEntityBundle:BusStops')->findAll();
+//           foreach ($entity as $en){
+//               $cit[$i]=$en->getCity();
+//               ++$i;
+//           }
+           
            $builder
             ->add('branchId', 'text', array( 
             'label'  => 'Branch ID',
@@ -44,7 +53,15 @@ class BranchesType extends AbstractType
                'placeholder' =>'type Street' 
             )
             ));
-                         $builder
+//                         $builder
+//                         ->add('city', 'choice', array( 
+//            'choices'  => array($cit),
+//           
+//            'attr'  => array(
+//               'placeholder' =>'type City' 
+//            )
+//            ));
+                                  $builder
             ->add('city', 'entity', array( 
             'label'  => 'City',
             'class' => 'BuskoEntityBundle:BusStops',

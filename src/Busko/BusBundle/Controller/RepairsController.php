@@ -22,7 +22,8 @@ class RepairsController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
                 $repair = $form->getData();
-                
+                $date=$repair->getStartDate()->getTimeStamp();
+                $repair->setStartDate($date);
                 $em->persist($repair);
                 try{
                     $em->flush();
@@ -39,10 +40,10 @@ class RepairsController extends Controller
        
     }
 
-    
 
-    public function showRepairsAction()
+    public function showRepairsAction($id)
     {
+        
     }
 
 }

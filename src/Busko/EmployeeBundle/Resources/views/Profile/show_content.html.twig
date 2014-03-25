@@ -37,12 +37,11 @@
 
                                         {% trans_default_domain 'FOSUserBundle' %}
                                             <div class="fos_user_user_show">
-                                                <div class="propic" >
-                                            <img src="{{asset(user.path)}}" width="200" height="200"></h2>
-                                                  </div> 
-                                                       
-                                                <a href="{{path('photo_add')}}" class="btn btn-primary">Edit Profile Picture</a>
-                                            <form  class="form-horizontal span12">
+                                                <table width="90%">
+                                                    <th width="60%"></th>
+                                                    <th width="40%"></th>
+                                                    <tr><td>
+                                                 <form  class="form-horizontal span12">
                                             
                                                  
                                                 <div class="control-group">
@@ -105,6 +104,14 @@
                                                
                                            
                                             </form>
+                                                        </td><td>
+                                                             <div class="span10">
+                                                <div class="propic pull-right" >
+                                                    <img   src="{{asset(user.path)}}" width="200" height="200" > 
+                                          </div> 
+                                                </div>
+                                                        </td>
+                                                    </tr></table>
                                             </div>
 				
 					</div>

@@ -25,7 +25,7 @@ class Repairs
     private $repairState;
 
     /**
-     * @var \DateTime
+     * @var string
      */
     private $startDate;
 
@@ -107,7 +107,7 @@ class Repairs
     /**
      * Set startDate
      *
-     * @param \DateTime $startDate
+     * @param string $startDate
      * @return Repairs
      */
     public function setStartDate($startDate)
@@ -120,7 +120,7 @@ class Repairs
     /**
      * Get startDate
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getStartDate()
     {

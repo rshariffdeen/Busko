@@ -48,7 +48,7 @@
                                   {% for admin in admins %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Saruar Ahmed" src="http://www.gravatar.com/avatar/564e1bb274c074dc4f6823af229d9dbb.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Saruar Ahmed" src="{{asset(admin.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{admin.firstname}} {{admin.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{admin.city}} 
@@ -88,7 +88,7 @@
                                   {% for operator in operators %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.gravatar.com/avatar/3232415a0380253cfffe19163d04acab.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="{{asset(operator.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{operator.firstname}} {{operator.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{operator.city}} 
@@ -138,7 +138,7 @@
                                                              {% for driver in drivers %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Usman" src="{{asset(driver.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{driver.firstname}} {{driver.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{driver.city}} 
@@ -177,7 +177,7 @@
                                                {% for assistant in assistants %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Usman" src="{{asset(assistant.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{assistant.firstname}} {{assistant.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{assistant.city}} 
