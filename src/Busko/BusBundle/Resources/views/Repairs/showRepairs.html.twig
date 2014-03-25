@@ -1,7 +1,68 @@
-{% extends "::base.html.twig" %}
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
 
-{% block title %}BuskoBusBundle:Repairs:showRepairs{% endblock %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row-fluid">
+                    
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+		
+                        <div id="content" class="span10 ">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            
+						<h2><i class="icon-locked"></i>Repairs</h2>
+						
+					</div>
+                                <div class="box-content ">
+                                    
+                           <div class="pull-right">
+                               <a href="{{ path('buses') }}">
+                                   <button class="btn btn-large btn-primary">Back to Buses</button>
+                        </a>
+                           </div>
+                                    <br><br><br><br>
 
-{% block body %}
-<h1>Welcome to the Repairs:showRepairs page</h1>
+                    
+                                    <table class="records_list" width="100%">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Start Date</th> 
+                                            <th>Description</th>  
+                                            <th>Amount</th> 
+                                            <th>Repair State</th>  
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                {% for repair in repairs %}
+                                     <tr>
+                                            
+                                            <td align="center">{{ repair.startDate}}</td>
+                                            <td align="center">{{ repair.description}}</td>
+                                            <td align="center">{{ repair.amount}}</td>
+                                            <td align="center">{{ repair.repairState}}</td>
+                                                        
+                                          
+                                        </tr>
+                                    {% endfor %}
+                                         </tbody>
+                                </table>
+                                
+                    
+                      
+           </div>
+        </div>
+    </div>
+</div>
+  
 {% endblock %}
