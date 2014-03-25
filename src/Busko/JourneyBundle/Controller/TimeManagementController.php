@@ -117,22 +117,21 @@ class TimeManagementController extends Controller
                      
            $intermediates = $this->getDoctrine()->getRepository('BuskoEntityBundle:Intermediates')
                               ->findAll($routeid);
-           
-           $totduration = new DateTime('00:00:00');
-           $totdu = clone $totduration;
-           
-           for($i = 0; $i<count($intermediates)-1;$i++){
-               $a = new DateTime($intermediates[$i]->getDuration());
-               $b = new DateTime($intermediates[$i+1]->getDuration());
-               $duration = $a->diff($b);
-               $totduration->add($duration);
-           }
-           $finalTotalDuration = $totdu->diff($totduration);        
-           
+                    
+           $stmt = $this->getDoctrine()->getEntityManager()
+                        ->getConnection()
+                        ->prepare('SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(duration))) AS total_duration FROM intermediates 
+                WHERE route_id =:rid');
+                $stmt->bindValue('rid', $routeid);
+                $stmt->execute();
+                
+                $totaldura = $stmt->fetchAll();
+                //echo json_encode($totaldura);
+        
            $journey = new Journeys();
            $journey->setDate($date);
            $journey->setLicNum($licnum);
-           $journey->setStartTime(new DateTime());
+           $journey->setStartTime($starttime);
            $journey->setRoundNumber($roundnum);
            $journey->setRoute($route);
            $journey->setEndTime(new DateTime());
@@ -170,6 +169,20 @@ class TimeManagementController extends Controller
             return $this->render('BuskoJourneyBundle:TimeManage:busdisplay.html.twig',array('form' => $form->createView()));    
         }        
         
+    }
+    
+    public function displayTimeManagementAction(){
+        $journeys = $this->getDoctrine()->getEntityManager()
+                                  ->getRepository('BuskoEntityBundle:Journeys')
+                                  ->findAll();
+        
+        for($i =0; $i <count($journeys);$i++){
+            $realdate = new DateTime();
+            $realdate->setTimeStamp($journeys[$i]->getDate());
+            $stringdate = $realdate->format("Y M d");
+            $journeys[$i]->setDate($stringdate);
+        }
+        return $this->render('BuskoJourneyBundle:Display:displayjourneyinfo.html.twig',array('journeys'=>$journeys)); 
     }
 }
 ?>

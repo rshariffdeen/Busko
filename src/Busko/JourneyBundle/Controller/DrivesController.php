@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Busko\EntityBundle\Form\DrivesUpdateType;
 use Busko\EntityBundle\Entity\DrivesUpdate;
 use Doctrine\ORM\EntityRepository;
+use \DateTime;
 
 class DrivesController extends Controller
 {
@@ -202,5 +203,18 @@ class DrivesController extends Controller
         }
     }
     
+    public function displayAssignmentAction(){
+        $drives = $this->getDoctrine()->getEntityManager()
+                                  ->getRepository('BuskoEntityBundle:Drives')
+                                  ->findAll();
+        
+        for($i =0; $i <count($drives);$i++){
+            $realdate = new DateTime();
+            $realdate->setTimeStamp($drives[$i]->getDate());
+            $stringdate = $realdate->format("Y M d");
+            $drives[$i]->setDate($stringdate);
+        }
+        return $this->render('BuskoJourneyBundle:Display:displaydrivesinfo.html.twig',array('drives'=>$drives)); 
+    }
 }
 ?>
