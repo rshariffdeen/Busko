@@ -127,8 +127,6 @@ class TimeManagementController extends Controller
                 
                 $totaldura = $stmt->fetchAll();
                 //echo json_encode($totaldura);
-                
-                
         
            $journey = new Journeys();
            $journey->setDate($date);
