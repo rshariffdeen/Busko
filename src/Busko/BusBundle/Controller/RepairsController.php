@@ -18,7 +18,11 @@ class RepairsController extends Controller
             return $this->forward('FOSUserBundle:Security:login');
         }
         $repair = new Repairs();
-        $form = $this->createForm(new RepairsType(), $repair);
+        $form = $this->createForm(new RepairsType(), $repair,array(
+            'attr' => array(
+                'class' => 'form-horizontal center'
+            )
+        ));
         $form->handleRequest($request);
         if ($form->isValid()) {
                 $repair = $form->getData();
@@ -31,6 +35,8 @@ class RepairsController extends Controller
                 catch(\Exception $e){
                     return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>'Check whether the repair is valid!'));
                 }
+                 return $this->forward('BuskoBusBundle:Buses:index',array('type'=>'S','message'=>'successfully added repair details to the bus')); 
+        
         }
           
          return $this->render('BuskoBusBundle:Repairs:addRepair.html.twig', array('form' => $form->createView())); 

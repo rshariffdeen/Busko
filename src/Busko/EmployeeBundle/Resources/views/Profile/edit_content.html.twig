@@ -28,7 +28,10 @@
                     </div>
                     <div class="box-content span12 ">
 						 {% trans_default_domain 'FOSUserBundle' %}
-
+                        <table width="90%">
+                                                    <th width="60%"></th>
+                                                    <th width="40%"></th>
+                                                    <tr><td>
                         <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal center">
 
                             <div class="control-group warning ">
@@ -93,13 +96,19 @@
 
                             {{ form_widget(form) }}
 
-
-
-                            <input class ='btn btn-primary span8'type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-
+                            <div>
+                                {{form_label(form.branchId, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                             
+                            <div class="controls">
+                            <input class ='btn btn-success'type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+                            </div>
+                            </div>
                         </form>
 
-
+                                                             </td><td>
+                                                           
+                                                        </td>
+                                                    </tr></table>
 
 
                     </div>
