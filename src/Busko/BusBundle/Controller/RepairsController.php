@@ -40,10 +40,36 @@ class RepairsController extends Controller
        
     }
 
-
-    public function showRepairsAction($id)
+       public function showRepairsAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('BuskoEntityBundle:Buses')->find($id);
         
+
+        if (!$entity) {
+             return $this->render('BuskoStyleBundle:Error:error.html.twig', array(
+                    'message' => ' bus could not be found'                   
+                    
+        ));}
+        /*add query to retrieve repairs belonging to this bus*/
+        $repository = $em->getRepository('BuskoEntityBundle:Repairs');
+        $query = $repository->createQueryBuilder('r')
+                    ->where('r.licNum = :title')
+                    ->setParameter('title', $id)
+                    ->getQuery();
+        $repairs = $query->getResult();
+        foreach($repairs as $r){
+            $date=$r->getStartDate();
+            /*Need to convert the string to date*/
+            
+            $r->setStartDate($date);
+        
+        }
+        /*send the selected repairs along with the template*/
+        return $this->render('BuskoBusBundle:Repairs:showRepairs.html.twig',array('repairs'=>$repairs,'id'=>$id));
     }
+	
+	
 
 }
