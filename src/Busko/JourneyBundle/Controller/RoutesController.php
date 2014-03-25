@@ -35,6 +35,7 @@ class RoutesController extends Controller
      */
     public function createAction(Request $request)
     {
+        
         $entity = new Routes();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -44,7 +45,7 @@ class RoutesController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('intermediates_createInter', array('rId' => $entity->getRouteId())));
+            return $this->redirect($this->generateUrl('intermediates_createInter', array('rId' => $entity->getRouteId(),'num'=>(int)'1')));
         }
 
         return $this->render('BuskoJourneyBundle:Routes:new.html.twig', array(
@@ -78,6 +79,14 @@ class RoutesController extends Controller
      */
     public function newAction()
     {
+        $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        if (!(in_array("ADMIN", $user->getRoles()))) {
+           return $this->forward('FOSUserBundle:Security:login');
+        }
         $entity = new Routes();
         $form   = $this->createCreateForm($entity);
 

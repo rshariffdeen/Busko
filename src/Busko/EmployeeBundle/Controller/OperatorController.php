@@ -171,8 +171,14 @@ class OperatorController extends Controller
         if ($id) {
             $em = $this->getDoctrine()->getManager();
             $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+            $operator = $em->getRepository('BuskoEntityBundle:Operators')->find($id);
+            $employeePhone = $em->getRepository('BuskoEntityBundle:EmployeePhones')->findBy(array('id'=>$id));
             
             if ($employee) {
+                $em->remove($operator);
+                foreach ($employeePhone as $phone){
+                $em->remove($phone);
+                }
                 $em->remove($employee);
                 try{
                 $em->flush();
@@ -247,6 +253,7 @@ class OperatorController extends Controller
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
             $user->addRole('OPERATOR');
             $operator=new Operators();
+            try{
             $userManager->updateUser($user);
            
             foreach ($originalPhones as $tag) {
@@ -258,7 +265,13 @@ class OperatorController extends Controller
             $operator->setId($user);
             $em->persist($operator);
             $em->flush();
-
+            }
+            catch(\Exception $e){
+                return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Operators:register.html.' . $this->getEngine(), array(
+                    'form' => $form->createView(), 'type' => 'E','message' => 'exception! something was not right',
+                    ));
+                }
+            
             if (null === $response = $event->getResponse()) {
                 
                 

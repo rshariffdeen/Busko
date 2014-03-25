@@ -50,7 +50,7 @@ class ProfileController extends Controller
         ; 
  
         
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user,'form'=>$form->createView()));
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user,'form'=>$form->createView(),'type'=>$request->get('type'),'message'=>$request->get('message')));
     }
     
     public function createAction(Request $request)
