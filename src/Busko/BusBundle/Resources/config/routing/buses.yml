@@ -34,5 +34,5 @@ add_repair:
     defaults: { _controller: BuskoBusBundle:Repairs:addRepair }
 
 show_repairs:
-    pattern: /showRepairs
+    pattern: /{id}showRepairs
     defaults: { _controller: BuskoBusBundle:Repairs:showRepairs }

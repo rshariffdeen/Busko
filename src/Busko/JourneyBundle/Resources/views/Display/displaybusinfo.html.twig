@@ -1,0 +1,30 @@
+<table class="records_list" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>License Number</th>
+                                            <th>Model</th>
+                                            <th>Capacity</th>
+                                            <th>Conditions</th>
+                                            <th>Branch Id</th>
+                                            <th>Route Id</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+        {% for bus in buses %}
+
+                                        <tr>
+                                            <td align="center">{{ bus.licNum }}</td>
+                                            <td align="center">{{ bus.model }}</td>
+                                            <td align="center">{{ bus.capacity }}</td>  
+                                            <td align="center">{{ bus.conditions }}</td> 
+                                            <td align="center">{{ bus.branch.branchId }}</td> 
+                                            <td align="center">{{ bus.route.routeId }}</td> 
+
+                                            <td>
+                                                {% block controls %}{% endblock %}
+                                            </td>
+                                        </tr>
+        {% endfor %}
+                                    </tbody>
+                                </table>

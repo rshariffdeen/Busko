@@ -30,7 +30,7 @@ class HRAssignmentController extends Controller
         if ($form1->isValid()) {
             $date = $form1->getData()->getDueDate();  
             $drives = new Drives();
-            $drives->setDate($date->getTimeStamp());
+            $drives->setDate($date->getTimeStamp());         
             $form = $this->createForm(new DrivesType(), $drives,array(
                 'action' => $this->generateUrl('create_drives_entry',array('date'=>$date->getTimeStamp())),
             ));

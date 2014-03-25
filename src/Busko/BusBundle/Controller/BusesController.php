@@ -18,14 +18,31 @@ class BusesController extends Controller {
      *
      */
     public function indexAction(Request $request) {
+        $employee=$this->getUser();
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('BuskoEntityBundle:Buses')->findAll();
-        return $this->render('BuskoBusBundle:Buses:index.html.twig', array(
-                    'entities' => $entities,
-                    'request' => $request,
-                    'type' => $request->get('type'), 'message' => $request->get('message')
-        ));
+        
+        
+        if ($employee == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+        
+         if($employee){
+              if (in_array("ADMIN", $employee->getRoles())) {
+                return $this->render('BuskoBusBundle:Buses:index.html.twig', array(
+                            'entities' => $entities,
+                            'request' => $request,
+                            'type' => $request->get('type'), 'message' => $request->get('message')
+                ));
+              }
+              return $this->render('BuskoBusBundle:Buses:indexOp.html.twig', array(
+                            'entities' => $entities,
+                            'request' => $request,
+                            'type' => $request->get('type'), 'message' => $request->get('message')
+                ));
+              
+         }
     }
 
     /**
@@ -119,7 +136,7 @@ class BusesController extends Controller {
 
         if (!$entity) {
              return $this->render('BuskoStyleBundle:Error:error.html.twig', array(
-                    'message' => ' bus couldn not be found'                   
+                    'message' => ' bus could not be found'                   
                     
         ));}
 

@@ -26,7 +26,7 @@ class RepairsType extends AbstractType
                 'data-rel'=>'chosen'
                 )
             ))
-          
+         
              ->add('startDate','date',array(
             'label' =>'Start Date',
             'widget'=>'single_text'
@@ -38,7 +38,9 @@ class RepairsType extends AbstractType
             ->add('repairState', 'choice', array(
     'choices' => array(
         'UNDER REPAIR' => 'UNDER REPAIR',
-        'REPAIRED'=>'REPAIRED'
+        'REPAIRED'=>'REPAIRED',
+        'NEEDS REPAIR'=>'NEEDS REPAIR'
+
     )))
                 ->add('submit','submit', array(
                 'label' => 'Add Repair',
