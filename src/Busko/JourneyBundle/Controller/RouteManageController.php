@@ -99,5 +99,12 @@ class RouteManageController extends Controller{
         }
     }
     
+    public function displayBusAction(){
+        $buses = $this->getDoctrine()->getEntityManager()
+                                  ->getRepository('BuskoEntityBundle:Buses')
+                                  ->findAll();
+        
+        return $this->render('BuskoJourneyBundle:Display:displaybusinfo.html.twig',array('buses'=>$buses)); 
+    }
 }
 ?>

@@ -1,0 +1,32 @@
+<table class="records_list" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>License Number</th>
+                                            <th>Date</th>
+                                            <th>Round Number</th>
+                                            <th>Route Id</th>
+                                            <th>Departure Time</th>
+                                            <th>Arrival Time</th>
+                                            <th>Start Bus Stop</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+        {% for journey in journeys %}
+
+                                        <tr>
+                                            <td align="center">{{ journey.licNum.licNum }}</td>
+                                            <td align="center">{{ journey.date }}</td>                                            
+                                            <td align="center">{{ journey.roundNumber}}</td>  
+                                            <td align="center">{{ journey.route.routeId }}</td> 
+                                            <td align="center">{{ journey.startTime.date|date('H:i:s') }}</td> 
+                                            <td align="center">{{ journey.endTime.date|date('H:i:s') }}</td> 
+                                            <td align="center">{{ journey.startStop.city}}</td>  
+                                            
+                                            <td>
+                                                {% block controls %}{% endblock %}
+                                            </td>
+                                        </tr>
+        {% endfor %}
+                                    </tbody>
+                                </table>

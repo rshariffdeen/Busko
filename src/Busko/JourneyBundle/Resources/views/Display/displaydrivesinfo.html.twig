@@ -1,0 +1,26 @@
+<table class="records_list" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>License Number</th>
+                                            <th>Date</th>
+                                            <th>Driver</th>
+                                            <th>Assistant</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+        {% for drive in drives %}
+
+                                        <tr>
+                                            <td align="center">{{ drive.licNum.licNum }}</td>
+                                            <td align="center">{{ drive.date }}</td>                                            
+                                            <td align="center">{{ drive.driv.id.username }}</td>  
+                                            <td align="center">{{ drive.ass.id.username }}</td> 
+                                            
+                                            <td>
+                                                {% block controls %}{% endblock %}
+                                            </td>
+                                        </tr>
+        {% endfor %}
+                                    </tbody>
+                                </table>

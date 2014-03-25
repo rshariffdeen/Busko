@@ -171,5 +171,19 @@ class TimeManagementController extends Controller
         }        
         
     }
+    
+    public function displayTimeManagementAction(){
+        $journeys = $this->getDoctrine()->getEntityManager()
+                                  ->getRepository('BuskoEntityBundle:Journeys')
+                                  ->findAll();
+        
+        for($i =0; $i <count($journeys);$i++){
+            $realdate = new DateTime();
+            $realdate->setTimeStamp($journeys[$i]->getDate());
+            $stringdate = $realdate->format("Y M d");
+            $journeys[$i]->setDate($stringdate);
+        }
+        return $this->render('BuskoJourneyBundle:Display:displayjourneyinfo.html.twig',array('journeys'=>$journeys)); 
+    }
 }
 ?>
