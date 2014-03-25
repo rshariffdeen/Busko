@@ -18,7 +18,11 @@ class RepairsController extends Controller
             return $this->forward('FOSUserBundle:Security:login');
         }
         $repair = new Repairs();
-        $form = $this->createForm(new RepairsType(), $repair);
+        $form = $this->createForm(new RepairsType(), $repair,array(
+            'attr' => array(
+                'class' => 'form-horizontal center'
+            )
+        ));
         $form->handleRequest($request);
         if ($form->isValid()) {
                 $repair = $form->getData();
