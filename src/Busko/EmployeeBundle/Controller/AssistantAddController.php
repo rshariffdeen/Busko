@@ -44,14 +44,16 @@ class AssistantAddController extends Controller {
 
         if (in_array("ADMIN", $user->getRoles())) {
             
-        }else {
+        } else {
             if (in_array("OPERATOR", $user->getRoles())) {
-            }else{
-        
-                 return $this->forward('FOSUserBundle:Security:login');
-        } }
-        
-        
+                
+            } else {
+
+                return $this->forward('FOSUserBundle:Security:login');
+            }
+        }
+
+
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -61,7 +63,7 @@ class AssistantAddController extends Controller {
 
         $user = $userManager->createUser();
         $phone = new EmployeePhones();
-        $assistant=new Assistants();
+        $assistant = new Assistants();
 
         $user->setEnabled(true);
         $user->getPhone()->add($phone);
@@ -102,26 +104,32 @@ class AssistantAddController extends Controller {
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+            try {
+                $userManager->updateUser($user);
+                foreach ($originalPhones as $tag) {
+                    $tag->setId($user->getId());
+                    $em->persist($tag);
+                    $em->flush();
+                }
+                foreach ($originalAssistants as $tag) {
+                    $tag->setId($user);
+                    $em->persist($tag);
+                    $em->flush();
+                }
+            } catch (\Exception $e) {
+                return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Assistants:register.html.' . $this->getEngine(), array(
+                            'form' => $form->createView(), 'type' => 'E', 'message' => 'exception! something was not right',
+                ));
+            }
 
-            $userManager->updateUser($user);
-            foreach ($originalPhones as $tag) {
-                $tag->setId($user->getId());
-                $em->persist($tag);
-                $em->flush();
-            }
-            foreach ($originalAssistants as $tag) {
-                $tag->setId($user);
-                $em->persist($tag);
-                $em->flush();
-            }
 
             if (null === $response = $event->getResponse()) {
-                
 
 
-                
-              $url = $this->container->get('router')->generate('site_emp');
-              $response = new RedirectResponse($url);
+
+
+                $url = $this->container->get('router')->generate('site_emp');
+                $response = new RedirectResponse($url);
             }
 
             //  $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
@@ -131,20 +139,13 @@ class AssistantAddController extends Controller {
 
 
         return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Assistants:register.html.' . $this->getEngine(), array(
-                    'form' => $form->createView(), 
+                    'form' => $form->createView(),
         ));
     }
 
     /**
-     * Tell the user to check his email provider
-     */
-   
-
-    /**
      * Receive the confirmation token from user email provider, login the user
      */
- 
-
     protected function getEngine() {
         return $this->container->getParameter('fos_user.template.engine');
     }

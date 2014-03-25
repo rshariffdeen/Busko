@@ -1,4 +1,105 @@
-{% extends '::base.html.twig' %}
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+
+        <noscript>
+        <div class="alert alert-block span10">
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+        </div>
+        </noscript>
+        <div id="content" class="span10 ">
+            <!-- content starts -->
+
+            <div class="row-fluid">
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Create Route</h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="box-content span12 ">
+						 
+
+                       {{ form_start(form) }}
+                         
+           
+                            <div class="control-group warning ">
+                      {{form_label(form.routeId,'Station Number',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.routeId)}}
+                                         <span class="help-inline">{{ form_errors(form.routeId) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.startStop, 'Route ID',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.startStop)}}
+                                     <span class="help-inline">{{ form_errors(form.startStop) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.endStop, 'Duration',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.endStop)}}
+                                     <span class="help-inline">{{ form_errors(form.endStop) }}</span>
+                                </div></div>
+
+
+                           
+                            
+                        
+                           
+                                   {{ form_widget(form) }}
+                                
+                            
+                                </div>
+
+
+                           {{ form_end(form) }}
+
+                        
+
+
+                   
+                </div>
+
+
+
+
+            </div><!--/row-->
+
+
+
+
+
+            <!-- content ends -->
+        </div><!--/#content.span10-->
+
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+
+
+
+
+{% endblock%}
+
+
+
+
+
 
 {% block body -%}
     <h1>Routes creation</h1>

@@ -100,9 +100,9 @@ class DriversAddController extends Controller {
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
-            $userManager->updateUser($user);
-            foreach ($originalPhones as $tag) {
+            try{
+                $userManager->updateUser($user);
+           foreach ($originalPhones as $tag) {              
                 $tag->setId($user->getId());
                 $em->persist($tag);
                 $em->flush();
@@ -112,6 +112,17 @@ class DriversAddController extends Controller {
                 $em->persist($tag);
                 $em->flush();
             }
+
+            }
+            
+            catch(\Exception $e){
+                 return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Drivers:register.html.' . $this->getEngine(), array(
+                    'form' => $form->createView(), 'type' => 'E','message' => 'exception! something was not right'
+        ));
+                 
+            }
+           
+            
 
             if (null === $response = $event->getResponse()) {
                 

@@ -17,7 +17,7 @@ class RoutesAddType extends AbstractType
         
        $builder->add('stop', 'collection', array('type' => new \Busko\EntityBundle\Form\IntermediatesAddType()));
        $builder->add('submit', 'submit', array(
-            'label' => 'Set'))
+            'label' => 'Save and Next'))
         ;
             
         
