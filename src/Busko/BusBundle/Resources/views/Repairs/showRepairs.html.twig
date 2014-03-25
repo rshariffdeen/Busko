@@ -47,7 +47,7 @@
                                 {% for repair in repairs %}
                                      <tr>
                                             
-                                            <td align="center">{{ repair.startDate}}</td>
+                                            <td align="center">{{ repair.startDate|date(('Y-m-d'))}}</td>
                                             <td align="center">{{ repair.description}}</td>
                                             <td align="center">{{ repair.amount}}</td>
                                             <td align="center">{{ repair.repairState}}</td>

@@ -35,6 +35,8 @@ class RepairsController extends Controller
                 catch(\Exception $e){
                     return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>'Check whether the repair is valid!'));
                 }
+                 return $this->forward('BuskoBusBundle:Buses:index',array('type'=>'S','message'=>'successfully added repair details to the bus')); 
+        
         }
           
          return $this->render('BuskoBusBundle:Repairs:addRepair.html.twig', array('form' => $form->createView())); 
