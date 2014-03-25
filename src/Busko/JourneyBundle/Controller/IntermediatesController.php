@@ -43,10 +43,17 @@ class IntermediatesController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+            try{
             $em->flush();
-            $entity = $form->getData();
+            }catch (\Exception $e){
+                 return $this->render('BuskoJourneyBundle:Intermediates:new.html.twig', array(
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+        ));
+            }
+            
 
-            return $this->redirect($this->generateUrl('intermediates_show', array('id' => $entity->getStopId(), 'rId' => $entity->getRouteId())));
+            return $this->redirect($this->generateUrl('site_route',array( 'type' => 'S', 'message' => 'Sucsessfuly create and finished saving Route')));
         }
 
         return $this->render('BuskoJourneyBundle:Intermediates:new.html.twig', array(
@@ -81,8 +88,8 @@ class IntermediatesController extends Controller {
             'method' => 'POST',
         ));
 
-        return $this->render('BuskoJourneyBundle:Intermediates:newInter.html.twig', array(
-                    'form' => $form->createView(),
+        return $this->render('BuskoJourneyBundle:Intermediates:newInter.html.twig', array('rId' => $rId,'num'=>$num,
+                    'form' => $form->createView(),'type'=>$request->get('type'),'message'=>$request->get('message'),
         ));
     }
 
@@ -116,22 +123,24 @@ class IntermediatesController extends Controller {
             foreach ($Stop->getStop() as $tag) {
                 $originalStops->add($tag);
             }
-
+            
             foreach ($originalStops as $tag) {
                 $Stop->getStop()->removeElement($tag);
-
+                $tag->setRouteId($rId);
                 $em->persist($tag);
                 try {
                     $em->flush();
                 } catch (\Exception $e) {
                     return $this->render('BuskoJourneyBundle:Intermediates:newInter.html.twig', array(
-                                'form' => $form->createView(),
+                                'form' => $form->createView(),'rId' => $rId,'num' => $num, 'type' => 'E', 'message' => 'exception! something was not right',
+             
                     ));
                 }
             }
 
 
-            return $this->redirect($this->generateUrl('intermediates_createInter', array('rId' => $entity->getRouteId(), 'num' => ($num + (int) '2'))));
+            return $this->redirect($this->generateUrl('intermediates_createInter', array('rId' => $rId, 'num' => ($num + (int) '2'), 'type' => 'S', 'message' => 'sucsessfully save ',
+  )));
         }
 
         return $this->render('BuskoJourneyBundle:Intermediates:newInter.html.twig', array(
@@ -147,12 +156,22 @@ class IntermediatesController extends Controller {
      * @return \Symfony\Component\Form\Form The form
      */
     private function createCreateForm(Intermediates $entity) {
-        $form = $this->createForm(new IntermediatesType(), $entity, array(
-            'action' => $this->generateUrl('intermediates_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form = $this->createFormBuilder($entity)
+            ->setAction( $this->generateUrl('intermediates_create'))
+            ->setMethod('POST')
+            ->add('stationNumber', 'text')
+            ->add('stopId')
+            ->add('routeId')
+            ->add('duration')
+            ->add('submit', 'submit', array('label' => 'Finished'))
+            ->getForm();
+//        $form = $this->createForm(new IntermediatesType(), $entity, array(
+//            'action' => $this->generateUrl('intermediates_create'),
+//            'method' => 'POST',
+//        ));
+//
+//
+//        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -161,8 +180,11 @@ class IntermediatesController extends Controller {
      * Displays a form to create a new Intermediates entity.
      *
      */
-    public function newAction() {
+    public function newAction(Request $request) {
         $user = $this->getUser();
+        $rId=$request->get('rId');
+        $num=$request->get('num');
+        
         if ($user == null) {
             return $this->forward('FOSUserBundle:Security:login');
         }
@@ -170,7 +192,12 @@ class IntermediatesController extends Controller {
         if (!(in_array("ADMIN", $user->getRoles()))) {
            return $this->forward('FOSUserBundle:Security:login');
         }
+        $em = $this->getDoctrine()->getManager();
+        $route = $em->getRepository('BuskoEntityBundle:Routes')->findOneBy(array('routeId'=>$rId));
         $entity = new Intermediates();
+        $entity->setRouteId($rId);
+        $entity->setStopId($route->getEndStop());
+        $entity->setstationNumber((int)$num);
         $form = $this->createCreateForm($entity);
 
         return $this->render('BuskoJourneyBundle:Intermediates:new.html.twig', array(

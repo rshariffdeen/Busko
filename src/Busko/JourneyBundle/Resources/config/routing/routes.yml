@@ -14,6 +14,10 @@ routes_create:
     pattern:  /create
     defaults: { _controller: "BuskoJourneyBundle:Routes:create" }
     requirements: { _method: post }
+routes_search:
+    pattern:  /search
+    defaults: { _controller: "BuskoJourneyBundle:Routes:search" }
+    requirements: { _method: post }
 
 routes_edit:
     pattern:  /{id}/edit

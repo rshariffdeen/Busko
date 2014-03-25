@@ -74,7 +74,8 @@ class AdminController extends Controller
     
     public function routeAction(Request $request)
     {
-        return $this->render('BuskoSiteBundle:Admin:routes.html.twig',array('search'=>$request->get('search')));
+        return $this->render('BuskoSiteBundle:Admin:routes.html.twig',array('search'=>$request->get('search'),'search2'=>$request->get('search2')
+                ,'type'=>$request->get('type'),'message'=>$request->get('message')));
     }
     
     public function branchAction()
