@@ -141,8 +141,14 @@ class AdminController extends Controller
         if ($id) {
             $em = $this->getDoctrine()->getManager();
             $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+            $admin = $em->getRepository('BuskoEntityBundle:Administrators')->find($id);
+            $employeePhone = $em->getRepository('BuskoEntityBundle:EmployeePhones')->findBy(array('id'=>$id));
             
             if ($employee) {
+                $em->remove($admin);
+                foreach ($employeePhone as $phone){
+                $em->remove($phone);
+                }
                 $em->remove($employee);
                 try{
                 $em->flush();
@@ -217,16 +223,38 @@ class AdminController extends Controller
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
             $user->addRole('ADMIN');
-            $userManager->updateUser($user);
+             try{
+                     $userManager->updateUser($user);
+                }
+                catch(\Exception $e){
+                     return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Administrators:register.html.' . $this->getEngine(), array(
+                    'form' => $form->createView(),'type'=>'E','message'=>'ops! something is not right check your data' 
+        ));
+                }
+           
             $admin=new Administrators();
-            foreach ($originalPhones as $tag) {
+             try{
+                 foreach ($originalPhones as $tag) {
                 $tag->setId($user->getId());
                 $em->persist($tag);
                 $em->flush();
-            } 
-            $admin->setId($user);
+            }    
+                }
+                catch(\Exception $e){
+                    return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Administrators:register.html.' . $this->getEngine(), array(
+                    'form' => $form->createView(),'type'=>'E','message'=>'ops! something is not right with phone number' 
+        ));
+                }
+                
+             try{
+                    $admin->setId($user);
             $em->persist($admin);
-             $em->flush();
+             $em->flush(); 
+                }
+                catch(\Exception $e){
+                    
+                }
+           
 
             if (null === $response = $event->getResponse()) {
                 

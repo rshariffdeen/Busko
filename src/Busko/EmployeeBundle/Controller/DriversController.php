@@ -165,15 +165,25 @@ class DriversController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $driver = $em->getRepository('BuskoEntityBundle:Drivers')->find($id);
             $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+            $employeePhone = $em->getRepository('BuskoEntityBundle:EmployeePhones')->findBy(array('id'=>$id));
             
             if ($employee) {
-                $em->remove($employee);
                 $em->remove($driver);
+                foreach ($employeePhone as $phone){
+                $em->remove($phone);
+                }
                 try{
                 $em->flush();
                 }
                 catch(\Exception $e){
-                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' Driver could not be deleted. Make sure he/she is not assigned for future tasks'));      
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' could not be deleted. Make sure he/she is not assigned for future tasks'));      
+            }
+                $em->remove($employee);               
+                try{
+                $em->flush();
+                }
+                catch(\Exception $e){
+                return $this->render('BuskoStyleBundle:Error:error.html.twig', array('message'=>' D be deleted. Make sure he/she is not assigned for future tasks'));      
             }
                 return $this->redirect($this->generateUrl('site_emp', array('type'=>'S','message' => "Succesfully removed Driver")));
             }
