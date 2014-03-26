@@ -105,8 +105,12 @@ class RoutesController extends Controller
             return $this->forward('FOSUserBundle:Security:login');
         }
 
-        if (!(in_array("ADMIN", $user->getRoles()))) {
-           return $this->forward('FOSUserBundle:Security:login');
+        if ((in_array("ADMIN", $user->getRoles()))) {
+           
+        }else {if ((in_array("OPERATOR", $user->getRoles()))) {
+          
+        }else
+         return $this->forward('FOSUserBundle:Security:login');
         }
         $entity = new Routes();
         $form   = $this->createCreateForm($entity);

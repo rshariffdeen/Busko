@@ -68,8 +68,12 @@ class IntermediatesController extends Controller {
             return $this->forward('FOSUserBundle:Security:login');
         }
 
-        if (!(in_array("ADMIN", $user->getRoles()))) {
-           return $this->forward('FOSUserBundle:Security:login');
+        if ((in_array("ADMIN", $user->getRoles()))) {
+           
+        }else {if ((in_array("OPERATOR", $user->getRoles()))) {
+          
+        }else
+         return $this->forward('FOSUserBundle:Security:login');
         }
         $num = $request->get('num');
         $entity = new Intermediates();
@@ -189,8 +193,12 @@ class IntermediatesController extends Controller {
             return $this->forward('FOSUserBundle:Security:login');
         }
 
-        if (!(in_array("ADMIN", $user->getRoles()))) {
-           return $this->forward('FOSUserBundle:Security:login');
+       if ((in_array("ADMIN", $user->getRoles()))) {
+           
+        }else {if ((in_array("OPERATOR", $user->getRoles()))) {
+          
+        }else
+         return $this->forward('FOSUserBundle:Security:login');
         }
         $em = $this->getDoctrine()->getManager();
         $route = $em->getRepository('BuskoEntityBundle:Routes')->findOneBy(array('routeId'=>$rId));

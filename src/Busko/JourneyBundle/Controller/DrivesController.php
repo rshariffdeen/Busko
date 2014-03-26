@@ -75,7 +75,8 @@ class DrivesController extends Controller
                 return $this->render('BuskoJourneyBundle:HRAssignment:update.html.twig',array('driv' => $drivid,'ass' => $assid, 'date' =>$date, 'lic' => $lic));
             }
             else{
-                echo "There is no such entry, first set the bus to the particular date";
+               return $this->render('BuskoJourneyBundle:Home:showdate.html.twig',array('form' => $form->createView(),'type'=>'E','message'=>'there is no journey set to this bus on the specified date'));
+    
             }
         }
         
