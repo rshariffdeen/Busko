@@ -1,32 +1,97 @@
-<table class="records_list" width="100%">
+{% extends "BuskoStyleBundle:Home:basic.html.twig"%}
+
+{% block content %}
+
+<div class="container-fluid">
+		<div class="row-fluid">
+				
+			
+			<!-- left menu ends -->
+			
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+			
+			<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			
+			
+			
+			
+                        <div class="row-fluid sortable">
+                            <div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-list"></i> Schedules</h2>
+						<div class="box-icon">							
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+                                       
+						<div class="pull-right">
+                                                   <a href="{{path('busko_journey_selectdepdate')}}"> <button class="btn btn-round btn-success" ><i class="icon-plus"></i> New Journey </button></a>
+ <a href="{{ path('site_home') }}"><button class="btn btn-small btn-primary"><i class="icon-chevron-left icon-white"></i>back to dashboard</button></a>
+  
+                                </div>
+                                            <br><br><br>
+                                                    <table class="records_list" width="100%">
+                                                        
+                                                        
                                     <thead>
                                         <tr>
-                                            <th>License Number</th>
+                                            <th>Bus</th>
                                             <th>Date</th>
                                             <th>Round Number</th>
-                                            <th>Route Id</th>
+                                            <th>Route </th>
                                             <th>Departure Time</th>
                                             <th>Arrival Time</th>
                                             <th>Start Bus Stop</th>
-                                            <th></th>
+                                        
                                         </tr>
+                                      
                                     </thead>
+                                                 
                                     <tbody>
-        {% for journey in journeys %}
-
-                                        <tr>
+        
+                                                     {% for journey in journeys %}
+                                                    <tr>
+                                       
                                             <td align="center">{{ journey.licNum.licNum }}</td>
-                                            <td align="center">{{ journey.date }}</td>                                            
+                                            <td align="center">{{ journey.date}}</td>                                      
                                             <td align="center">{{ journey.roundNumber}}</td>  
                                             <td align="center">{{ journey.route.routeId }}</td> 
                                             <td align="center">{{ journey.startTime.date|date('H:i:s') }}</td> 
                                             <td align="center">{{ journey.endTime.date|date('H:i:s') }}</td> 
                                             <td align="center">{{ journey.startStop.city}}</td>  
                                             
-                                            <td>
-                                                {% block controls %}{% endblock %}
-                                            </td>
-                                        </tr>
+                                            
+                                        
+                                        
+                                                </tr>
+                                              
+                                               
         {% endfor %}
-                                    </tbody>
-                                </table>
+                           </tbody>
+                                </table>                          
+							
+					
+					</div>
+				</div><!--/span-->
+                        </div>
+					
+			
+
+
+			
+       
+					<!-- content ends -->
+			</div><!--/#content.span10-->
+				</div><!--/fluid-row-->
+	
+{% endblock %}

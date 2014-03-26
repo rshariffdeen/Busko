@@ -1,1 +1,50 @@
-{{form(form)}}
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+		<div class="row-fluid">
+                    <noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+                        <div id="content" class="span10">
+            <!-- content starts -->
+
+
+
+
+
+
+            <div class="row-fluid sortable">
+                    <div class="box span12 ">
+                        <div class="box-content">
+                        <br>
+                        <div class="pull-right">
+                              <a href="{{ path('site_home') }}"><button class="btn btn-large btn-primary"><i class="icon-chevron-left icon-white"></i>back to dashboard</button></a>
+  
+                        </div>
+                        <br><br>
+                         
+                        
+                        {{form_start(form,{ 'attr': {'class': 'form-horizontal center'} })}}
+                        
+                            <div class="control-group warning">
+      {{form_label(form.dueDate, 'Date',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.dueDate,{'value':"now"|date("m/d/Y")})}}
+                               <span class="help-inline">{{ form_errors(form.dueDate) }}</span>
+                       </div></div>
+                        <div class="control-group warning">
+      {{form_label(form.dueDate, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.submit,{'attr':{'class':'btn btn-success'}})}}
+                       </div></div>
+                        {{form_end(form)}}
+                    
+                    </p>
+                        </div></div></div></div></div></div>
+{% endblock %}
