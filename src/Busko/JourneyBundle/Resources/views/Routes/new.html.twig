@@ -31,32 +31,36 @@
                     <div class="box-content span12 ">
 						 
 
-                       {{ form_start(form) }}
+                       {{ form_start(form,{ 'attr':{'class':'fos_user_profile_edit form-horizontal center'} }) }}
                          
            
                             <div class="control-group warning ">
-                      {{form_label(form.routeId,'Station Number',{ 'label_attr': {'class': 'control-label'} })}}
+                      {{form_label(form.routeId,'Route Id',{ 'label_attr': {'class': 'control-label'} })}}
                                 <div class="controls">
                         {{form_widget(form.routeId)}}
                                          <span class="help-inline">{{ form_errors(form.routeId) }}</span>
                                 </div></div>
 
                             <div class="control-group warning">
-                      {{form_label(form.startStop, 'Route ID',{ 'label_attr': {'class': 'control-label'} })}}
+                      {{form_label(form.startStop, 'Start Stop',{ 'label_attr': {'class': 'control-label'} })}}
                                 <div class="controls">
                         {{form_widget(form.startStop)}}
                                      <span class="help-inline">{{ form_errors(form.startStop) }}</span>
                                 </div></div>
 
                             <div class="control-group warning">
-                      {{form_label(form.endStop, 'Duration',{ 'label_attr': {'class': 'control-label'} })}}
+                      {{form_label(form.endStop, 'End Stop',{ 'label_attr': {'class': 'control-label'} })}}
                                 <div class="controls">
                         {{form_widget(form.endStop)}}
                                      <span class="help-inline">{{ form_errors(form.endStop) }}</span>
                                 </div></div>
 
 
-                           
+                             <div class="control-group warning">
+                                  <div class="controls">
+                        {{ form_row(form.submit) }}
+                                     <span class="help-inline">{{ form_errors(form.endStop) }}</span>
+                                </div></div>
                             
                         
                            

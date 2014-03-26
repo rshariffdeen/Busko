@@ -3,6 +3,7 @@
 namespace Busko\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DriverController extends Controller
 {
@@ -14,9 +15,9 @@ class DriverController extends Controller
     
   
     
-    public function routeAction()
+    public function routeAction(Request $request)
     {
-        return $this->render('BuskoSiteBundle:Driver:routes.html.twig');
+        return $this->render('BuskoSiteBundle:Driver:routes.html.twig',array('search'=>$request->get('search'),'search2'=>$request->get('search2')));
     }
     
     public function branchAction()
