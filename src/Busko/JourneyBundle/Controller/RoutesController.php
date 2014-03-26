@@ -251,6 +251,12 @@ class RoutesController extends Controller
         ;
     }
     public function searchAction(Request $request) {
+         $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        
         $em = $this->getDoctrine()->getManager();
         $form = $this->createSearchForm();
         $form->handleRequest($request);
@@ -263,9 +269,20 @@ class RoutesController extends Controller
             $entity = $em->getRepository('BuskoEntityBundle:Routes')->find($id);
            
            
+            if (in_array("ADMIN", $user->getRoles())) {
+            
+        }else {
+            if (in_array("OPERATOR", $user->getRoles())) {
+            }else{
+        
+                return $this->render('BuskoJourneyBundle:Routes:search.html.twig', array(
+                        'entities' => $entity,
+                        'search' => $form->createView(),
+                        'request'=>$request
+            ));
+        } }
 
-
-            return $this->render('BuskoJourneyBundle:Routes:search.html.twig', array(
+            return $this->render('BuskoJourneyBundle:Routes:searchAdmin.html.twig', array(
                         'entities' => $entity,
                         'search' => $form->createView(),
                         'request'=>$request
