@@ -44,7 +44,7 @@
                                   {% for operator in operators %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.gravatar.com/avatar/3232415a0380253cfffe19163d04acab.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="{{asset(operator.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{operator.firstname}} {{operator.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{operator.city}} 
@@ -81,11 +81,12 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
+                               
                               
                                                              {% for driver in drivers %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Usman" src="{{asset(driver.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{driver.firstname}} {{driver.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{driver.city}} 
@@ -115,7 +116,7 @@
                                                {% for assistant in assistants %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Usman" src="{{asset(assistant.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{assistant.firstname}} {{assistant.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{assistant.city}} 

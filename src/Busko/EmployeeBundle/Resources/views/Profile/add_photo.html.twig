@@ -1,0 +1,154 @@
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
+
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+		
+			
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+                        <div id="content" class="span10">
+			<!-- content starts -->
+			
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            <div class="box-icon">
+							<a href="#" class="btn btn-account btn-round"><i class="icon-edit"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+						</div>
+						<h2><i class="icon-user"></i> Profile Details</h2>
+						
+					</div>
+					<div class="box-content span12">
+						
+                                       
+					
+
+                                        {% trans_default_domain 'FOSUserBundle' %}
+                                            <div class="fos_user_user_show">
+                                                <div class="propic" >
+                                            <img src="{{asset(user.path)}}" width="200" height="200"></h2>
+                                                  </div> 
+                                                <form action="{{ path('photo_add') }}" method="post" {{ form_enctype(form) }}>
+                                                    {{ form_widget(form) }}
+                                                    
+                                                   <input type="submit" class='btn btn-success' value="Edit profile picture" />
+                                                   
+                                                </form>         
+                                               
+                                            <form  class="form-horizontal span12">
+                                            
+                                                 
+                                                <div class="control-group">
+								<label class="control-label" for="disabledInput">{{ 'profile.show.username'|trans }}</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.username }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">{{ 'profile.show.email'|trans }}</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.email }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">First Name</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.firstName }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">Last Name</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.lastName }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">Street Number</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.streetNo }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                <div class="control-group">
+								<label class="control-label" for="disabledInput">Street</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.street }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                  <div class="control-group">
+								<label class="control-label" for="disabledInput">City</label>
+								<div class="controls">
+								  <input class="input-xlarge disabled" id="disabledInput" type="text" value="{{ user.city }}" disabled="">
+								</div>
+							  </div>
+                                                
+                                                          
+                                                  
+                                                
+                                                
+                                               
+                                               
+                             
+                                                
+                                               
+                                           
+                                            </form>
+                                            </div>
+				
+					</div>
+				</div>
+				
+			
+                          
+				
+			</div><!--/row-->
+			
+			
+                       
+					<!-- content ends -->
+			</div><!--/#content.span10-->
+			
+				</div><!--/fluid-row-->
+		
+	</div><!--/.fluid-container-->
+        <div class="modal hide fade" id="account">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Security</h3>
+			</div>
+			<div class="modal-body">
+                            <form action=""><p align="center">please type your password to continue &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input class="input-large" id="password" name="_password" required="required" type="password"/>
+						
+                            </p>
+                          
+                            </form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+                                <a href="{{path('fos_user_profile_edit')}}" class="btn btn-primary">Continue</a>
+				
+			</div>
+		</div>
+        
+
+
+
+{% endblock%}

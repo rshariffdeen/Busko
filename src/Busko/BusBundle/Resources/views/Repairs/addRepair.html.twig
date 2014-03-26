@@ -30,14 +30,13 @@
                         </a>
                            </div>
                                     <br><br>
-
+                                  
                     {{ form_start(form) }}
                     
                     <div class="control-group warning">
-      {{form_label(form.licNum, 'Bus License Number',{ 'label_attr': {'class': 'control-label'} })}}
-                        
+      {{form_label(form.licNum, 'Bus License Number',{ 'label_attr': {'class': 'control-label'} })}}                        
                         <div class="controls">
-                        {{form_widget(form.licNum)}}
+                        {{form_widget(form.licNum,{ 'attr': {'data-rel': 'chosen'} })}}
                                <span class="help-inline">{{ form_errors(form.licNum) }}</span>
                        </div></div>
                                     
@@ -61,27 +60,30 @@
       {{form_label(form.amount, 'Amount',{ 'label_attr': {'class': 'control-label'} })}}
                         
                         <div class="controls">
-                        {{form_widget(form.amount)}}
+                             <div class="input-prepend input-append">
+									<span class="add-on">Rs</span>{{form_widget(form.amount)}}<span class="add-on">.00</span>
+								  </div>
+                        
                                <span class="help-inline">{{ form_errors(form.amount) }}</span>
                        </div></div>
                                <div class="control-group warning">
-      {{form_label(form.repairState, 'Amount',{ 'label_attr': {'class': 'control-label'} })}}
+      {{form_label(form.repairState, 'Status',{ 'label_attr': {'class': 'control-label'} })}}
                         
                         <div class="controls">
-                        {{form_widget(form.repairState)}}
+                        {{form_widget(form.repairState,{ 'attr': {'data-rel': 'chosen'} })}}
                                <span class="help-inline">{{ form_errors(form.repairState) }}</span>
                        </div></div>
                                     
                <div class="controls">
-                        {{form_widget(form.submit)}}
+                        {{form_widget(form.submit,{'attr':{'class':'btn btn-success'}})}}
                            
-                       </div></div> 
+                       </div>
                                     
     
                                     
                                     
 {{ form_end(form) }}
-                    
+                           </div>      
                       
            </div>
         </div>

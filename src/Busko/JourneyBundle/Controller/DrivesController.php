@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Busko\EntityBundle\Form\DrivesUpdateType;
 use Busko\EntityBundle\Entity\DrivesUpdate;
 use Doctrine\ORM\EntityRepository;
+use \DateTime;
 
 class DrivesController extends Controller
 {
@@ -27,15 +28,25 @@ class DrivesController extends Controller
                             ->getRepository('BuskoEntityBundle:Drives')
                             ->findOneBy(array('date'=> $date,'licNum' => $drives->getLicNum()));
             
+            
             if (!$product) {
                 try {
                 $em->persist($drives);
                 $em->flush();
-                } catch (Exception $e) {}
+                } catch (\Exception $e) {
+                  return $this->render('BuskoJourneyBundle:HRAssignment:HRAss.html.twig',array('type'=>'E','message'=>'Oops! There was something wrong!', 'form' => $form->createView()));
+     
+              
+                }
+                return $this->render('BuskoJourneyBundle:HRAssignment:HRAss.html.twig',array('type'=>'S','message'=>'successfully assigned driver and assistant', 'form' => $form->createView()));
+     
             }
-            else{
-                echo "The bus has already been assigned for the day, select a different bus";
-            }
+            
+                 
+            
+            return $this->render('BuskoJourneyBundle:HRAssignment:HRAss.html.twig',array('type'=>'E','message'=>'The bus has already been assigned for the day, select a different bus', 'form' => $form->createView()));
+     
+            
         }
         $date = $request->get('date');  
         $drives = new Drives();
@@ -202,5 +213,18 @@ class DrivesController extends Controller
         }
     }
     
+    public function displayAssignmentAction(){
+        $drives = $this->getDoctrine()->getEntityManager()
+                                  ->getRepository('BuskoEntityBundle:Drives')
+                                  ->findAll();
+        
+        for($i =0; $i <count($drives);$i++){
+            $realdate = new DateTime();
+            $realdate->setTimeStamp($drives[$i]->getDate());
+            $stringdate = $realdate->format("Y M d");
+            $drives[$i]->setDate($stringdate);
+        }
+        return $this->render('BuskoJourneyBundle:Display:displaydrivesinfo.html.twig',array('drives'=>$drives)); 
+    }
 }
 ?>

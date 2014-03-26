@@ -34,9 +34,22 @@ use Busko\EntityBundle\Entity\Drivers;
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
  */
-class DriversAddController extends ContainerAware {
+class DriversAddController extends Controller {
 
     public function registerAction(Request $request) {
+         $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        if (in_array("ADMIN", $user->getRoles())) {
+            
+        }else {
+            if (in_array("OPERATOR", $user->getRoles())) {
+            }else{
+        
+                 return $this->forward('FOSUserBundle:Security:login');
+        } }
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -87,9 +100,9 @@ class DriversAddController extends ContainerAware {
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
-            $userManager->updateUser($user);
-            foreach ($originalPhones as $tag) {
+            try{
+                $userManager->updateUser($user);
+           foreach ($originalPhones as $tag) {              
                 $tag->setId($user->getId());
                 $em->persist($tag);
                 $em->flush();
@@ -99,6 +112,17 @@ class DriversAddController extends ContainerAware {
                 $em->persist($tag);
                 $em->flush();
             }
+
+            }
+            
+            catch(\Exception $e){
+                 return $this->container->get('templating')->renderResponse('BuskoEmployeeBundle:Drivers:register.html.' . $this->getEngine(), array(
+                    'form' => $form->createView(), 'type' => 'E','message' => 'exception! something was not right'
+        ));
+                 
+            }
+           
+            
 
             if (null === $response = $event->getResponse()) {
                 

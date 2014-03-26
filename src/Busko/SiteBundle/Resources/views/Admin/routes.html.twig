@@ -63,6 +63,58 @@
                         </div></div>
                 </div>
             </div>
+        
+        
+            <div class="row-fluid">
+                <div class="box span12">
+                    <div class="box-header well">
+                        <h2><i class="icon-gear"></i>Routes</h2>
+
+                    </div>
+                    <div class="box-content">
+                        <div class="box-content">
+                            <ul class="dashboard-list">
+                                <div class="pull-right">
+                                    <a href="{{ path('routes_new') }}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> Add Route </button></a>
+
+                                </div>
+                                <br><br>
+                                <table class="records_list" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="15%"></th>
+                                            <th width="20%"></th> 
+                                            <th width="5%"></th>  
+                                            <th width="20%"></th>
+                                            <th width="5%"></th>  
+                                            <th width="20%"></th>
+                                            <th width="15%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <div class ="form-horizontal center">
+                                                {{form_start(search2)}}
+                                                <td></td>
+                                            <td align="right">{{ form_label(search2.routeId) }}</td>
+                                            <td></td>
+                                            <td align="center">{{ form_widget(search2.routeId) }}</td>
+                                            <td></td>
+                                            <td align="left">{{ form_widget(search2.search)}}</td>   
+                                            {{form_end(search2)}}
+                                            </div>
+                                    <td></td>
+                                        
+                                        </tr>
+     
+                                    </tbody>
+                                </table>
+                            </ul>
+
+                        </div></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

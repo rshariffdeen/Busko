@@ -1,25 +1,166 @@
 
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
 
+{% block content %}
 
-	<div class="container-fluid">
+<div class="container-fluid">
 		<div class="row-fluid">
+                    
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
 		
+                        <div id="content" class="span10 ">
+			<!-- content starts -->
 			
-			<div class="row-fluid">
-				<div class="well span3 center login-box">
-                                       
-					
+                        <div class="row-fluid">
+                            <div class="box span12">
+                                
+					<div class="box-header well">
+                                            
+						<h2><i class="icon-locked"></i> Add New Assistant</h2>
+						
+					</div>
+                                <div class="box-content ">
+                                    
+                           <div class="pull-right">
+                               <a href="{{ path('site_emp') }}">
+                                   <button class="btn btn-large btn-primary">Back to Employees</button>
+                        </a>
+                           </div>
+                                    <br><br>
                                     {% trans_default_domain 'FOSUserBundle' %}
+                    <form action="{{ path('assistant_add') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal center fos_user_registration_register">
+                                        
+                    
+                    <div class="control-group warning">
+      {{form_label(form.username, 'Employee Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.username)}}
+                               <span class="help-inline">{{ form_errors(form.username) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.first_name, 'First Name',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.first_name)}}
+                               <span class="help-inline">{{ form_errors(form.first_name) }}</span>
+                       </div></div>
+                         
+                                           <div class="control-group warning">
+      {{form_label(form.last_name, 'Last Name',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.last_name)}}
+                               <span class="help-inline">{{ form_errors(form.last_name) }}</span>
+                       </div></div>
+                                   
+                                     <div class="control-group warning">
+      {{form_label(form.email, 'Email Address',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.email)}}
+                               <span class="help-inline">{{ form_errors(form.email) }}</span>
+                       </div></div>
+                        
+                         <div class="control-group warning">
+      {{form_label(form.street_no, 'Street Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.street_no)}}
+                               <span class="help-inline">{{ form_errors(form.street_no) }}</span>
+                       </div></div>
+                        
+                         <div class="control-group warning">
+      {{form_label(form.street, 'Street',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.street)}}
+                               <span class="help-inline">{{ form_errors(form.street) }}</span>
+                       </div></div>
+                        
+                         <div class="control-group warning">
+      {{form_label(form.city, 'City',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.city)}}
+                               <span class="help-inline">{{ form_errors(form.city) }}</span>
+                       </div></div>
+                                    
+                                     <div class="control-group warning">
+      {{form_label(form.branchId, 'Branch',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.branchId,{'attr':{'data-rel':"chosen"}})}}
+                               <span class="help-inline">{{ form_errors(form.branchId) }}</span>
+                       </div></div>
+                        
+                        <div class="control-group warning">
+      {{form_label(form.phone.0.phone, 'Phone Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.phone.0.phone)}}
+                               <span class="help-inline">{{ form_errors(form.phone.0.phone) }}</span>
+                       </div></div>
+                        <div class="control-group warning">
+      {{form_label(form.assistant.0.machineNumber, 'Machine Number',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.assistant.0.machineNumber)}}
+                               <span class="help-inline">{{ form_errors(form.assistant.0.machineNumber) }}</span>
+                       </div></div>
+                        
+                       
+                        
+                        <div class="control-group success">
+      {{form_label(form.plainPassword.first, 'Password',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.plainPassword.first)}}
+                               <span class="help-inline">{{ form_errors(form.plainPassword.first) }}</span>
+                       </div></div>
+                         
+                                                     
+                                                     <div class="control-group success">
+      {{form_label(form.plainPassword.second, 'Confirm Password',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.plainPassword.second)}}
+                               <span class="help-inline">{{ form_errors(form.plainPassword.second) }}</span>
+                       </div></div>
+                                    
+                                 
+                                      <div class="controls">
+      {{form_label(form.branchId, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div>
+                        
+                           <input type="submit"  class='btn btn-success' value="Continue" />
+                       </div></div>
+                                    
+                                    
+{{ form_end(form) }}
+                    
+                                    </div>   
+           </div>
+        </div>
+    </div>
+</div>
 
-                                    <form action="{{ path('assistant_add') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-                                        {{ form_widget(form) }}
-                                        <div>
-                                            <input type="submit" value="{{ 'registration.submit'|trans }}" />
-                                        </div>
-                                    </form>
-				</div><!--/span-->
-			</div><!--/row-->
-				</div><!--/fluid-row-->
-		
-	</div><!--/.fluid-container-->
+
+{% endblock %}
+
+
+
+
+
+	
+
+
+	
 

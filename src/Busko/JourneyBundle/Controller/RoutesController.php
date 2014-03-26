@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Busko\EntityBundle\Entity\Routes;
 use Busko\EntityBundle\Form\RoutesType;
+use Busko\EntityBundle\Entity\Intermediates;
 
 /**
  * Routes controller.
@@ -22,11 +23,11 @@ class RoutesController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        $form = $this->createSearchForm();
         $entities = $em->getRepository('BuskoEntityBundle:Routes')->findAll();
 
         return $this->render('BuskoJourneyBundle:Routes:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities,'form'=>$form->createView(),
         ));
     }
     /**
@@ -35,16 +36,37 @@ class RoutesController extends Controller
      */
     public function createAction(Request $request)
     {
+        
         $entity = new Routes();
+        $inter = new Intermediates();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        $inter->setDuration('');
+        
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if($entity->getEndStop()===$entity->getStartStop()){
+                return $this->render('BuskoJourneyBundle:Routes:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(), 'type' => 'E', 'message' => 'start and end stops canot be same',
+        )); 
+            }
+            $inter->setRouteId($entity->getRouteId());
+            $inter->setstationNumber((int)'0');
+            $inter->setStopId($entity->getStartStop());
+            $em->persist($inter);
             $em->persist($entity);
+            try{
             $em->flush();
-
-            return $this->redirect($this->generateUrl('intermediates_createInter', array('rId' => $entity->getRouteId())));
+            } 
+            catch(\Exception $e){
+                return $this->render('BuskoJourneyBundle:Routes:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(), 'type' => 'E', 'message' => 'exception! something was not right',
+        ));
+            }
+            return $this->redirect($this->generateUrl('intermediates_createInter', array('rId' => $entity->getRouteId(),'num'=>(int)'1','type' => 'S', 'message' => 'Route Sucsessfuly created',)));
         }
 
         return $this->render('BuskoJourneyBundle:Routes:new.html.twig', array(
@@ -78,6 +100,14 @@ class RoutesController extends Controller
      */
     public function newAction()
     {
+        $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        if (!(in_array("ADMIN", $user->getRoles()))) {
+           return $this->forward('FOSUserBundle:Security:login');
+        }
         $entity = new Routes();
         $form   = $this->createCreateForm($entity);
 
@@ -219,5 +249,70 @@ class RoutesController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    public function searchAction(Request $request) {
+         $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createSearchForm();
+        $form->handleRequest($request);
+        $entity = null;
+        
+        if ($form->isValid()) {
+            $id = $form["routeId"]->getData();
+           
+
+            $entity = $em->getRepository('BuskoEntityBundle:Routes')->find($id);
+           
+           
+            if (in_array("ADMIN", $user->getRoles())) {
+            
+        }else {
+            if (in_array("OPERATOR", $user->getRoles())) {
+            }else{
+        
+                return $this->render('BuskoJourneyBundle:Routes:search.html.twig', array(
+                        'entities' => $entity,
+                        'search' => $form->createView(),
+                        'request'=>$request
+            ));
+        } }
+
+            return $this->render('BuskoJourneyBundle:Routes:searchAdmin.html.twig', array(
+                        'entities' => $entity,
+                        'search' => $form->createView(),
+                        'request'=>$request
+            ));
+        }
+
+        return $this->render('BuskoBranchBundle:BusStops:search.html.twig', array(
+                    'entities' => $entity,
+                    'form' => $form->createView(),
+                    'request'=>$request
+        ));
+    }
+     public function createSearchForm() {
+        $form = $this->createFormBuilder()
+                ->setAction($this->generateUrl('routes_search'))
+                ->setMethod('POST')
+                ->add('routeId', 'entity', array(
+            'label' =>'Route Id',
+            'label_attr' => array('class' => 'control-label'),
+            'attr' => array(
+            'class' =>'controls',
+                'data-rel'=>'chosen'
+                )
+            ,
+            'class' => 'BuskoEntityBundle:Routes',
+            'property' => 'routeId',
+            ))
+                ->add('search', 'submit', array('attr'=>array('class'=>'btn btn-primary')))
+                ->getForm();
+
+        return $form;
     }
 }

@@ -17,11 +17,13 @@ class Employees extends BaseUser
         $this->driver = new \Doctrine\Common\Collections\ArrayCollection();
         $this->assistant = new \Doctrine\Common\Collections\ArrayCollection();
     }
+  public $path;
+  
     private $assistant;
     private $driver;
     /**
      * @var string
-     */
+     */ 
     private $phone;
 
 
@@ -137,6 +139,22 @@ class Employees extends BaseUser
     public function getPassword()
     {
         return $this->password;
+    }
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 
     /**

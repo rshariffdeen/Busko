@@ -18,10 +18,10 @@
         <div id="content" class="span10">
             <!-- content starts -->
 
-            <div class="pull-right">
+            <!--div class="pull-right">
                                     <a href="{{path('fos_user_registration_register')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Employee </button></a>
                                     
-                                </div>
+                                </div-->
                 <br><br>
 
 
@@ -41,11 +41,15 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                
+                                <div class="pull-right">
+                                    <a href="{{path('admins_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Administrator </button></a>
+
+                                </div>
+                                <br><br>
                                   {% for admin in admins %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Saruar Ahmed" src="http://www.gravatar.com/avatar/564e1bb274c074dc4f6823af229d9dbb.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Saruar Ahmed" src="{{asset(admin.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{admin.firstname}} {{admin.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{admin.city}} 
@@ -78,13 +82,15 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
+                                <div class="pull-right">
+                                    <a href="{{path('operators_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Operator </button></a>
 
-                                
-
+                                </div>
+                                <br><br>
                                   {% for operator in operators %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="http://www.gravatar.com/avatar/3232415a0380253cfffe19163d04acab.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Sheikh Heera" src="{{asset(operator.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{operator.firstname}} {{operator.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{operator.city}} 
@@ -127,11 +133,15 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                
+                                 <div class="pull-right">
+                                    <a href="{{path('drivers_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Driver </button></a>
+
+                                </div>
+                                <br><br>
                                                              {% for driver in drivers %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Usman" src="{{asset(driver.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{driver.firstname}} {{driver.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{driver.city}} 
@@ -163,11 +173,15 @@
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                               
+                               <div class="pull-right">
+                                    <a href="{{path('assistant_add')}}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> New Assistant </button></a>
+
+                                </div>
+                                <br><br>
                                                {% for assistant in assistants %}
                                 <li>
                                     <a href="#">
-                                        <img class="dashboard-avatar" alt="Usman" src="http://www.gravatar.com/avatar/f0ea51fa1e4fae92608d8affee12f67b.png?s=50"></a>
+                                        <img class="dashboard-avatar" alt="Usman" src="{{asset(assistant.path)}}"></a>
                                     <strong>Name:</strong> <a href="#">{{assistant.firstname}} {{assistant.lastname}}
                                     </a><br>
                                     <strong>City:</strong> <a href="#">{{assistant.city}} 

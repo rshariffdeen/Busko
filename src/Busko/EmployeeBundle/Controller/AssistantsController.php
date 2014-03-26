@@ -159,10 +159,15 @@ class AssistantsController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $assistant = $em->getRepository('BuskoEntityBundle:Assistants')->find($id);
             $employee = $em->getRepository('BuskoEntityBundle:Employees')->find($id);
+            $employeePhone = $em->getRepository('BuskoEntityBundle:EmployeePhones')->findBy(array('id'=>$id));
             
             if ($employee) {
+                 $em->remove($assistant);
+                 foreach ($employeePhone as $phone){
+                $em->remove($phone);
+                }
                 $em->remove($employee);
-                $em->remove($assistant);
+               
                 try{
                 $em->flush();
                 }

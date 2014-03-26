@@ -1,15 +1,112 @@
-{% extends '::base.html.twig' %}
+{% extends "BuskoStyleBundle:Home:basic.html.twig" %}
 
-{% block body -%}
-    <h1>Intermediates creation</h1>
+{% trans_default_domain 'FOSUserBundle' %}
 
-    {{ form(form) }}
+{% block content %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('intermediates') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
-{% endblock %}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+
+        <noscript>
+        <div class="alert alert-block span10">
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+        </div>
+        </noscript>
+        <div id="content" class="span10 ">
+            <!-- content starts -->
+
+            <div class="row-fluid">
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-user"></i> Set End Station Duration </h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="box-content span12 ">
+						 
+
+                       {{ form_start(form,{ 'attr':{'class':'fos_user_profile_edit form-horizontal center'} }) }}
+                         
+           
+                            <div class="control-group warning ">
+                      {{form_label(form.stationNumber,'station Number',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.stationNumber, { 'attr':{'class':'uneditable-input'} })}}
+                                         <span class="help-inline">{{ form_errors(form.stationNumber) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.routeId, 'routeId',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.routeId, { 'attr':{'class':'uneditable-input'} })}}
+                                     <span class="help-inline">{{ form_errors(form.routeId) }}</span>
+                                </div></div>
+
+                            <div class="control-group warning">
+                      {{form_label(form.stopId, 'End Stop',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.stopId , { 'attr':{'type':'hide'} })}}
+                                     <span class="help-inline">{{ form_errors(form.stopId) }}</span>
+                                </div></div>
+                        <div class="control-group warning">
+                      {{form_label(form.duration, 'duration',{ 'label_attr': {'class': 'control-label'} })}}
+                                <div class="controls">
+                        {{form_widget(form.duration)}}
+                                     <span class="help-inline">{{ form_errors(form.duration) }}</span>
+                                </div></div>
+
+
+                           
+                            
+                        
+                           
+                                   {{ form_widget(form) }}
+                                
+                            
+                                </div>
+
+
+                           {{ form_end(form) }}
+
+                        
+
+
+                   
+                </div>
+
+
+
+
+            </div><!--/row-->
+
+
+
+
+
+            <!-- content ends -->
+        </div><!--/#content.span10-->
+
+    </div><!--/fluid-row-->
+
+</div><!--/.fluid-container-->
+
+
+
+
+
+{% endblock%}
+
+
+
+
+
+
+
+
+

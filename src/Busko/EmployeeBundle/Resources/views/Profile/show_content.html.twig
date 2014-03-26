@@ -36,9 +36,14 @@
 					
 
                                         {% trans_default_domain 'FOSUserBundle' %}
-                                            <form  class="form-horizontal span12">
                                             <div class="fos_user_user_show">
-                                                
+                                                <table width="90%">
+                                                    <th width="60%"></th>
+                                                    <th width="40%"></th>
+                                                    <tr><td>
+                                                 <form  class="form-horizontal span12">
+                                            
+                                                 
                                                 <div class="control-group">
 								<label class="control-label" for="disabledInput">{{ 'profile.show.username'|trans }}</label>
 								<div class="controls">
@@ -97,8 +102,17 @@
                              
                                                 
                                                
-                                            </div>
+                                           
                                             </form>
+                                                        </td><td>
+                                                             <div class="span10">
+                                                <div class="propic pull-right" >
+                                                    <img   src="{{asset(user.path)}}" width="200" height="200" > 
+                                          </div> 
+                                                </div>
+                                                        </td>
+                                                    </tr></table>
+                                            </div>
 				
 					</div>
 				</div>

@@ -36,13 +36,15 @@ class BranchPageController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Branches entity.');
         }
-
-      
+     
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
         
        
         if ($editForm->isValid()) {
+            $Branch=$editForm->getData();
+            $busstop=$Branch->getCity();
+            $Branch->setCity($busstop->getCity());
             try{
             $em->flush();
             }
@@ -94,6 +96,34 @@ class BranchPageController extends Controller
         return $this->render('BuskoEmployeeBundle:Security:login.html.twig');
         
       
+    }
+    public function viewDetailsAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BuskoEntityBundle:Branches')->find($id);
+        
+        if (!$entity) {
+             return $this->render('BuskoStyleBundle:Error:error.html.twig', array(
+                    'message' => ' branch could not be found'                   
+                    
+        ));}
+        
+        /* query to retrieve employees belonging to this branch*/
+        $repository = $em->getRepository('BuskoEntityBundle:Employees');
+        $query = $repository->createQueryBuilder('e')
+                    ->where('e.branchId = :title')
+                    ->setParameter('title', $id)
+                    ->getQuery();
+        $employees = $query->getResult();
+        
+              /* query to retrieve buses belonging to this branch*/
+        $repository = $em->getRepository('BuskoEntityBundle:Buses');
+        $query = $repository->createQueryBuilder('e')
+                    ->where('e.branch = :title')
+                    ->setParameter('title', $id)
+                    ->getQuery();
+        $buses = $query->getResult();
+        
+        return $this->render('BuskoBranchBundle:BranchPage:viewDetails.html.twig',array('employees'=>$employees,'buses'=>$buses,'id'=>$id));
     }
 
 }
