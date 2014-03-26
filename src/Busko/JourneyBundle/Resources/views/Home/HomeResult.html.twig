@@ -27,12 +27,6 @@
         <div class="box-content">
 
 
-            <div class="alert alert-error">
-
-                            {{errorMsg}}
-            </div>  
-
-
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
                     {{ form_errors(form) }}
             <div class="control-group">
@@ -84,4 +78,48 @@
 
 
 
+
+<div class="row-fluid sortable">
+    <div class="box span10 center">
+        <div class="box-header well">
+            <h2><i class="icon-alert"></i>Schedule Information</h2>
+
+        </div>
+        <div class="box-content alerts">
+            <div class="alert alert-success">
+                {% if number == 1 %}
+                There is {{number}} bus from {{start}} to {{stop}}.
+                {% else %}
+                There are {{number}} buses from {{start}} to {{stop}}.
+                {% endif %}
+            </div>
+            <table width="100%"> 
+                <tr>
+                    <td>Bus Number</td>
+                    <td>Route</td> 
+                    <td>Time- {{start}} </td>
+                    <td>Time- {{stop}}</td>
+                </tr>
+        {% for result in results %}
+
+                
+
+                
+                    <p align="justify"><strong>
+                            <td>{{ result['busNo'] }}</td>
+                            <td>{{ result['route'] }}</td>
+                            <td>{{ result['startTime'] }}</td>
+                            <td>{{ result['stopTime'] }}</td>
+
+
+
+
+
+        {% endfor %} 
+                            </table>   
+                </div>
+        </div>
+
+    </div>
+</div><!--/span-->
 {% endblock%}
