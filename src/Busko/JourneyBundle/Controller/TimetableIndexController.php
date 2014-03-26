@@ -215,7 +215,7 @@ class TimetableIndexController extends Controller {
             }
 
             $query->setParameter('routeStart', $RouteStartBusStopId[0][1]);
-            $query->setParameter('date', $formattedDate);
+            $query->setParameter('date', $RDate);
             $query->setParameter('rid', $route);
             $departureTimes = $query->getResult(); //---------------------------------------------------------------------------------------
             // echo json_encode($departureTimes);
