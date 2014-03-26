@@ -28,15 +28,25 @@ class DrivesController extends Controller
                             ->getRepository('BuskoEntityBundle:Drives')
                             ->findOneBy(array('date'=> $date,'licNum' => $drives->getLicNum()));
             
+            
             if (!$product) {
                 try {
                 $em->persist($drives);
                 $em->flush();
-                } catch (Exception $e) {}
+                } catch (\Exception $e) {
+                  return $this->render('BuskoJourneyBundle:HRAssignment:HRAss.html.twig',array('type'=>'E','message'=>'Oops! There was something wrong!', 'form' => $form->createView()));
+     
+              
+                }
+                return $this->render('BuskoJourneyBundle:HRAssignment:HRAss.html.twig',array('type'=>'S','message'=>'successfully assigned driver and assistant', 'form' => $form->createView()));
+     
             }
-            else{
-                echo "The bus has already been assigned for the day, select a different bus";
-            }
+            
+                 
+            
+            return $this->render('BuskoJourneyBundle:HRAssignment:HRAss.html.twig',array('type'=>'E','message'=>'The bus has already been assigned for the day, select a different bus', 'form' => $form->createView()));
+     
+            
         }
         $date = $request->get('date');  
         $drives = new Drives();
