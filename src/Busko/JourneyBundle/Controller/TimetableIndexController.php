@@ -195,10 +195,18 @@ class TimetableIndexController extends Controller {
             $RouteStartBusStopId = $query->getResult();
             //echo 'RouteStart: ' . ($RouteStartBusStopId[0][1]);
             //Get all the departure time of the considering route for the given date and the direction
-
+            $dateArray=  explode('/', $date);
             $RDate = new \DateTime();
-            $RDate->setTimeStamp(strtotime($date));
-            $formattedDate = $RDate->format("Y-m-d");
+            $RDate->setTime('0','0','0');
+            $RDate->setDate($dateArray[2],$dateArray[0],$dateArray[1]);
+            $RdateTS=$RDate->getTimestamp();
+            $RDateTS=($RdateTS/10000);
+            $RdateTS=(int)$RDateTS;
+            
+            //$RDate->setDate(strtotime($date));
+            //$RDate->setTimeStamp(strtotime($date));
+            
+           // echo json_encode($RDate);
 
             if ($startStationNumber < $stopStationNumber) {
                 $query = $em->createQuery('SELECT t.startTime AS startTime, IDENTITY (t.licNum) as busNo FROM BuskoEntityBundle:Journeys AS t
@@ -209,13 +217,13 @@ class TimetableIndexController extends Controller {
             } else {
                 $query = $em->createQuery('SELECT t.startTime AS startTime, t.licNum as busNo FROM BuskoEntityBundle:Journeys AS t
                 WHERE t.route =:rid
-                AND t.date =:date
+                AND t.date LIKE :date
                 AND t.startStop<>:routeStart'
                 );
             }
 
             $query->setParameter('routeStart', $RouteStartBusStopId[0][1]);
-            $query->setParameter('date', $formattedDate);
+            $query->setParameter('date', $RdateTS);
             $query->setParameter('rid', $route);
             $departureTimes = $query->getResult(); //---------------------------------------------------------------------------------------
             // echo json_encode($departureTimes);
@@ -229,15 +237,15 @@ class TimetableIndexController extends Controller {
                 $tempArray1 = explode(":", $durationToStartBusStop);
                 $formatted1 = 'PT' . $tempArray1[0] . 'H' . $tempArray1[1] . 'M';
                 $tempInterval1 = new \DateInterval($formatted1);
-                echo 'toStart' . json_encode($tempInterval1);
+                //'toStart' . json_encode($tempInterval1);
                 $timeToStartBusStop = $departureTime->add($tempInterval1);
-                echo 'final '.json_encode($timeToStartBusStop);
+                //echo 'final '.json_encode($timeToStartBusStop);
 
                 $timeToStartBusStoptemp=new \DateTime($timeToStartBusStop->format('H:i'));
                 $tempArray = explode(":", $duration);
                 $formatted = 'PT' . $tempArray[0] . 'H' . $tempArray[1] . 'M';
                 $tempInterval = new \DateInterval($formatted);
-                echo 'duration' . json_encode($tempInterval);
+                //echo 'duration' . json_encode($tempInterval);
                 $timeToStopBusStop = $timeToStartBusStoptemp->add($tempInterval);
 
                 $timeToStartBusStop = $timeToStartBusStop->format("H:i");

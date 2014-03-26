@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--
+                Busko Web App
+        
+                Copyright 2014 
+                Ground Zero- Where change begins
+                Licensed under the Apache License v2.0
+                http://www.apache.org/licenses/LICENSE-2.0
+
+        -->
+        <meta charset="utf-8">
+        <title>Busko | Ground Zero Product</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Database Systems project by Ground Zero">
+        <meta name="author" content="Ground Zero">
+
+        <!-- The styles -->
+        <link id="bs-css" href="{{asset('bundles/buskostyle/css/bootstrap-cerulean.css')}}" rel="stylesheet">
+        <style type="text/css">
+            body {
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+        </style>
+        <link href="{{asset('bundles/buskostyle/css/bootstrap-responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/buskostyle/css/charisma-app.css')}}" rel="stylesheet">
+        <link href="{{asset('bundles/buskostyle/css/jquery-ui-1.8.21.custom.css')}}" rel="stylesheet">
+        <link href='{{asset('bundles/buskostyle/css/fullcalendar.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/fullcalendar.print.css')}}' rel='stylesheet'  media='print'>
+        <link href='{{asset('bundles/buskostyle/css/chosen.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/uniform.default.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/colorbox.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/jquery.cleditor.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/jquery.noty.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/noty_theme_default.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/elfinder.min.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/elfinder.theme.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/jquery.iphone.toggle.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/opa-icons.css')}}' rel='stylesheet'>
+        <link href='{{asset('bundles/buskostyle/css/uploadify.css')}}' rel='stylesheet'>
+
+        <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- The fav icon -->
+        <link rel="shortcut icon" href="img/favicon.ico">
+
+    </head>
+
+    <body>
+        {% if type is defined %}
+        {% if type == 'E' %}
+        <script type="text/javascript">
+                            window.onload=function(){
+                                  noty(jQuery.parseJSON('{"text":"{{message}}","layout":"top","type":"error"}'));
+                                
+                           }
+                            </script>
+        {% endif %}
+        
+        {% if type == 'S' %}
+                            <script type="text/javascript">
+                            window.onload=function(){
+                                  noty(jQuery.parseJSON('{"text":"{{message}}","layout":"top","type":"success"}'));
+                                
+                           }
+                            </script>
+        {% endif %}
+                            {% endif %}
+
+
+        <!-- topbar starts -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+
+
+                    <!-- theme selector starts -->
+
+                    <!-- theme selector ends -->
+
+                    <!-- user dropdown starts -->
+                    <table width="100%"><tr>
+                            <td width="44%"></td>
+                            <td width="40%">
+                                <div class="top-nav nav-collapse">
+                                    <ul class="nav">
+                                        <li><h1 align="center" class="brand">Bus Ko </h1><br>Thursday, 12th March 2014 </li>
+
+                                    </ul>
+                                </div><!--/.nav-collapse -->
+                            </td>
+                            <td width="22%">
+                                {% block login %}
+
+                                <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                                    <div class="btn-group pull-right" >
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-user"></i><span class="hidden-phone"> {{app.user.username}}</span>
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{path('fos_user_security_logout')}}">Logout</a></li>
+                                            <li><a href="{{path('busko_homepage')}}">Dashboard</a></li>
+                                            <li><a href="{{path('busko_journey_homepage')}}">Main Site</a></li>
+                                            <li><a href="{{path('fos_user_profile_show')}}">Profile</a></li>                                               
+                                            <li><a href="{{path('fos_user_change_password')}}">Settings</a></li>
+                                        </ul>
+                                    </div>
+            {% else %}
+                                    <div class="btn-group pull-right" >
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-user"></i><span class="hidden-phone"> Employee</span>
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{path('fos_user_security_login')}}">Login</a></li>
+                                        </ul>
+                                    </div>
+            {% endif %}
+                                </div>
+
+
+                                 {% endblock %}
+                                <!-- user dropdown ends -->
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- topbar ends -->
+
+        <!-- left menu starts -->
+
+                            {% block menu %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+        <div class="span2 main-menu-span">
+            <div class="well nav-collapse sidebar-nav">
+                <ul class="nav nav-tabs nav-stacked main-menu">
+                    <li class="nav-header hidden-tablet">Main</li>
+
+                    <li><a class="ajax-link" href="{{path('busko_homepage')}}"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+                    {% block admin%}
+                    <li><a class="ajax-link" href="{{path('site_emp')}}"><i class="icon-user"></i><span class="hidden-tablet"> Employees</span></a></li>
+                     <li><a class="ajax-link" href="{{path('site_bus')}}"><i class="icon-align-justify"></i><span class="hidden-tablet"> Buses</span></a></li>
+                       <li><a class="ajax-link" href="{{path('site_branch')}}"><i class="icon-leaf"></i><span class="hidden-tablet"> Branches</span></a></li>
+                    
+                                                {% endblock%}
+                  <li><a class="ajax-link" href="{{path('site_route')}}"><i class="icon-th"></i><span class="hidden-tablet"> Routes</span></a></li>
+
+                   
+                </ul>
+            </div><!--/.well -->
+        </div><!--/span-->
+                        {% endif %}
+                        {% endblock %}
+        {% block content %}
+        {% endblock %}
+        <hr>
+        <footer>
+            <p align="center">developed by <br><img alt="GroundZero Logo" src="{{asset('bundles/buskostyle/img/Footer.png')}}" width="190" height="67" /> </p>
+        </footer>
+        <!-- external javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <!-- jQuery -->
+        <script src="{{asset('bundles/buskostyle/js/jquery-1.7.2.min.js')}}"></script>
+        <!-- jQuery UI -->
+        <script src="{{asset('bundles/buskostyle/js/jquery-ui-1.8.21.custom.min.js')}}"></script>
+        <!-- transition / effect library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-transition.js')}}"></script>
+        <!-- alert enhancer library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-alert.js')}}"></script>
+        <!-- modal / dialog library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-modal.js')}}"></script>
+        <!-- custom dropdown library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-dropdown.js')}}"></script>
+        <!-- scrolspy library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-scrollspy.js')}}"></script>
+        <!-- library for creating tabs -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-tab.js')}}"></script>
+        <!-- library for advanced tooltip -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-tooltip.js')}}"></script>
+        <!-- popover effect library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-popover.js')}}"></script>
+        <!-- button enhancer library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-button.js')}}"></script>
+        <!-- accordion library (optional, not used in demo) -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-collapse.js')}}"></script>
+        <!-- carousel slideshow library (optional, not used in demo) -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-carousel.js')}}"></script>
+        <!-- autocomplete library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-typeahead.js')}}"></script>
+        <!-- tour library -->
+        <script src="{{asset('bundles/buskostyle/js/bootstrap-tour.js')}}"></script>
+        <!-- library for cookie management -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.cookie.js')}}"></script>
+        <!-- calander plugin -->
+        <script src='{{asset('bundles/buskostyle/js/fullcalendar.min.js')}}'></script>
+        <!-- data table plugin -->
+        <script src='{{asset('bundles/buskostyle/js/jquery.dataTables.min.js')}}'></script>
+
+        <!-- chart libraries start -->
+        <script src="{{asset('bundles/buskostyle/js/excanvas.js')}}"></script>
+        <script src="{{asset('bundles/buskostyle/js/jquery.flot.min.js')}}"></script>
+        <script src="{{asset('bundles/buskostyle/js/jquery.flot.pie.min.js')}}"></script>
+        <script src="{{asset('bundles/buskostyle/js/jquery.flot.stack.js')}}"></script>
+        <script src="{{asset('bundles/buskostyle/js/jquery.flot.resize.min.js')}}"></script>
+        <!-- chart libraries end -->
+
+        <!-- select or dropdown enhancer -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.chosen.min.js')}}"></script>
+        <!-- checkbox, radio, and file input styler -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.uniform.min.js')}}"></script>
+        <!-- plugin for gallery image view -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.colorbox.min.js')}}"></script>
+        <!-- rich text editor library -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.cleditor.min.js')}}"></script>
+        <!-- notification plugin -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.noty.js')}}"></script>
+        <!-- file manager library -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.elfinder.min.js')}}"></script>
+        <!-- star rating plugin -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.raty.min.js')}}"></script>
+        <!-- for iOS style toggle switch -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.iphone.toggle.js')}}"></script>
+        <!-- autogrowing textarea plugin -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.autogrow-textarea.js')}}"></script>
+        <!-- multiple file upload plugin -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.uploadify-3.1.min.js')}}"></script>
+        <!-- history.js for cross-browser state change on ajax -->
+        <script src="{{asset('bundles/buskostyle/js/jquery.history.js')}}"></script>
+        <!-- application script for Charisma demo -->
+        <script src="{{asset('bundles/buskostyle/js/charisma.js')}}"></script>
+
+
+    </body>
+</html>
