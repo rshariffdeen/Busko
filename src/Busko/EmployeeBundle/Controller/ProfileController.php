@@ -94,6 +94,12 @@ class ProfileController extends Controller
      */
     public function editAction(Request $request)
     {
+         $photo= new Photo();
+         $form2 = $this->createFormBuilder($photo)
+        ->add('file','file',array('label' => false))
+        ->getForm()
+        ; 
+        
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -140,7 +146,7 @@ class ProfileController extends Controller
 
         return $this->container->get('templating')->renderResponse(
             'FOSUserBundle:Profile:edit.html.'.$this->container->getParameter('fos_user.template.engine'),
-            array('form' => $form->createView())
+            array('form' => $form->createView(),'user'=>$user,'form2'=>$form2->createView())
         );
     }
 }
