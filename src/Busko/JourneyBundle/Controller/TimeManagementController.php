@@ -141,32 +141,29 @@ class TimeManagementController extends Controller
                             ->getRepository('BuskoEntityBundle:Journeys')
                             ->findOneBy(array('date'=> $date,'licNum' => $licnum,'roundNumber'=> $roundnum));          
             if($product){
-                return $this->render('BuskoJourneyBundle:TimeManage:duplicate.html.twig',array('form' => $form->createView()));                   
+                return $this->render('BuskoJourneyBundle:TimeManage:busdisplay.html.twig',array('type'=>'E','message'=>'this bus has a journey for the selected round on the specific date','form' => $form->createView()));                   
             }
             else{
-                $em = $this->getDoctrine()->getEntityManager();
-                try {
-                    $em->persist($journey);
-                    $em->flush();
-                } catch (Exception $e) {}
-           
-                return $this->render('BuskoJourneyBundle:TimeManage:display.html.twig');  
-            }
-           
-           
-           
-           
-           
-           $em = $this->getDoctrine()->getEntityManager();
+               $em = $this->getDoctrine()->getEntityManager();
            try {
                 $em->persist($journey);
                 $em->flush();
-                } catch (Exception $e) {}
+                } catch (\Exception $e) {
+                     return $this->render('BuskoJourneyBundle:TimeManage:busdisplay.html.twig',array('form' => $form->createView(),'type'=>'E','message'=>'Oops! something was wrong!'));  
+         
+                    
+                }}
            
-           return $this->render('BuskoJourneyBundle:TimeManage:display.html.twig');  
+           
+           
+           
+           
+           
+           
+           return $this->render('BuskoJourneyBundle:TimeManage:busdisplay.html.twig',array('type'=>'S','message'=>'successfully added journey','form' => $form->createView()));  
            
         }else{
-            return $this->render('BuskoJourneyBundle:TimeManage:busdisplay.html.twig',array('form' => $form->createView()));    
+            return $this->render('BuskoJourneyBundle:TimeManage:busdisplay.html.twig',array( 'form' => $form->createView()));    
         }        
         
     }

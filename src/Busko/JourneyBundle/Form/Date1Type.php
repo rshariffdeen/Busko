@@ -15,8 +15,9 @@ class Date1Type extends AbstractType
             'dueDate',
             'date',array(
                 'label' => 'Date',
-                //'widget' => 'single_text',
+                'widget' => 'single_text',
                 //'format' => 'yyyy-MM-dd',
+               //'attr'=> array( 'class' => 'input-xlarge datepicker')
             ));
             
             
