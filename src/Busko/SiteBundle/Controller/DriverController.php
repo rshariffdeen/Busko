@@ -1,7 +1,7 @@
 <?php
 
 namespace Busko\SiteBundle\Controller;
-
+use \DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -33,7 +33,7 @@ class DriverController extends Controller
       
         $drives = $this->getDoctrine()->getEntityManager()
                                   ->getRepository('BuskoEntityBundle:Drives')
-                                  ->findBy(array('driv_id'=>$this->getUser()));
+                                  ->findBy(array('driv'=>$this->getUser()));
         
         for($i =0; $i <count($drives);$i++){
             $realdate = new DateTime();
