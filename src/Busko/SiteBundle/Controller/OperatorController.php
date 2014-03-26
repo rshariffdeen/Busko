@@ -113,9 +113,9 @@ class OperatorController extends Controller
     
     
     
-    public function routeAction()
+    public function routeAction(Request $request)
     {
-        return $this->render('BuskoSiteBundle:Operator:routes.html.twig');
+        return $this->render('BuskoSiteBundle:Operator:routes.html.twig',array('search'=>$request->get('search'),'search2'=>$request->get('search2')));
     }
     
     public function branchAction()

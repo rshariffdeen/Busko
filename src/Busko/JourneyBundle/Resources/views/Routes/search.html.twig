@@ -13,20 +13,16 @@
 
 
         <div id="content" class="span10">
-            <div class="row-fluid">
-                <div class="box span12">
+                  <div class="box span12">
                     <div class="box-header well">
-                        <h2><i class="icon-gear"></i> Bus Stops</h2>
+                        <h2><i class="icon-gear"></i> Search Routes</h2>
 
                     </div>
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
-                                <div class="pull-right">
-                                    <a href="{{ path('busstops_new') }}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> Add Bus Stop </button></a>
-
-                                </div>
-                                <br><br>
+                              
+                         
                                 <table class="records_list" width="100%">
                                     <thead>
                                         <tr>
@@ -45,9 +41,9 @@
                                             <div class ="form-horizontal center">
                                                 {{form_start(search)}}
                                                 <td></td>
-                                            <td align="right">{{ form_label(search.city) }}</td>
+                                            <td align="right">{{ form_label(search.routeId) }}</td>
                                             <td></td>
-                                            <td align="center">{{ form_widget(search.city) }}</td>
+                                            <td align="center">{{ form_widget(search.routeId) }}</td>
                                             <td></td>
                                             <td align="left">{{ form_widget(search.search)}}</td>   
                                             {{form_end(search)}}
@@ -57,58 +53,91 @@
                                         </tr>
      
                                     </tbody>
+                                    
+                                </table>
+                                <br>
+                                   
+                                    
+                                 <table class="records_list" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="30%">Route Name</th>
+                                            <th width="30%">Start Stop</th>                                           
+                                            <th width="30%">End Stop</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <br>
+                                         <br>
+
+                                        <tr>
+                                            <td align="center">{{ entities.routeId }}</td>
+                                            <td align="center">{{ entities.startStop}}</td>
+                                            <td align="center">{{ entities.endStop}}</td>
+                                            
+                                            <td>
+                                                <div class="pull-right">
+
+                                          
+                                                    <!--button class="btn btn-mini btn-danger btn-account"  > delete </button-->
+
+                                                </div>
+                                            </td>
+                                        </tr>
+        
+                                    </tbody>
                                 </table>
                             </ul>
 
                         </div></div>
                 </div>
-            </div>
-        </div>
-        <div id="content" class="span10">
             <div class="row-fluid">
                 <div class="box span12">
                     <div class="box-header well">
-                        <h2><i class="icon-gear"></i>Routes</h2>
+                        <h2><i class="icon-gear"></i> List of intermidiates</h2>
 
                     </div>
                     <div class="box-content">
                         <div class="box-content">
                             <ul class="dashboard-list">
                                 <div class="pull-right">
-                                    <a href="{{ path('routes_new') }}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> Add Route </button></a>
-
+                                   
                                 </div>
-                                <br><br>
+                         
+                                
+                                
                                 <table class="records_list" width="100%">
                                     <thead>
                                         <tr>
-                                            <th width="15%"></th>
-                                            <th width="20%"></th> 
-                                            <th width="5%"></th>  
-                                            <th width="20%"></th>
-                                            <th width="5%"></th>  
-                                            <th width="20%"></th>
-                                            <th width="15%"></th>
+                                            <th></th>
+                                            <th></th>                                           
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
+                                    {% for entity in entities.stop %}
                                     <tbody>
-
-                                        <tr>
-                                            <div class ="form-horizontal center">
-                                                {{form_start(search2)}}
-                                                <td></td>
-                                            <td align="right">{{ form_label(search2.routeId) }}</td>
-                                            <td></td>
-                                            <td align="center">{{ form_widget(search2.routeId) }}</td>
-                                            <td></td>
-                                            <td align="left">{{ form_widget(search2.search)}}</td>   
-                                            {{form_end(search2)}}
-                                            </div>
-                                    <td></td>
+        
                                         
+                                        <tr>
+                                            <td align="center">{{ entity }}</td>
+                                            <td align="center"></td>
+                                            <td align="center"></td>
+                                            <td>
+                                                <div class="pull-right">
+
+                                          
+                                                    <!--button class="btn btn-mini btn-danger btn-account"  > delete </button-->
+
+                                                </div>
+                                            </td>
                                         </tr>
-     
+                                       
+        
                                     </tbody>
+                                     {% endfor %}
                                 </table>
                             </ul>
 
@@ -125,7 +154,7 @@
         <h3>Confirm</h3>
     </div>
     <div class="modal-body">
-        <p align="center">Are you sure you want to delete this account?                          		
+        <p align="center">Are you sure you want to delete this bus stop?                          		
         </p>
 
 

@@ -24,8 +24,8 @@
                     
                     <div class="box-content span12 ">
 						 
-
-                       {{ form_start(form) }}
+                        
+                       {{ form_start(form,{ 'attr':{'class':'fos_user_profile_edit form-horizontal center'} }) }}
                          {% for tag in form.stop %}
            
                         <div class="box span6">
@@ -35,18 +35,19 @@
                             <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
                             <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
                         </div>
-                    </div>
+                    </div><br><br>
                             <div class="control-group warning ">
                       {{form_label(tag.stationNumber,'Station Number',{ 'label_attr': {'class': 'control-label'} })}}
                                 <div class="controls">
-                        {{form_widget(tag.stationNumber)}}
+                                    {{ form_widget(tag.stationNumber, { 'attr':{'class':'uneditable-input'} }) }}
+                        
                                          <span class="help-inline">{{ form_errors(tag.stationNumber) }}</span>
                                 </div></div>
 
                             <div class="control-group warning">
                       {{form_label(tag.routeId, 'Route ID',{ 'label_attr': {'class': 'control-label'} })}}
                                 <div class="controls">
-                        {{form_widget(tag.routeId)}}
+                        {{form_widget(tag.routeId, { 'attr':{'class':'uneditable-input'} })}}
                                      <span class="help-inline">{{ form_errors(tag.routeId) }}</span>
                                 </div></div>
 
@@ -66,15 +67,18 @@
                                 </div></div>
                             </div>
                         {% endfor %}
-                           <div class="pull-right">
+                           <div class="center">
                                    {{ form_widget(form) }}
                                 </div>
-                            
+                             
 
 
 
                            {{ form_end(form) }}
+                        <div class="pull-right">
+                                    <a href="{{ path('intermediates_new', { 'rId': rId,'num': num }) }}"><button class="btn btn-round btn-success"><i class="icon-plus"></i> Finished</button></a>
 
+                                </div>
                         
 
 
