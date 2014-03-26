@@ -31,12 +31,28 @@
                         {{form_start(form,{ 'attr': {'class': 'form-horizontal center'} })}}
                         
                             <div class="control-group warning">
-                                {{form_widget(form)}}
-                            </div>
+      {{form_label(form.date, 'Date',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.date,{'value':"now"|date("m/d/Y")})}}
+                               <span class="help-inline">{{ form_errors(form.date) }}</span>
+                       </div></div>
+                        
+                         <div class="control-group warning">
+      {{form_label(form.licNum, 'Bus',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.licNum,{'value':"now"|date("m/d/Y")})}}
+                               <span class="help-inline">{{ form_errors(form.licNum) }}</span>
+                       </div></div>
+                        <div class="control-group warning">
+      {{form_label(form.date, ' ',{ 'label_attr': {'class': 'control-label'} })}}
+                        
+                        <div class="controls">
+                        {{form_widget(form.submit,{'attr':{'class':'btn btn-success'}})}}
+                       </div></div>
                         {{form_end(form)}}
                     
                     </p>
                         </div></div></div></div></div></div>
 {% endblock %}
-
-
