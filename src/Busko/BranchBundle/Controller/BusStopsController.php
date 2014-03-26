@@ -56,6 +56,12 @@ class BusStopsController extends Controller {
     }
 
     public function searchAction(Request $request) {
+         $user = $this->getUser();
+        if ($user == null) {
+            return $this->forward('FOSUserBundle:Security:login');
+        }
+
+        
         $em = $this->getDoctrine()->getManager();
         $form = $this->createSearchForm();
         $form->handleRequest($request);
@@ -71,9 +77,19 @@ class BusStopsController extends Controller {
                     ->getQuery();
             $entities = $query->getResult();
            
+            if (in_array("ADMIN", $user->getRoles())) {
+            
+        }else {
+            if (in_array("OPERATOR", $user->getRoles())) {
+            }else{
+         return $this->render('BuskoBranchBundle:BusStops:search.html.twig', array(
+                        'entities' => $entities,
+                        'search' => $form->createView(),
+                        'request'=>$request
+            ));
+        } }
 
-
-            return $this->render('BuskoBranchBundle:BusStops:search.html.twig', array(
+            return $this->render('BuskoBranchBundle:BusStops:searchAdmin.html.twig', array(
                         'entities' => $entities,
                         'search' => $form->createView(),
                         'request'=>$request
