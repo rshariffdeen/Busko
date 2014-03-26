@@ -43,7 +43,7 @@ class HRAssignmentController extends Controller
         $form = $this->createForm(new DrivesUpdateType(), new DrivesUpdate(),array(
             'action' => $this->generateUrl('update_drives_entry'),
         ));
-        return $this->render('BuskoJourneyBundle:Home:datedisplay.html.twig',array('form' => $form->createView()));
+        return $this->render('BuskoJourneyBundle:Home:showdate.html.twig',array('form' => $form->createView()));
     }
 }
 
