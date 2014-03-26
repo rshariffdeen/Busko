@@ -51,6 +51,7 @@ class AssistantController extends Controller
     
     
     
+    
     public function routeAction(Request $request)
     {
         return $this->render('BuskoSiteBundle:Assistant:routes.html.twig',array('search'=>$request->get('search'),'search2'=>$request->get('search2')));
